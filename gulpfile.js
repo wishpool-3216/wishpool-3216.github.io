@@ -23,4 +23,9 @@ gulp.task('combineJS', function() {
 });
 
 
-gulp.task('default', ['combineJS', 'connect']);
+gulp.task('transferHTML', function () {
+	return gulp.src(['./browser/js/**/*.html'])
+	.pipe(gulp.dest('./public/html/'));
+})
+
+gulp.task('default', ['combineJS', 'connect', 'transferHTML']);

@@ -4,13 +4,6 @@
 	<title>Wishpool</title>
 	<!-- Can throw in Facebook JS SDK and other API scripts here -->
 	<script>
-		FB.init({
-		  appId      : '295119780857739',
-		  cookie     : true,  // enable cookies to allow the server to access
-		                    // the session
-		  xfbml      : true,  // parse social plugins on this page
-		  version    : 'v2.7' // use graph api version 2.7
-		});
 	</script>
 	<!-- External depedencies, drawn from CDNs -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,7 +23,7 @@
 
 	<!-- Toolbar -->
 	<md-toolbar class="md-whiteframe-2z" id="mainToolbar" layout="row">
-		<md-button ng-click="toggleSideNav()" hide-gt-sm>
+		<md-button ng-click="toggleSideNav()" hide-gt-xs>
 			<md-icon md-font-set="material-icons">menu</md-icon>
 		</md-button>
 		<h2>Wishpool</h2>
@@ -44,7 +37,7 @@
 		<md-sidenav
 			class="md-whiteframe-z2"
 			md-component-id="left"
-			md-is-locked-open="$mdMedia('gt-sm')"
+			md-is-locked-open="$mdMedia('gt-xs')"
 			layout="column"
 		/>
 			<md-list flex>
