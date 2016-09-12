@@ -1,0 +1,11 @@
+<md-content id="wish" layout="column" ng-controller="WishCtrl">
+ <img class="wishImage" src="{{wish.source}}">
+ <h3 class="wishLabel">{{wish.name}}</h3>
+ <h4 class="wishLabel">Total Amount Gathered</h4>
+ <br>
+ <h4 class="wishLabel">Contributors</h4>
+ <div layout="row" class="contributorIcons">
+ <img ng-repeat="giver in wish.givers" src="{{giver.source}}" class="contributorIcon">
+ </div>
+
+</md-content>

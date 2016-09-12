@@ -8,7 +8,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider) {
 		$urlRouterProvider.otherwise('/');
     $mdThemingProvider
     	.theme('default')
-    	.primaryPalette('light-blue')
+    	.primaryPalette('purple')
 })
 
 app.controller('TopbarCtrl', function($scope, $mdSidenav) {

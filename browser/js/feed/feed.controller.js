@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('FeedCtrl', function($scope, $state){
-	$scope.feed = [
+	$scope.friends = [
 		{
 			firstName: "Emman",
 			source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p240x240/11855781_10204708918342687_2306807101497391770_n.jpg?oh=7f4b1c579f992a1ea752ae29663f5298&oe=58413A4A"

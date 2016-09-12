@@ -1,5 +1,7 @@
 @import "variables";
 @import "home";
+@import "wishlist";
+@import "wish";
 
 #mainToolbar {
 	padding-left: 10px;
@@ -17,35 +19,20 @@
 }
 
 #sidenav {
-	width: 150px;
-	min-width: 150px;
+	width: 120px;
+	min-width: 120px;
 }
 
-h3 {
-	margin-top: 4px;
-	margin-bottom: 3px;
-}
 
-h4 {
-	margin-top: 4px;
-	margin-bottom: 4px;
-}
-
-p {
-	margin-top: 3px;
-	margin-bottom: 3px;
-}
-
-.contributorIcon {
-	width: 30px;
-	height: 30px;
-	border-radius: 8px;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
-.contributorIcons {
-	margin-top: 5px;
-	margin-bottom: 10px;
+#toolbar {
+	height: 60px;
+	min-height: 60px;
+	h3 {
+		margin-top: 17px;
+		margin-bottom: 20px;
+	}
+	#menuButton {
+		margin-top: 10px;
+	}
 }
 

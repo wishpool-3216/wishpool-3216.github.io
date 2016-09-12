@@ -22,23 +22,20 @@
 	<link href="style.css" rel="stylesheet">
 
 </head>
-<body ng-app="wishpoolApp">
+<body ng-app="wishpoolApp" layout="column">
 	<!-- Top bar -->
-	<md-toolbar ng-controller="TopbarCtrl" class="md-whiteframe-2z" id="mainToolbar" layout="row">
-		<md-button ng-click="toggleSideNav()" hide-gt-xs>
-			<md-icon md-font-set="material-icons">menu</md-icon>
+
+	<md-toolbar ng-controller="TopbarCtrl" class="md-whiteframe-z2" id="toolbar" layout="row">
+		<md-button class="md-icon-button" ng-click="toggleSideNav()">
+			<md-icon md-font-set="material-icons" id="menuButton">menu</md-icon>
 		</md-button>
-		<h2>Wishpool</h2>
+		<h3>Wishpool</h3>
 	</md-toolbar>
-	
-	<!-- Navbar + Main view -->
+
 	<div id="underToolbar" layout="row" flex>
 		<navbar></navbar>
-		<div flex>
-			<ui-view></ui-view>
-		</div>
+		<ui-view flex></ui-view>
 	</div>
-
 </body>
 
 </html>

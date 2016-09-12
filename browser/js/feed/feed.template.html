@@ -1,7 +1,7 @@
 <div id="feed" layout-align="center center">
-	<md-grid-list id="feedGrid" md-cols-xs="3" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="20px" flex="70">
+	<md-grid-list id="feedGrid" md-cols-xs="3" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="20px">	  
 		<md-grid-tile class="gray" ng-repeat="friend in friends"
-        md-colspan-xs="1">
+        md-colspan-xs="1"> 
   		<img class="friendProfilePic" src="{{friend.source}}">
     	<md-grid-tile-footer>
         <p>{{friend.firstName}}</p>
@@ -9,3 +9,6 @@
     </md-grid-tile>
 	</md-grid-list>
 </div>
+
+
+

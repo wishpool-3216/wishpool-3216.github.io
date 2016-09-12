@@ -1,0 +1,9 @@
+<md-list id="wishlist" layout="column" flex="70">
+	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish()">
+		<img class="wishIcon" src="{{wish.source}}"> 	
+		<div class="md-list-item-text" layout="column">
+			<h3>{{wish.name}}</h3>
+		</div>
+		<md-divider></md-divider>
+	</md-list-item>
+</md-list>
