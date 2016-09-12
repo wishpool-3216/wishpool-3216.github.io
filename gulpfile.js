@@ -8,10 +8,15 @@ var uglify = require('gulp-uglify');
 
 gulp.task('connect', function () {
 	connect.server({
-		root: ['public','browser'],
+		root: ['public'],
 		port: 4000
 	})
 });
+
+gulp.task('transferHTML', function() {
+	return gulp.src(['./browser/js/*.html', './browser/js/**/*.html'])
+				 .pipe(gulp.dest('./public/html'));
+})
 
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
@@ -22,4 +27,4 @@ gulp.task('combineJS', function() {
         .pipe(gulp.dest('./public/'));
 });
 
-gulp.task('default', ['combineJS', 'connect']);
+gulp.task('default', ['combineJS', 'connect','transferHTML']);
