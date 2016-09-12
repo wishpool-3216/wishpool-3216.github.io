@@ -6,16 +6,15 @@ app.config(function ($urlRouterProvider, $mdThemingProvider) {
     $urlRouterProvider.when('','/');
     // Returns to landing page if user types an undefined url
 		$urlRouterProvider.otherwise('/');
-    $mdThemingProvider.theme('default')
+    $mdThemingProvider
+    	.theme('default')
+    	.primaryPalette('light-blue')
 })
 
-app.controller('MainCtrl', function($scope, $mdSidenav) {
-	$scope.message = 'Angular is running!';
+app.controller('TopbarCtrl', function($scope, $mdSidenav) {
 	$scope.toggleSideNav = function () {
 		$mdSidenav('left').toggle();
 	};
-
-
 });
 
 

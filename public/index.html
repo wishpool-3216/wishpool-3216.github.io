@@ -6,6 +6,7 @@
 	<script>
 	</script>
 	<!-- External depedencies, drawn from CDNs -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
@@ -19,55 +20,22 @@
 	<link href="style.css" rel="stylesheet">
 
 </head>
-<body ng-app="wishpoolApp" ng-controller="MainCtrl" >
-
-	<!-- Toolbar -->
-	<md-toolbar class="md-whiteframe-2z" id="mainToolbar" layout="row">
+<body ng-app="wishpoolApp">
+	<!-- Top bar -->
+	<md-toolbar ng-controller="TopbarCtrl" class="md-whiteframe-2z" id="mainToolbar" layout="row">
 		<md-button ng-click="toggleSideNav()" hide-gt-xs>
 			<md-icon md-font-set="material-icons">menu</md-icon>
 		</md-button>
 		<h2>Wishpool</h2>
 	</md-toolbar>
-	<!-- End of Toolbar -->
-
-	<!-- Sidebar + Main Content -->
+	
+	<!-- Navbar + Main view -->
 	<div id="underToolbar" layout="row" flex>
-
-		<!-- Sidebar -->
-		<md-sidenav
-			class="md-whiteframe-z2"
-			md-component-id="left"
-			md-is-locked-open="$mdMedia('gt-xs')"
-			layout="column"
-		/>
-			<md-list flex>
-				<md-list-item>
-					<md-icon md-font-set="material-icons">favorite</md-icon>
-					<p>My Wishlist</p>
-				</md-list-item>
-				<md-list-item>
-					<md-icon md-font-set="material-icons">language</md-icon>
-					<p>Feed</p>
-				</md-list-item>
-				<md-list-item>
-					<md-icon md-font-set="material-icons">settings</md-icon>
-					<p>Settings</p>
-				</md-list-item>
-				<md-list-item>
-				</md-list-item>
-			</md-list>
-
-
-		</md-sidenav>
-		<!-- End of Sidebar -->
-
-		<!-- Main Content -->
-		<md-content flex>
+		<navbar></navbar>
+		<div flex>
 			<ui-view></ui-view>
-		</md-content>
-		<!-- End of Main Content -->
+		</div>
 	</div>
-	<!-- End of Sidebar + Main Content -->
 
 </body>	
 

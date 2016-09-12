@@ -1,0 +1,26 @@
+<md-sidenav
+	id="sidenav"
+	class="md-whiteframe-z2"
+	md-component-id="left"
+	md-is-locked-open="$mdMedia('gt-xs')"
+	layout="column"
+/>
+	<md-list layout="column">
+		<md-button ng-click="goToFeed()">
+			<md-icon md-font-set="material-icons">language</md-icon>
+			<p>Feed</p>
+		</md-button>
+
+		<md-button ng-click="goToWishlist()">
+			<md-icon md-font-set="material-icons">favorite</md-icon>
+			<p>My Wishlist</p>
+		</md-button>
+
+		<md-button>
+			<md-icon md-font-set="material-icons">settings</md-icon>
+			<p>Settings</p>
+		</md-button>
+	
+	</md-list>
+
+</md-sidenav>
