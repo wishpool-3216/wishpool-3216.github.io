@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Wishpool</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Can throw in Facebook JS SDK and other API scripts here -->
+	<script>
+	</script>
+	<!-- External depedencies, drawn from CDNs -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
+  <script src="https://gitcdn.link/repo/angular/bower-material/master/angular-material.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+
+	<!-- Internal dependencies -->
+	<script src="main.js"></script>
+	<link href="style.css" rel="stylesheet">
+
+</head>
+<body ng-app="wishpoolApp" ng-controller="MainCtrl" >
+
+	<!-- Toolbar -->
+	<md-toolbar class="md-whiteframe-2z" id="mainToolbar" layout="row">
+		<md-button ng-click="toggleSideNav()" hide-gt-xs>
+			<md-icon md-font-set="material-icons">menu</md-icon>
+		</md-button>
+		<h2>Wishpool</h2>
+	</md-toolbar>
+	<!-- End of Toolbar -->
+
+	<!-- Sidebar + Main Content -->
+	<div id="underToolbar" layout="row" flex>
+
+		<!-- Sidebar -->
+		<md-sidenav
+			class="md-whiteframe-z2"
+			md-component-id="left"
+			md-is-locked-open="$mdMedia('gt-xs')"
+			layout="column"
+		/>
+			<md-list flex>
+				<md-list-item>
+					<md-icon md-font-set="material-icons">favorite</md-icon>
+					<p>My Wishlist</p>
+				</md-list-item>
+				<md-list-item>
+					<md-icon md-font-set="material-icons">language</md-icon>
+					<p>Feed</p>
+				</md-list-item>
+				<md-list-item>
+					<md-icon md-font-set="material-icons">settings</md-icon>
+					<p>Settings</p>
+				</md-list-item>
+				<md-list-item>
+				</md-list-item>
+			</md-list>
+
+
+		</md-sidenav>
+		<!-- End of Sidebar -->
+
+		<!-- Main Content -->
+		<md-content flex>
+			<ui-view></ui-view>
+		</md-content>
+		<!-- End of Main Content -->
+	</div>
+	<!-- End of Sidebar + Main Content -->
+
+</body>
+
+</html>

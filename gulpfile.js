@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var concat = require('gulp-concat');
 var source = require('vinyl-source-stream'); // <-- converts a Browserify stream into a stream that Gulp actually understands.
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
 
 gulp.task('connect', function () {
 	connect.server({
@@ -14,8 +15,13 @@ gulp.task('connect', function () {
 });
 
 gulp.task('transferHTML', function() {
-	return gulp.src(['./browser/js/*.html', './browser/js/**/*.html'])
+	return gulp.src('./browser/js/**/*.html')
 				 .pipe(gulp.dest('./public/html'));
+})
+
+gulp.task('transferIndexHtml', function() {
+	return gulp.src('./browser/index.html')
+				 .pipe(gulp.dest('./public/'));
 })
 
 gulp.task('combineJS', function() {
@@ -27,4 +33,11 @@ gulp.task('combineJS', function() {
         .pipe(gulp.dest('./public/'));
 });
 
-gulp.task('default', ['combineJS', 'connect','transferHTML']);
+gulp.task('styles', function() {
+    gulp.src('./browser/css/index.scss')
+        .pipe(sass().on('error', sass.logError))
+				.pipe(concat('style.css'))
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('default', ['combineJS', 'connect','transferHTML', 'styles', 'transferIndexHtml']);

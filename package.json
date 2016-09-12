@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Wishpool Frontend",
   "main": "public/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wishpool-3216/wishpool-3216.github.io.git"
@@ -21,6 +20,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-ruby-sass": "^2.1.0",
+    "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "nodemon": "^1.10.2",
     "vinyl-source-stream": "^1.1.0"
