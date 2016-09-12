@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Wishpool</title>
+	<!-- Can throw in Facebook JS SDK and other API scripts here -->
+	
+
+	<!-- External dependencies -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<script src="/node_modules/angular/angular.js"></script>
+	<script src="/node_modules/angular-animate/angular-animate.js"></script>
+	<script src="/node_modules/angular-aria/angular-aria.js"></script>
+	<script src="/node_modules/angular-material/angular-material.js"></script>
+	<link href="/node_modules/angular-material/angular-material.css" rel="stylesheet">
+	<script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+	<!-- Internal dependencies -->
+	<script src="/public/main.js"></script>
+	<link href="/public/style.css" rel="stylesheet">
+
+</head>
+
+<body ng-app="wishpoolApp">
+
+	<!-- Toolbar -->
+	<md-toolbar class="md-whiteframe-2z" id="mainToolbar" ng-controller="MainCtrl" layout="row">
+		<md-button ng-click="toggleSideNav()" hide-gt-sm>
+			<md-icon md-font-set="material-icons">menu</md-icon>
+		</md-button>
+		<h2>Wishpool</h2>
+	</md-toolbar>
+	<!-- End of Toolbar -->
+
+	<!-- Sidebar + Main Content -->
+	<div id="underToolbar" layout="row" flex>
+
+		<!-- Sidebar -->
+		<md-sidenav
+			class="md-whiteframe-z2"
+			md-component-id="left"
+			md-is-locked-open="$mdMedia('gt-sm')"
+			layout="column"
+		/>
+			<md-list flex>
+				<md-list-item>
+					<md-icon md-font-set="material-icons">home</md-icon>
+					<p>Home</p>
+				</md-list-item>
+				<md-list-item>
+					<md-icon md-font-set="material-icons">accessibility</md-icon>
+					<p>Buy a Gift</p>
+				</md-list-item>
+			</md-list>
+
+		</md-sidenav>
+		<!-- End of Sidebar -->
+
+		<!-- Main Content -->
+		<md-content flex>
+			<ui-view></ui-view>
+		</md-content>
+		<!-- End of Main Content -->
+	</div>
+	<!-- End of Sidebar + Main Content -->
+
+</body>	
+
+</html>
