@@ -3,8 +3,15 @@
 <head>
 	<title>Wishpool</title>
 	<!-- Can throw in Facebook JS SDK and other API scripts here -->
-	
-
+	<script>
+		FB.init({
+		  appId      : '295119780857739',
+		  cookie     : true,  // enable cookies to allow the server to access
+		                    // the session
+		  xfbml      : true,  // parse social plugins on this page
+		  version    : 'v2.7' // use graph api version 2.7
+		});
+	</script>
 	<!-- External depedencies, drawn from CDNs -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css">
@@ -53,7 +60,10 @@
 					<md-icon md-font-set="material-icons">settings</md-icon>
 					<p>Settings</p>
 				</md-list-item>
+				<md-list-item>
+				</md-list-item>
 			</md-list>
+
 
 		</md-sidenav>
 		<!-- End of Sidebar -->

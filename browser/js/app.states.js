@@ -21,9 +21,10 @@ app.config(function($stateProvider){
 
   $stateProvider.state('wishlist', {
   	url: '/user/:userId',
-  	templateUrl: 'browser/js/wishlist/wishlist.template.html',
+  	templateUrl: '/browser/js/wishlist/wishlist.template.html',
   	controller: 'WishlistCtrl'
   })
+
 
 
 });

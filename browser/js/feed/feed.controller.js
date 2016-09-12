@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('FeedCtrl', function($scope){
-
+app.controller('FeedCtrl', function($scope, $state){
+	
 });
