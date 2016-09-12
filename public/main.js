@@ -43,9 +43,10 @@ app.config(function($stateProvider){
 
   $stateProvider.state('wishlist', {
   	url: '/user/:userId',
-  	templateUrl: 'browser/js/wishlist/wishlist.template.html',
-  	controller: 'ProfileCtrl'
+  	templateUrl: '/browser/js/wishlist/wishlist.template.html',
+  	controller: 'WishlistCtrl'
   })
+
 
 
 });
@@ -53,16 +54,21 @@ app.config(function($stateProvider){
 'use strict';
 
 app.controller('ContributeCtrl', function($scope){
-
+	
 });
 'use strict';
 
-app.controller('FeedCtrl', function($scope){
-
+app.controller('FeedCtrl', function($scope, $state){
+	
 });
-
 
 'use strict';
 app.controller('GiftCtrl', function($scope){
 
 });
+
+'use strict';
+
+app.controller('WishlistCtrl', function($scope){
+	
+})
