@@ -4,7 +4,6 @@
   "description": "Wishpool Frontend",
   "main": "public/index.js",
   "scripts": {
-    "start": "nodemon --watch browser -e css,js,html server.js"
   },
   "repository": {
     "type": "git",
@@ -25,16 +24,5 @@
     "gulp-uglify": "^2.0.0",
     "nodemon": "^1.10.2",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "dependencies": {
-    "angular": "^1.5.8",
-    "angular-animate": "^1.5.8",
-    "angular-aria": "^1.5.8",
-    "angular-material": "^1.1.1",
-    "angular-ui-router": "^1.0.0-beta.2",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "morgan": "^1.7.0",
-    "path": "^0.12.7"
   }
 }

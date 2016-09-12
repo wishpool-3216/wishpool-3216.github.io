@@ -6,6 +6,12 @@ var concat = require('gulp-concat');
 var source = require('vinyl-source-stream'); // <-- converts a Browserify stream into a stream that Gulp actually understands.
 var uglify = require('gulp-uglify');
 
+gulp.task('connect', function () {
+	connect.server({
+		root: 'public',
+		port: 4000
+	})
+})
 
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
@@ -17,8 +23,8 @@ gulp.task('combineJS', function() {
 })
 
 gulp.task('watch', function() {
-	gulp.watch('./browser/js/*.js', ['combineJS'])
+	gulp.watch('./browser/js/*.js', ['combineJS','connect'])
 })
 
 
-gulp.task('default', ['combineJS','watch'])
+gulp.task('default', ['watch'])
