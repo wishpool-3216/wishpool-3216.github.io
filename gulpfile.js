@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('connect', function () {
 	connect.server({
-		root: 'public',
+		root: ['public','browser'],
 		port: 4000
 	})
 });
@@ -22,10 +22,4 @@ gulp.task('combineJS', function() {
         .pipe(gulp.dest('./public/'));
 });
 
-
-gulp.task('transferHTML', function () {
-	return gulp.src(['./browser/js/**/*.html'])
-	.pipe(gulp.dest('./public/html/'));
-})
-
-gulp.task('default', ['combineJS', 'connect', 'transferHTML']);
+gulp.task('default', ['combineJS', 'connect']);
