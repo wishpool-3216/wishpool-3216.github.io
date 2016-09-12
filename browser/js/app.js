@@ -10,10 +10,11 @@ app.config(function ($urlRouterProvider, $mdThemingProvider) {
 })
 
 app.controller('MainCtrl', function($scope, $mdSidenav) {
-	$scope.message = 'Angular is running.';
+	$scope.message = 'Angular is running!';
 	$scope.toggleSideNav = function () {
 		$mdSidenav('left').toggle();
 	};
+
 
 });
 

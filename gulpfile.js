@@ -11,7 +11,7 @@ gulp.task('connect', function () {
 		root: 'public',
 		port: 4000
 	})
-})
+});
 
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
@@ -20,11 +20,7 @@ gulp.task('combineJS', function() {
         .pipe(concat('main.js'))
         // and saves it in the public directory
         .pipe(gulp.dest('./public/'));
-})
-
-gulp.task('watch', function() {
-	gulp.watch('./browser/js/*.js', ['combineJS','connect'])
-})
+});
 
 
-gulp.task('default', ['watch'])
+gulp.task('default', ['combineJS', 'connect']);
