@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Wishpool Frontend",
   "main": "public/index.js",
-  "scripts": {},
+  "scripts": {
+    "clear": "rm -rf public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wishpool-3216/wishpool-3216.github.io.git"

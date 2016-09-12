@@ -26,7 +26,7 @@ gulp.task('transferIndexHtml', function() {
 
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
- return gulp.src(['./browser/js/*.js', './browser/js/**/*.js'])
+ return gulp.src('./browser/js/**/*.js')
     		// concats everything together into a main.js file
         .pipe(concat('main.js'))
         // and saves it in the public directory
@@ -34,10 +34,18 @@ gulp.task('combineJS', function() {
 });
 
 gulp.task('styles', function() {
-    gulp.src('./browser/css/index.scss')
-        .pipe(sass().on('error', sass.logError))
-				.pipe(concat('style.css'))
-        .pipe(gulp.dest('./public/'));
+	gulp.src('./browser/css/index.scss')
+	.pipe(sass().on('error', sass.logError))
+	.pipe(concat('style.css'))
+	.pipe(gulp.dest('./public/'));
 });
 
-gulp.task('default', ['combineJS', 'connect','transferHTML', 'styles', 'transferIndexHtml']);
+gulp.task('watch', function() {
+	gulp.watch('./browser/js/**/*.js', ['combineJS']);
+	gulp.watch('./browser/css/**/*.scss', ['styles']);
+	gulp.watch('./browser/js/**/*.html', ['transferHTML']);
+	gulp.watch('./browser/index.html', ['transferIndexHtml']);
+});
+
+gulp.task('default', ['combineJS', 'connect','transferHTML', 'styles', 'transferIndexHtml', 'watch']);
+gulp.task('build', ['combineJS', 'connect','transferHTML', 'styles', 'transferIndexHtml']);
