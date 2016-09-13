@@ -3,6 +3,9 @@ app.controller('WishCtrl', function($scope){
 	$scope.wish = {
 		name: "Xbox 360",
 		source: "http://compass.xbox.com/assets/6e/52/6e524b42-a264-43f4-ae7a-1f08297424f8.jpg?n=Console-Page_Console-cross-sell-Elite_480x306_02.jpg",
+		price: 400,
+		accumulated: 200,
+		progress: "50",
 		givers: [
 			{
 				firstName: "Emman",

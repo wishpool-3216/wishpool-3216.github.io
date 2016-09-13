@@ -5,10 +5,17 @@ app.controller('WishlistCtrl', function($scope, $state){
 		$state.go('wish');
 	}
 	
+	$scope.addWish = function() {
+		$state.go('feed');
+	}
+
 	$scope.wishes = [
 		{
 			name: "Xbox 360",
 			source: "http://compass.xbox.com/assets/6e/52/6e524b42-a264-43f4-ae7a-1f08297424f8.jpg?n=Console-Page_Console-cross-sell-Elite_480x306_02.jpg",
+			price: 400,
+			accumulated: 200,
+			progress: "50",
 			givers: [
 				{
 					firstName: "Emman",
@@ -23,6 +30,9 @@ app.controller('WishlistCtrl', function($scope, $state){
 		{
 			name: "PS4",
 			source: "http://ps4daily.com/wp-content/uploads/2016/05/ps4-console.jpg",
+			price: 500,
+			accumulated: 450,
+			progress: "90",
 			givers: [
 				{
 					firstName: "Hiep",
@@ -31,8 +41,25 @@ app.controller('WishlistCtrl', function($scope, $state){
 				{
 					firstName: "Yao",
 					source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p240x240/12439280_10153334778955248_8673996898083161717_n.jpg?oh=9fad171f54d774ace83f0eef1df2b59e&oe=5843B71C"
-				}	
+				}
 			]
-		}
+		},
+		{
+			name: "Nintendo Wii",
+			source: "https://tctechcrunch2011.files.wordpress.com/2013/01/nintendowii.gif?w=440&h=330&crop=1",
+			price: 200,
+			accumulated: 120,
+			progress: "60",
+			givers: [
+				{
+					firstName: "Hiep",
+					source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/c0.0.240.240/p240x240/13882306_830093813793178_7461496676363089630_n.jpg?oh=1a88321d5a39e55a029cead583e7b2c8&oe=587A3FE1"
+				},
+				{
+					firstName: "Yao",
+					source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p240x240/12439280_10153334778955248_8673996898083161717_n.jpg?oh=9fad171f54d774ace83f0eef1df2b59e&oe=5843B71C"
+				}
+			]
+		},
 	]
 })
