@@ -10,9 +10,6 @@ var sass = require('gulp-sass');
 var deploy = require('gulp-gh-pages');
 
 gulp.task('connect', function () {
-	connect.server({
-		port: 8080
-	})
 });
 
 gulp.task('transferHTML', function() {
