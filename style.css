@@ -1,0 +1,97 @@
+#wishlist {
+  margin-bottom: 30px; }
+  #wishlist h3 {
+    margin-top: 0px;
+    margin-bottom: 0px; }
+  #wishlist h4 {
+    margin-top: 0px;
+    margin-bottom: 4px; }
+  #wishlist p {
+    margin-top: 3px;
+    margin-bottom: 3px; }
+  #wishlist .wishIcon {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    border: 1px solid #D8BFD8; }
+  #wishlist md-progress-linear {
+    margin-top: 5px;
+    width: 150px;
+    height: 20px; }
+
+#addwish {
+  margin-left: 10px;
+  margin-right: 10px; }
+  #addwish md-input-container {
+    margin-top: 3px;
+    margin-bottom: 3px; }
+  #addwish .header {
+    text-align: center; }
+  #addwish .footer {
+    text-align: center; }
+
+#wish .contributorIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  margin-left: 4px;
+  margin-right: 4px; }
+
+#wish .wishLabel {
+  margin: 5px;
+  margin-top: 10px; }
+
+#wish .wishImage {
+  width: 100%;
+  max-height: 200px; }
+
+#wish .contributorIcons {
+  margin-top: 5px;
+  margin-bottom: 10px; }
+
+#wish md-progress-linear {
+  margin-left: 5px;
+  margin-top: 5px;
+  width: 80%; }
+
+#mainToolbar {
+  padding-left: 10px; }
+
+#toolbar {
+  height: 60px;
+  min-height: 60px; }
+  #toolbar h3 {
+    margin-top: 17px;
+    margin-bottom: 20px; }
+  #toolbar #menuButton {
+    margin-top: 10px; }
+
+#sidenav {
+  width: 120px;
+  min-width: 120px; }
+
+#feedlist .friendProfilePic {
+  width: 100%;
+  height: 100%; }
+
+#feedlist h2 {
+  margin-top: 0px;
+  margin-bottom: 4px; }
+
+#feedlist .feedGrid {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px; }
+
+#feedlist .friendFooter {
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5); }
+  #feedlist .friendFooter p {
+    margin-left: 4px; }
+
+#feedlist md-grid-list {
+  margin-bottom: 40px; }
