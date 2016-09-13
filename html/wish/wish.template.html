@@ -1,0 +1,13 @@
+
+<md-content id="wish" layout="column" ng-controller="WishCtrl" flex>
+ <img class="wishImage" src="{{wish.source}}">
+ <h3 class="wishLabel">{{wish.name}}</h3>
+ <h4 class="wishLabel">Total Amount Gathered</h4>
+ <md-progress-linear md-mode="determinate" value="50"></md-progress-linear>
+ <br>
+ <h4 class="wishLabel">Contributors</h4>
+ <div layout="row" class="contributorIcons">
+ <img ng-repeat="giver in wish.givers" src="{{giver.source}}" class="contributorIcon">
+ </div>
+
+</md-content>

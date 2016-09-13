@@ -1,25 +1,26 @@
 var gulp = require('gulp');
-var deploy = require('gulp-gh-pages');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var concat = require('gulp-concat');
 var source = require('vinyl-source-stream'); // <-- converts a Browserify stream into a stream that Gulp actually understands.
-var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
-var deploy = require('gulp-gh-pages');
 
 gulp.task('connect', function () {
+	connect.server({
+		port: 4000,
+		root: ['public']
+	})
 });
 
 gulp.task('transferHTML', function() {
 	return gulp.src('./browser/js/**/*.html')
-				 .pipe(gulp.dest('./html'));
+				 .pipe(gulp.dest('./public/html'));
 })
 
 gulp.task('transferIndexHtml', function() {
 	return gulp.src('./browser/index.html')
-				 .pipe(gulp.dest('./'));
+				 .pipe(gulp.dest('./public/'));
 })
 
 gulp.task('combineJS', function() {
@@ -28,14 +29,14 @@ gulp.task('combineJS', function() {
     		// concats everything together into a main.js file
         .pipe(concat('main.js'))
         // and saves it in the directory
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('transferStyles', function() {
 	gulp.src('./browser/css/index.scss')
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('style.css'))
-	.pipe(gulp.dest('./'));
+	.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('watch', function() {
@@ -47,8 +48,3 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'watch']);
 gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml']);
-
-gulp.task('deploy', ['build'], function () {
-  return gulp.src("./public/**/*")
-    .pipe(deploy())
-});
