@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var deploy = require('gulp-gh-pages');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
@@ -50,8 +49,3 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'watch']);
 gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml']);
-
-gulp.task('deploy', ['build'], function () {
-  return gulp.src("./public/**/*")
-    .pipe(deploy())
-});
