@@ -9,19 +9,18 @@ var sass = require('gulp-sass');
 
 gulp.task('connect', function () {
 	connect.server({
-		root: ['public'],
-		port: 4000
+		port: 8080
 	})
 });
 
 gulp.task('transferHTML', function() {
 	return gulp.src('./browser/js/**/*.html')
-				 .pipe(gulp.dest('./public/html'));
+				 .pipe(gulp.dest('./html'));
 })
 
 gulp.task('transferIndexHtml', function() {
 	return gulp.src('./browser/index.html')
-				 .pipe(gulp.dest('./public/'));
+				 .pipe(gulp.dest('./'));
 })
 
 gulp.task('combineJS', function() {
@@ -29,15 +28,15 @@ gulp.task('combineJS', function() {
  return gulp.src('./browser/js/**/*.js')
     		// concats everything together into a main.js file
         .pipe(concat('main.js'))
-        // and saves it in the public directory
-        .pipe(gulp.dest('./public/'));
+        // and saves it in the directory
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('styles', function() {
 	gulp.src('./browser/css/index.scss')
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('style.css'))
-	.pipe(gulp.dest('./public/'));
+	.pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', function() {
