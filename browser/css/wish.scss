@@ -1,0 +1,31 @@
+#wish {	
+	.contributorIcon {
+		width: 30px;
+		height: 30px;
+		border-radius: 8px;
+		margin-left: 4px;
+		margin-right: 4px;
+	}
+
+	.wishLabel {
+		margin: 5px;
+		margin-top: 10px;
+	}
+
+	.wishImage {
+		width: 100%;
+		max-height: 200px;
+	}
+
+	.contributorIcons {
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+
+	md-progress-linear {
+		margin-left: 5px;
+		margin-top: 5px;
+		width: 80%;
+	}
+
+}

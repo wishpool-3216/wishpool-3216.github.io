@@ -7,14 +7,14 @@ app.config(function($stateProvider){
     controller: 'FeedCtrl'
   });
 
-  $stateProvider.state('gift', {
-  	url: '/gift/:giftId',
-  	templateUrl: '/html/gift/gift.template.html',
-  	controller: 'GiftCtrl'
+  $stateProvider.state('wish', {
+  	url: '/wish/:wishId',
+  	templateUrl: '/html/wish/wish.template.html',
+  	controller: 'WishCtrl'
   });
 
   $stateProvider.state('contribute', {
-  	url: '/gift/:giftId/contribute',
+  	url: '/wish/:wishId/contribute',
   	templateUrl: '/html/contribute/contribute.template.html',
   	controller: 'ContributeCtrl'
   })
@@ -24,7 +24,5 @@ app.config(function($stateProvider){
   	templateUrl: '/html/wishlist/wishlist.template.html',
   	controller: 'WishlistCtrl'
   })
-
-
 
 });
