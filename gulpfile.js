@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var deploy = require('gulp-gh-pages');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
