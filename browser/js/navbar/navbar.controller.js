@@ -11,4 +11,6 @@ app.controller('NavbarCtrl', function($scope, $state, $mdSidenav){
 		$state.go('wishlist')
 	}
 
+	$scope.currentNavItem = 'feed';
+
 });

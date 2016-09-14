@@ -3,6 +3,28 @@
 	margin: auto;
 }
 
+.wishpool-navbar {
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		width: 100%;
+		max-width: 600px;
+		margin: auto;
+	}
+
+	li {
+		width: 50%;
+		button {
+			width: 100%;
+		}
+		.md-unselected .material-icons {
+			color: rgba(0,0,0,0.54);
+		}
+	}
+}
+
 #toolbar {
 	height: 50px;
 	h3 {
