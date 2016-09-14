@@ -1,5 +1,5 @@
 <md-list id="wishlist" layout="column">
-	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish()">
+	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish(wish)">
 		<img class="wishIcon" src="{{wish.source ? wish.source : defaultWishSource}}"> 	
 		<div class="md-list-item-text" layout="column">
 			<h3>{{wish.name}}</h3>

@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('WishlistCtrl', function($scope, $state, localStorageService){
-	$scope.goToWish = function() {
-		$state.go('wish');
+	$scope.goToWish = function(wishObj) {
+		$state.go('wish', {wishObj: wishObj});
 	}
 	
 	$scope.wishes = localStorageService.getWishlist();

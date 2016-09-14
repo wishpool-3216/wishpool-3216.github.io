@@ -9,6 +9,7 @@ app.config(function($stateProvider){
 
   $stateProvider.state('wish', {
   	url: '/wish/:wishId',
+    params: {'wishObj': null},
   	templateUrl: '/html/wish/wish.template.html',
   	controller: 'WishCtrl'
   });
