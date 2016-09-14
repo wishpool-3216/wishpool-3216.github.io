@@ -25,4 +25,9 @@ app.config(function($stateProvider){
   	controller: 'WishlistCtrl'
   })
 
+  $stateProvider.state('landing', {
+    url: '/landing',
+    templateUrl: '/html/landing/landing.template.html',
+  })
+
 });
