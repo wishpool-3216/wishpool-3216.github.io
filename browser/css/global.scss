@@ -1,16 +1,13 @@
-#mainToolbar {
-	padding-left: 10px;
+.wishpool-container {
+	width: 100%;
+	margin: auto;
 }
-
 
 #toolbar {
 	height: 50px;
 	h3 {
-		margin-top: 17px;
-		margin-bottom: 20px;
-	}
-	#menuButton {
-		margin-top: 10px;
+		font-weight: bold;
+		@include tappable;
 	}
 }
 

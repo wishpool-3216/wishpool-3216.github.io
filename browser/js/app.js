@@ -11,15 +11,26 @@ app.config(function ($urlRouterProvider, $mdThemingProvider) {
     	.primaryPalette('purple')
 })
 
-app.controller('TopbarCtrl', function($scope, $mdSidenav, $state, localStorageService) {
-	$scope.toggleSideNav = function () {
-		$mdSidenav('left').toggle();
-	};
+app.controller('TopbarCtrl', function($scope, $state, localStorageService) {
+
+  var originatorEv;
+
+  this.openMenu = function($mdOpenMenu, ev) {
+    originatorEv = ev;
+    $mdOpenMenu(ev);
+  };
+
+  this.goToSetting = function() {
+    //$state.go('setting');
+  }
+
+  this.handleLogout = function() {
+    alert('logout!');
+  }
 
 	$scope.goToLanding = function () {
 		$state.go('landing');
 	}
-
 
 	//Dummy data
 	var dummyWishlist = [
@@ -34,7 +45,7 @@ app.controller('TopbarCtrl', function($scope, $mdSidenav, $state, localStorageSe
 					firstName: "Emman",
 					source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p240x240/11855781_10204708918342687_2306807101497391770_n.jpg?oh=7f4b1c579f992a1ea752ae29663f5298&oe=58413A4A"
 				},
-				{	
+				{
 					firstName: "Xujie",
 					source: "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/c33.33.414.414/s240x240/529739_4832624688006_1289908355_n.jpg?oh=f2e4778618df68561d8322a6567593b3&oe=58431436"
 				}
@@ -82,5 +93,3 @@ app.controller('TopbarCtrl', function($scope, $mdSidenav, $state, localStorageSe
 	}
 
 });
-
-
