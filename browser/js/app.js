@@ -11,7 +11,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider) {
     	.primaryPalette('purple')
 })
 
-app.controller('TopbarCtrl', function($scope, $state, localStorageService) {
+app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
 
   var originatorEv;
 
@@ -88,8 +88,8 @@ app.controller('TopbarCtrl', function($scope, $state, localStorageService) {
 	]
 
 	// If no data exists on localStorage, save dummy data on localStorage
-	if(!localStorageService.getWishlist()){
-		localStorageService.saveWishlist(dummyWishlist);
+	if(!LocalStorageService.getWishlist()){
+		LocalStorageService.saveWishlist(dummyWishlist);
 	}
 
 });

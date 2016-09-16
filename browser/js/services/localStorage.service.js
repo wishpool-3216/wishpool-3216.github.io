@@ -1,21 +1,21 @@
 'use strict';
 
-app.factory('localStorageService', function(){
-  var localStorageService = {}
+app.factory('LocalStorageService', function(){
+  var LocalStorageService = {}
 
-  localStorageService.saveWishlist = function(array){
+  LocalStorageService.saveWishlist = function(array){
   	localStorage.setItem("wishlist",JSON.stringify(array));
   }
 
-  localStorageService.getWishlist = function(){
+  LocalStorageService.getWishlist = function(){
   	return JSON.parse(localStorage.getItem("wishlist"));
   }
 
-  localStorageService.addWish = function(newWishObj){
-  	var wishlist = localStorageService.getWishlist()
+  LocalStorageService.addWish = function(newWishObj){
+  	var wishlist = LocalStorageService.getWishlist()
   	wishlist.push(newWishObj);
-  	localStorageService.saveWishlist(wishlist);
+  	LocalStorageService.saveWishlist(wishlist);
   }
 
-  return localStorageService;
+  return LocalStorageService;
 })
