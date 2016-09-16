@@ -2,24 +2,43 @@
 
 var app = angular.module('wishpoolApp', ['ui.router','ngMaterial', 'ng-token-auth'])
 
-app.config(function($authProvider,$urlRouterProvider, $mdThemingProvider) {
-    // Directs client to landing page
-    $urlRouterProvider.when('','/landing');
-    $urlRouterProvider.otherwise('/');
+app.constant('__env', {
+  apiUrl: 'http://52.77.241.218/'
+});
 
+app.run(['$rootScope', '$window', function($rootScope, $window) {
+  $rootScope.user = {};
+  $window.fbAsyncInit = function() {
+    FB.init({
+      appId: '295119780857739',
+      status: true,
+      cookie: true,
+      xfbml: true,
+      version: 'v2.7'
+    });
+  };
 
-    // Sets up material theme
-    $mdThemingProvider
-    	.theme('default')
-    	.primaryPalette('purple')
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+}]);
 
+app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, __env) {
 
-    /*
-    // Configure ng-token-auth
-    $authProvider.configure({
-    	apiUrl: 'http://server.wishpool.info'
-    })
-    */
+  $urlRouterProvider.when('','/login');
+  // Returns to landing page if user types an undefined url
+  $urlRouterProvider.otherwise('/');
+  $mdThemingProvider
+  .theme('default')
+  .primaryPalette('purple')
+
+  $authProvider.configure({
+    apiUrl: __env.apiUrl
+  });
 })
 
 
@@ -104,5 +123,4 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
 	if(!LocalStorageService.getWishlist()){
 		LocalStorageService.saveWishlist(dummyWishlist);
 	}
-
 });
