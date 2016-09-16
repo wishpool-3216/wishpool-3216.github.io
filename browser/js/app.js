@@ -2,14 +2,27 @@
 
 var app = angular.module('wishpoolApp', ['ui.router','ngMaterial', 'ng-token-auth'])
 
-app.config(function ($urlRouterProvider, $mdThemingProvider) {
+app.config(function($authProvider,$urlRouterProvider, $mdThemingProvider) {
+    // Directs client to landing page
     $urlRouterProvider.when('','/landing');
-    // Returns to landing page if user types an undefined url
-		$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
+
+
+    // Sets up material theme
     $mdThemingProvider
     	.theme('default')
     	.primaryPalette('purple')
+
+
+    /*
+    // Configure ng-token-auth
+    $authProvider.configure({
+    	apiUrl: 'http://server.wishpool.info'
+    })
+    */
 })
+
+
 
 app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
 
