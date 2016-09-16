@@ -17,22 +17,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
 
+	<!-- Internal depedencies, inject from bower_components -->
+	<script src="/bower_components/angular-cookie/angular-cookie.js"></script>
+	<script src="/bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+
 	<!-- Internal dependencies -->
 	<script src="main.js"></script>
 	<link href="style.css" rel="stylesheet">
 
 </head>
-<body ng-app="wishpoolApp" layout="column">
+<body>
 	<!-- Top bar -->
-
-	<md-toolbar ng-controller="TopbarCtrl" class="md-whiteframe-z2" id="toolbar" layout="row">
-		<md-button class="md-icon-button" ng-click="toggleSideNav()">
-			<md-icon md-font-set="material-icons" id="menuButton">menu</md-icon>
-		</md-button>
-		<h3>Wishpool</h3>
-	</md-toolbar>
-
-	<div id="underToolbar" layout="row" flex>
+	<div ng-app="wishpoolApp" layout="column" class="wishpool-container">
+		<md-toolbar ng-controller="TopbarCtrl as TCtl" class="md-whiteframe-z2" id="toolbar" layout="row">
+			<div class="md-toolbar-tools">
+				<h3 ng-click="goToLanding()">Wishpool</h3>
+				<span flex></span>
+				<md-menu md-position-mode="target-right target" >
+					<md-button class="md-icon-button" aria-label="More" ng-click="TCtl.openMenu($mdOpenMenu, $event)">
+		        <md-icon md-font-set="material-icons">more_vert</md-icon>
+		      </md-button>
+					<md-menu-content width="3" >
+						<md-menu-item>
+		          <md-button ng-click="TCtl.goToSetting()">
+		            Settings
+		          </md-button>
+	        	</md-menu-item>
+						<md-menu-item>
+		          <md-button ng-click="TCtl.handleLogout()">
+		            Logout
+		          </md-button>
+	        	</md-menu-item>
+		      </md-menu-content>
+				</md-menu>
+			</div>
+		</md-toolbar>
 		<navbar></navbar>
 		<ui-view flex></ui-view>
 	</div>

@@ -1,0 +1,15 @@
+@mixin tappable {
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin background-image-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin reset-link-style {
+  text-decoration: none;
+  color: $black80;
+}

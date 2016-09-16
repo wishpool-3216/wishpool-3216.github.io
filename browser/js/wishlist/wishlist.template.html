@@ -1,29 +1,34 @@
 <md-list id="wishlist" layout="column">
-	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish()">
-		<img class="wishIcon" src="{{wish.source}}"> 	
+	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish(wish)">
+		<img class="wishIcon" src="{{wish.source ? wish.source : defaultWishSource}}"> 	
 		<div class="md-list-item-text" layout="column">
 			<h3>{{wish.name}}</h3>
+			<h4>${{wish.accumulated}} / ${{wish.price}}</h4>
 			<md-progress-linear md-mode="determinate" value="{{wish.progress}}"></md-progress-linear>
 		</div>
 		<md-divider></md-divider>
 	</md-list-item>
 </md-list>
-<form id="addwish" class="md-inline-form" name="addWish">
+<form id="addwish" class="md-inline-form" ng-submit="addWish()">
 	<div class="header">
 		<h3>Add a Wish</h3>
 	</div>
   <div layout="column">
     <md-input-container>
       <label>Wish Name</label>
-      <input ng-model="wish.name" >
+      <input ng-model="newWishName">
     </md-input-container>
+  	<md-input-container>
+	  	<label>Estimated Cost of Wish (in SGD)</label>
+	  	<input ng-model="newWishPrice">
+		</md-input-container>
 	  <md-input-container>
-	  	<label>Wish Image</label>
-	  	<input ng-model="wish.source">
+	  	<label>Paste the image URL of your new wish!</label>
+	  	<input ng-model="newWishSource">
 		</md-input-container>
  </div>
 
  <div class="footer">
- 	<md-button type="submit" ng-click="addWish()">Submit</md-button>
+ 	<md-button type="submit">Submit</md-button>
  </div>
 </form>

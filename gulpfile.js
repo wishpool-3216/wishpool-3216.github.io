@@ -4,13 +4,12 @@ var connect = require('gulp-connect');
 var browserify = require('browserify');
 var concat = require('gulp-concat');
 var source = require('vinyl-source-stream'); // <-- converts a Browserify stream into a stream that Gulp actually understands.
-var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 
 gulp.task('connect', function () {
 	connect.server({
-		root: ['public'],
-		port: 4000
+		port: 4000,
+		root: ['public']
 	})
 });
 
@@ -29,7 +28,7 @@ gulp.task('combineJS', function() {
  return gulp.src('./browser/js/**/*.js')
     		// concats everything together into a main.js file
         .pipe(concat('main.js'))
-        // and saves it in the public directory
+        // and saves it in the directory
         .pipe(gulp.dest('./public/'));
 });
 

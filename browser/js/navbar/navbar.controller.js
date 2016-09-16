@@ -1,14 +1,14 @@
 'use strict';
 
-app.controller('NavbarCtrl', function($scope, $state, $mdSidenav){
+app.controller('NavbarCtrl', function($scope, $state){
 	$scope.goToFeed = function () {
-		$mdSidenav('left').toggle();
 		$state.go('feed');
 	}
 
 	$scope.goToWishlist = function() {
-		$mdSidenav('left').toggle();
 		$state.go('wishlist')
 	}
+
+	$scope.currentNavItem = 'feed';
 
 });
