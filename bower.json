@@ -1,0 +1,21 @@
+{
+  "name": "wishpool-3216.github.io",
+  "description": "Wishpool Frontend",
+  "main": "public/index.html",
+  "authors": [
+    "buidohiep <buidohiep@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/wishpool-3216/wishpool-3216.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-token-auth": "^0.0.29"
+  },
+  "directory" : "public/components"
+}

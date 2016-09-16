@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('wishpoolApp', ['ui.router','ngMaterial'])
+var app = angular.module('wishpoolApp', ['ui.router','ngMaterial', 'ng-token-auth'])
 
 app.config(function ($urlRouterProvider, $mdThemingProvider) {
     $urlRouterProvider.when('','/landing');
