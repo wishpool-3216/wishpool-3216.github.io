@@ -1,3 +1,16 @@
+<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" class="wishpool-navbar">
+	<md-nav-item md-nav-click="goto('feed')" name="feed" ng-click="goToFeed()">
+		<md-icon md-font-set="material-icons">language</md-icon>
+		&nbsp; Feed
+	</md-nav-item>
+	<md-nav-item md-nav-click="goto('wishlist')" name="wishlist" ng-click="goToWishlist()">
+		<md-icon md-font-set="material-icons">favorite</md-icon>
+		&nbsp; My Wishlist
+	</md-nav-item>
+
+</md-nav-bar>
+
+<!--
 <md-sidenav
 	id="sidenav"
 	class="md-whiteframe-z2"
@@ -18,7 +31,8 @@
 			<md-icon md-font-set="material-icons">settings</md-icon>
 			<p>Settings</p>
 		</md-button>
-	
+
 	</md-list>
 
 </md-sidenav>
+-->

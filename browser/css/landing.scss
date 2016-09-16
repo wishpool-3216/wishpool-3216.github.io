@@ -1,7 +1,7 @@
 #landing {
-	background-color: 	#D8BFD8;
-	background-repeat: no-repeat;
-	background-size: 220% 100%;
+
+	@include background-image-cover;
+	background-image: url(https://www.ripleyaquariums.com/canada/files/2016/02/adult-birthday-parties-full-group.jpg);
 	text-align: center;
 	height: 95vh;
 
