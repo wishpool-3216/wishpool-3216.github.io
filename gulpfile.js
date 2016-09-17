@@ -18,6 +18,11 @@ gulp.task('transferHTML', function() {
 				 .pipe(gulp.dest('./public/html'));
 })
 
+gulp.task('transferAssets', function() {
+	return gulp.src('./browser/assets/**/*.*')
+				 .pipe(gulp.dest('./public/assets/'));
+})
+
 gulp.task('transferIndexHtml', function() {
 	return gulp.src('./browser/index.html')
 				 .pipe(gulp.dest('./public/'));
@@ -46,5 +51,5 @@ gulp.task('watch', function() {
 	gulp.watch('./browser/index.html', ['transferIndexHtml']);
 });
 
-gulp.task('default', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'watch']);
-gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml']);
+gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'transferAssets']);
+gulp.task('default', ['build', 'watch']);

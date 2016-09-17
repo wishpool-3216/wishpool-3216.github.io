@@ -29,7 +29,7 @@ app.run(['$rootScope', '$window', function($rootScope, $window) {
 
 app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $httpProvider, $sceDelegateProvider, __env) {
 
-  $urlRouterProvider.when('','/login');
+  $urlRouterProvider.when('','/landing');
   // Returns to landing page if user types an undefined url
   $urlRouterProvider.otherwise('/');
   $mdThemingProvider
