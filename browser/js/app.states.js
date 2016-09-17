@@ -29,6 +29,6 @@ app.config(function($stateProvider){
   $stateProvider.state('landing', {
     url: '/landing',
     templateUrl: '/html/landing/landing.template.html',
+    controller: 'LandingCtrl'
   })
-
 });
