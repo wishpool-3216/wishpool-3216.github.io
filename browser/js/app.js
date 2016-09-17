@@ -3,7 +3,7 @@
 var app = angular.module('wishpoolApp', ['ui.router','ngMaterial', 'ng-token-auth'])
 
 app.constant('__env', {
-  apiUrl: 'http://52.77.241.218/'
+  apiUrl: 'http://52.77.241.218'
 });
 
 app.run(['$rootScope', '$window', function($rootScope, $window) {
@@ -27,7 +27,7 @@ app.run(['$rootScope', '$window', function($rootScope, $window) {
   }(document, 'script', 'facebook-jssdk'));
 }]);
 
-app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, __env) {
+app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $httpProvider, $sceDelegateProvider, __env) {
 
   $urlRouterProvider.when('','/login');
   // Returns to landing page if user types an undefined url
@@ -39,6 +39,9 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, __en
   $authProvider.configure({
     apiUrl: __env.apiUrl
   });
+
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
 
 

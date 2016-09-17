@@ -1,10 +1,10 @@
 'use strict';
 
-app.factory('UserService', function($http){
+app.factory('UserService', function($http, __env){
 	var UserService = {};
 
 	// sUrl refers to server URL
-	var sUrl = 'http://server.wishpool.info';
+	var sUrl = __env.apiUrl;
 	var getResponseData = function(response){
 		return response.data;
 	}
@@ -12,10 +12,11 @@ app.factory('UserService', function($http){
 
 	// Makes a GET request to server with FB token in the header
   UserService.sendToken = function(uid, accessToken, expiresIn){
-  	$http({
-  		method: 'GET',
+		console.log(uid, accessToken, expiresIn);
+  	return $http({
+  		method: 'POST',
   		url: sUrl + '/auth/facebook/callback',
-  		headers: {
+  		data: {
   			uid: uid,
 				access_token: accessToken,
   			expires_in: expiresIn

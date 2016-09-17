@@ -1,12 +1,11 @@
-app.controller('LoginCtrl', function($scope, $auth) {
+app.controller('LoginCtrl', function($scope, $auth, FacebookService, UserService) {
 	$scope.handleLoginButtonClick = function() {
-    FB.login(function(response) {
-			console.log(response);
-			if (response.authResponse) {
-
-			} else {
-
-			}
+    FacebookService.login().then(function(response) {
+			UserService.sendToken(response.userId, response.accessToken, response.expiresIn).then(function(response) {
+				console.log(response);
+			});
+		}, function(err) {
+			// can not login
 		});
   }
 });
