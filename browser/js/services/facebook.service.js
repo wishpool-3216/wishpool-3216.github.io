@@ -36,9 +36,11 @@ app.factory('FacebookService', function($http, $q){
 				console.log("Could not log you in through Facebook.");
 				deferred.reject();
 			}
-		})
+		}, {scope: 'user_birthday,user_friends'})
 		return deferred.promise;
 	}
 
+
 	return FacebookService;
+	
 });
