@@ -50,6 +50,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sce
   .primaryPalette('purple')
 
   $httpProvider.defaults.useXDomain = true;
+  $httpProvider.interceptors.push('sessionInjector');
 })
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {

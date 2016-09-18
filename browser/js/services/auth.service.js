@@ -1,16 +1,23 @@
+/**
+  Token will include
+    "access-token": "{{ token }}",
+    "token-type":   "Bearer",
+    "client":       "{{ clientId }}",
+    "expiry":       "{{ expiry }}",
+    "uid":          "{{ uid }}"
+*/
+
+app.constant('tokenKeys', ['access-token', 'token-type', 'client', 'expiry', 'uid']);
+
 app.service('Session', function (LocalStorageService) {
-  this.create = function (id, uid) {
-    this.id = id;
-    this.uid = uid;
-  };
-  this.destroy = function () {
-    this.id = null;
-    this.uid = null;
+  this.setToken = function (token) {
+    this.token = token;
+    LocalStorageService.setToken(token);
   };
 
-  var user = LocalStorageService.getUser();
-  if (user && user.id) {
-    this.create(user.id, user.uid);
+  var token = LocalStorageService.getToken();
+  if (token) {
+    this.setToken(token);
   }
 })
 
@@ -31,7 +38,6 @@ app.factory('AuthService', function ($http, $q, $window, Session, LocalStorageSe
       			expires_in: response.authResponse.expiresIn,
       		}
       	}).then(function(res) {
-          Session.create(res.data.id, res.data.uid);
           deferred.resolve(res.data);
         }, function() {
           deferred.reject();
@@ -46,14 +52,46 @@ app.factory('AuthService', function ($http, $q, $window, Session, LocalStorageSe
   };
 
   authService.logout = function() {
-    Session.destroy();
     LocalStorageService.removeUser();
+    LocalStorageService.removeToken();
     $window.location.reload();
   }
 
   authService.isAuthenticated = function() {
-    return !!Session.id;
+    return !!Session.token;
   }
 
   return authService;
+});
+
+app.factory('sessionInjector', function(Session, tokenKeys) {
+  var sessionInjector = {
+    request: function(config) {
+      if (Session.token) {
+        tokenKeys.forEach(function(key) {
+          config.headers[key] = Session.token[key];
+        })
+      }
+      return config;
+    },
+    response: function(response) {
+
+      console.log(response.headers());
+
+      var headers = response.headers();
+
+      var newToken = tokenKeys.reduce(function(newToken, key) {
+        if (!newToken || (headers[key] != 0 && !headers[key])) return null;
+        newToken[key] = headers[key];
+        return newToken;
+      }, {});
+      
+      if (newToken) Session.setToken(newToken);
+      return response;
+    }
+  }
+  return sessionInjector;
+})
+
+app.factory('sessionRecoverer', function(Session) {
 })

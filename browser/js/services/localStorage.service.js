@@ -41,5 +41,17 @@ app.factory('LocalStorageService', function(){
     removeItem('user');
   }
 
+  LocalStorageService.setToken = function(token) {
+    setItem('token', token);
+  }
+
+  LocalStorageService.getToken = function() {
+    return getItem('token');
+  }
+
+  LocalStorageService.removeToken = function() {
+    removeItem('token');
+  }
+
   return LocalStorageService;
 })
