@@ -6,8 +6,7 @@ app.constant('__env', {
   apiUrl: 'http://52.77.241.218'
 });
 
-app.run(['$rootScope', '$window', function($rootScope, $window) {
-  $rootScope.user = {};
+app.run(['$window', function($window) {
   $window.fbAsyncInit = function() {
     FB.init({
       appId: '295119780857739',
@@ -26,6 +25,21 @@ app.run(['$rootScope', '$window', function($rootScope, $window) {
      fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 }]);
+
+app.run(function($rootScope, $state, AuthService) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
+    var isLoggin = AuthService.isAuthenticated();
+    var isLanding = toState.name == 'landing';
+    console.log(isLoggin, isLanding);
+    if (isLoggin && isLanding) {
+      $state.go('feed');
+      event.preventDefault();
+    } else if (!isLoggin && !isLanding) {
+      $state.go('landing');
+      event.preventDefault();
+    }
+  });
+});
 
 app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $httpProvider, $sceDelegateProvider, __env) {
 
@@ -48,7 +62,14 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $htt
   delete $httpProvider.defaults.headers.delete["If-Modified-Since"];
 })
 
+app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
+  $scope.currentUser = LocalStorageService.getUser();
 
+  $scope.setCurrentUser = function (user) {
+    $scope.currentUser = user;
+    LocalStorageService.setUser(user);
+  };
+});
 
 app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
 

@@ -28,8 +28,8 @@
 </head>
 <body>
 	<!-- Top bar -->
-	<div ng-app="wishpoolApp" layout="column" class="wishpool-container">
-		<div class="toolbar-wrapper" ng-controller="TopbarCtrl as TCtl">
+	<div ng-app="wishpoolApp" layout="column" class="wishpool-container" ng-controller="ApplicationController">
+		<div class="toolbar-wrapper" ng-controller="TopbarCtrl as TCtl" ng-if="currentUser">
 			<md-toolbar class="md-whiteframe-z2 toolbar" layout="row">
 				<div class="md-toolbar-tools toolbar-content">
 					<h3 ng-click="goToLanding()">Wishpool</h3>

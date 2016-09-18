@@ -3,6 +3,14 @@
 app.factory('LocalStorageService', function(){
   var LocalStorageService = {}
 
+  var setItem = function(key, item) {
+    localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  var getItem = function(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+
   LocalStorageService.saveWishlist = function(array){
   	localStorage.setItem("wishlist",JSON.stringify(array));
   }
@@ -15,6 +23,14 @@ app.factory('LocalStorageService', function(){
   	var wishlist = LocalStorageService.getWishlist()
   	wishlist.push(newWishObj);
   	LocalStorageService.saveWishlist(wishlist);
+  }
+
+  LocalStorageService.setUser = function(user) {
+    setItem('user', user);
+  };
+
+  LocalStorageService.getUser = function() {
+    return getItem('user');
   }
 
   return LocalStorageService;
