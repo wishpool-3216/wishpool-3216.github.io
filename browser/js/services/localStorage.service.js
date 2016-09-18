@@ -11,6 +11,10 @@ app.factory('LocalStorageService', function(){
     return JSON.parse(localStorage.getItem(key));
   }
 
+  var removeItem = function(key) {
+    localStorage.removeItem(key);
+  }
+
   LocalStorageService.saveWishlist = function(array){
   	localStorage.setItem("wishlist",JSON.stringify(array));
   }
@@ -31,6 +35,10 @@ app.factory('LocalStorageService', function(){
 
   LocalStorageService.getUser = function() {
     return getItem('user');
+  }
+
+  LocalStorageService.removeUser = function() {
+    removeItem('user');
   }
 
   return LocalStorageService;

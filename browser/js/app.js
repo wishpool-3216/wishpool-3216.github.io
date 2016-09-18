@@ -30,7 +30,6 @@ app.run(function($rootScope, $state, AuthService) {
   $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
     var isLoggin = AuthService.isAuthenticated();
     var isLanding = toState.name == 'landing';
-    console.log(isLoggin, isLanding);
     if (isLoggin && isLanding) {
       $state.go('feed');
       event.preventDefault();
@@ -71,7 +70,7 @@ app.controller('ApplicationController', function($scope, AuthService, LocalStora
   };
 });
 
-app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
+app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthService) {
 
   var originatorEv;
 
@@ -85,7 +84,7 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
   }
 
   this.handleLogout = function() {
-    alert('logout!');
+    AuthService.logout();
   }
 
 	$scope.goToLanding = function () {
