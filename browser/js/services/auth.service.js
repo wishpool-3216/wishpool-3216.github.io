@@ -14,7 +14,7 @@ app.service('Session', function (LocalStorageService) {
   }
 })
 
-app.factory('AuthService', function ($http, $q, $auth, $window, Session, LocalStorageService, __env) {
+app.factory('AuthService', function ($http, $q, $window, Session, LocalStorageService, __env) {
   var authService = {};
   var deferred = $q.defer();
 
@@ -48,13 +48,7 @@ app.factory('AuthService', function ($http, $q, $auth, $window, Session, LocalSt
   authService.logout = function() {
     Session.destroy();
     LocalStorageService.removeUser();
-    $auth.signOut().then(function(resp) {
-      console.log('auth logout success');
-      $window.location.reload();
-    }).catch(function(resp) {
-      console.warn('auth logout error');
-      $window.location.reload();
-    });
+    $window.location.reload();
   }
 
   authService.isAuthenticated = function() {

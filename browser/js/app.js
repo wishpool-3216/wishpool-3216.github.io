@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('wishpoolApp', ['ui.router','ngMaterial', 'ng-token-auth'])
+var app = angular.module('wishpoolApp', ['ui.router','ngMaterial'])
 
 app.constant('__env', {
   apiUrl: 'http://52.77.241.218'
@@ -40,7 +40,7 @@ app.run(function($rootScope, $state, AuthService) {
   });
 });
 
-app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $httpProvider, $sceDelegateProvider, __env) {
+app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sceDelegateProvider, __env) {
 
   $urlRouterProvider.when('','/landing');
   // Returns to landing page if user types an undefined url
@@ -49,16 +49,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $htt
   .theme('default')
   .primaryPalette('purple')
 
-  $authProvider.configure({
-    apiUrl: __env.apiUrl
-  });
-
   $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.post["If-Modified-Since"];
-  delete $httpProvider.defaults.headers.get["If-Modified-Since"];
-  delete $httpProvider.defaults.headers.patch["If-Modified-Since"];
-  delete $httpProvider.defaults.headers.put["If-Modified-Since"];
-  delete $httpProvider.defaults.headers.delete["If-Modified-Since"];
 })
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
