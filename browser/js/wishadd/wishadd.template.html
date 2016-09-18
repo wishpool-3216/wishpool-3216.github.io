@@ -1,0 +1,36 @@
+<form class="addwish md-inline-form" ng-submit="addWish()">
+	<div class="header">
+		<h3>Add a Wish</h3>
+	</div>
+  <div layout="column">
+    <md-input-container>
+      <label>Wish Name</label>
+      <input ng-model="newWishName">
+    </md-input-container>
+	  <div class="addWishFirstRow" layout="row">
+	  	<md-input-container flex="35">
+		  	<label>Est. Price</label>
+		  	<input ng-model="newWishPrice">
+			</md-input-container>
+	    <md-input-container flex="65">
+	      <label>Wish Due By</label>
+	      <md-datepicker ng-model="newWishExpiry"></md-datepicker>
+	    </md-input-container>
+		</div>
+	  <md-input-container>
+	  	<label>Image URL of your new wish</label>
+	  	<input ng-model="newWishSource">
+		</md-input-container>
+   <md-input-container class="md-block">
+      <label>Description</label>
+      <textarea ng-model="newWishDescription" md-maxlength="50" rows="2" md-select-on-focus></textarea>
+    </md-input-container>
+
+		<md-switch class="newWishPublicity" ng-model="newWishPublicity" layout-align="center">
+			This Wish is {{newWishPublicity ? "Public" : "Private"}}.
+		</md-switch>
+ </div>
+ <div class="footer">
+ 	<md-button type="submit">Submit</md-button>
+ </div>
+</form>

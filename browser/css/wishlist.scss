@@ -1,4 +1,4 @@
-#wishlist {
+.wishlist {
 	h3 {
 		margin-top: 0px;
 		margin-bottom: 0px;
@@ -37,7 +37,11 @@
 
 }
 
-#addwish {
+.goToWishAdd {
+	text-align: center;
+}
+
+.addwish {
 	margin-left: 10px;
 	margin-right: 10px;
 	md-input-container {
@@ -48,6 +52,14 @@
 		text-align: center;	
 	}
 
+	.newWishPublicity {
+		text-align: center;
+	}
+
   .footer {     text-align: center;   }
+
+  .md-datepicker-button {
+  	margin-right: 0px;
+	}
 
 }
