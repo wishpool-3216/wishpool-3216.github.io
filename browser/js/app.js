@@ -41,7 +41,11 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $authProvider, $htt
   });
 
   $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  delete $httpProvider.defaults.headers.post["If-Modified-Since"];
+  delete $httpProvider.defaults.headers.get["If-Modified-Since"];
+  delete $httpProvider.defaults.headers.patch["If-Modified-Since"];
+  delete $httpProvider.defaults.headers.put["If-Modified-Since"];
+  delete $httpProvider.defaults.headers.delete["If-Modified-Since"];
 })
 
 
