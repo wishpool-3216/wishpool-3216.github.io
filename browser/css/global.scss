@@ -32,12 +32,25 @@
 	margin: auto;
 }
 
-#toolbar {
-	height: 50px;
+.toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	min-height: 0;
 	h3 {
 		font-weight: bold;
 		@include tappable;
 	}
+}
+
+.toolbar-wrapper {
+	height: $tool-bar-height;
+}
+
+.toolbar-content {
+	height: $tool-bar-height!important;
+	max-height: $tool-bar-height!important;
 }
 
 .feed-list {

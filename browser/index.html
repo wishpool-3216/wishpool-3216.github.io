@@ -29,29 +29,32 @@
 <body>
 	<!-- Top bar -->
 	<div ng-app="wishpoolApp" layout="column" class="wishpool-container">
-		<md-toolbar ng-controller="TopbarCtrl as TCtl" class="md-whiteframe-z2" id="toolbar" layout="row">
-			<div class="md-toolbar-tools">
-				<h3 ng-click="goToLanding()">Wishpool</h3>
-				<span flex></span>
-				<md-menu md-position-mode="target-right target" >
-					<md-button class="md-icon-button" aria-label="More" ng-click="TCtl.openMenu($mdOpenMenu, $event)">
-		        <md-icon md-font-set="material-icons">more_vert</md-icon>
-		      </md-button>
-					<md-menu-content width="3" >
-						<md-menu-item>
-		          <md-button ng-click="TCtl.goToSetting()">
-		            Settings
-		          </md-button>
-	        	</md-menu-item>
-						<md-menu-item>
-		          <md-button ng-click="TCtl.handleLogout()">
-		            Logout
-		          </md-button>
-	        	</md-menu-item>
-		      </md-menu-content>
-				</md-menu>
-			</div>
-		</md-toolbar>
+		<div class="toolbar-wrapper" ng-controller="TopbarCtrl as TCtl">
+			<md-toolbar class="md-whiteframe-z2 toolbar" layout="row">
+				<div class="md-toolbar-tools toolbar-content">
+					<h3 ng-click="goToLanding()">Wishpool</h3>
+					<span flex></span>
+					<md-menu md-position-mode="target-right target" >
+						<md-button class="md-icon-button" aria-label="More" ng-click="TCtl.openMenu($mdOpenMenu, $event)">
+			        <md-icon md-font-set="material-icons">more_vert</md-icon>
+			      </md-button>
+						<md-menu-content width="3" >
+							<md-menu-item>
+			          <md-button ng-click="TCtl.goToSetting()">
+			            Settings
+			          </md-button>
+		        	</md-menu-item>
+							<md-menu-item>
+			          <md-button ng-click="TCtl.handleLogout()">
+			            Logout
+			          </md-button>
+		        	</md-menu-item>
+			      </md-menu-content>
+					</md-menu>
+				</div>
+			</md-toolbar>
+
+		</div>
 		<navbar></navbar>
 		<ui-view flex></ui-view>
 	</div>
