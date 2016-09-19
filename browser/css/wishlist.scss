@@ -1,42 +1,52 @@
 .wishlist {
-	h3 {
-		margin-top: 0px;
-		margin-bottom: 0px;
-		height: 22px
+
+	&__container {
+		margin-bottom: 50px;
 	}
 
-	h4 {
-		margin-top: 0px;
-		margin-bottom: 0px;
-		height: 25px;
+	&__wish-name {
+		color: $complement-color;
+		line-height: 1.2;
+		margin: 0 auto;
 	}
 
-	p {
-		margin-top: 3px;
-		margin-bottom: 3px;
+	&__wish-price {
+		font-size: 14px;
+		line-height: 1;
+		margin: 15px 0 5px;
+		&--accumulated {
+			color: rgba(0, 0, 0, 0.5);
+		}
+
+		&--total {
+			color: rgba(0, 0, 0, 0.8);
+		}
 	}
 
-	.wishIcon {
-		margin-top: 5px;
-		margin-left: 5px;
-		margin-right: 10px;
-		margin-bottom: 5px;
-		width: 60px;
-		height: 60px;
-		border-radius: 16px;
-		border: 1px solid #D8BFD8;
+	&__wish-icon {
+		@include background-image-cover;
+		width: 100px;
+		height: 100px;
+		margin: 10px 20px 10px 0;
+		flex-shrink: 0;
 	}
 
-	md-progress-linear {
+	&__wish-progress {
 		margin-top: 5px;
 		width: 150px;
 		height: 20px;
 	}
-
-	margin-bottom: 30px;
-
 }
 
-.goToWishAdd {
-	text-align: center;
+.wishlist__add-wish-button {
+	position: fixed;
+	max-width: $max-container-width;
+	transform: translate(-50%, 0);
+	bottom: 0;
+	left: 50%;
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+	font-weight: bold;
+	border-radius: 0;
 }
