@@ -1,18 +1,21 @@
 'use strict';
 app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams){
 
-	$scope.pageUserId = $stateParams.userId || 1;
-	$scope.clientUserId = $rootScope.userId || 1;
+	$scope.pageUserId = $stateParams.userId || 123;
+	$scope.clientUserId = $rootScope.userId || 456;
 	if($scope.pageUserId === $scope.clientUserId){
 		$scope.userSeesOwnWishlist = true; 
 	}
 
 	
-	$scope.newWishPublicity = true;
+	$scope.newWishIsPublic = true;
 
 	$scope.addWish = function() {
+		var newWishPublicity = "public";
+		if(!$scope.newWishIsPublic) newWishPublicity = "private";
 		var newWishObj = {
 			name: $scope.newWishName,
+			publicity: newWishPublicity,
 			source: $scope.newWishSource,
 			expected_price: $scope.newWishPrice,
 			expiry: $scope.newWishExpiry,

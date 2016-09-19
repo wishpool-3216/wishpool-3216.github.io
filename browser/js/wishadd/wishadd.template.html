@@ -1,36 +1,43 @@
 <form class="addwish md-inline-form" ng-submit="addWish()">
+	
 	<div class="header">
-		<h3>Add a Wish</h3>
+		<h3>Add A Wish</h3>
 	</div>
   <div layout="column">
     <md-input-container>
-      <label>Wish Name</label>
+      <label>What's the name of {{userSeesOwnWishlist ? "your" : "their"}} wish?</label>
       <input ng-model="newWishName">
     </md-input-container>
-	  <div class="addWishFirstRow" layout="row">
-	  	<md-input-container flex="35">
-		  	<label>Est. Price</label>
-		  	<input ng-model="newWishPrice">
-			</md-input-container>
-	    <md-input-container flex="65">
-	      <label>Wish Due By</label>
-	      <md-datepicker ng-model="newWishExpiry"></md-datepicker>
-	    </md-input-container>
-		</div>
-	  <md-input-container>
-	  	<label>Image URL of your new wish</label>
+
+	  <md-input-container flex>
+		  <label>What's its price (if any) in SGD?</label>
+		  <input ng-model="newWishPrice">
+		</md-input-container>
+
+		<md-input-container class="newWishExpiry">
+			<label>When should {{userSeesOwnWishlist ? "you" : "they"}} get it by?</label>
+			<md-datepicker ng-model="newWishExpiry"  md-hide-icons="calendar">
+			</md-datepicker>
+		</md-input-container>
+
+		<md-input-container>
+	  	<label>Paste the URL of an image for reference!</label>
 	  	<input ng-model="newWishSource">
 		</md-input-container>
-   <md-input-container class="md-block">
-      <label>Description</label>
-      <textarea ng-model="newWishDescription" md-maxlength="50" rows="2" md-select-on-focus></textarea>
-    </md-input-container>
 
-		<md-switch class="newWishPublicity" ng-model="newWishPublicity" layout-align="center">
-			This Wish is {{newWishPublicity ? "Public" : "Private"}}.
+	  <md-input-container class="md-block">
+      <label>Describe the wish.</label>
+      <textarea ng-model="newWishDescription" md-maxlength="50" rows="2" md-select-on-focus></textarea>
+  	</md-input-container>
+
+		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide={{userSeesOwnWishlist}}>
+			The receiver {{newWishIsPublic ? "can" : "cannot" }} see this wish.
 		</md-switch>
  </div>
+
+
  <div class="footer">
  	<md-button type="submit">Submit</md-button>
  </div>
+
 </form>
