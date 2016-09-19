@@ -8,38 +8,3 @@
 	max-width: $max-container-width;
 	margin: auto;
 }
-
-.feed-list {
-
-	.friendProfilePic {
-		width: 100%;
-		height: 100%;
-	}
-
-	h2 {
-		margin-top: 0px;
-		margin-bottom: 4px;
-	}
-
-	.feedFriend {
-
-	}
-
-	.feedGrid {
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
-	}
-
-	.friendFooter {
-		height: 30px;
-		background-color: rgba(0, 0, 0, 0.5);
-		p {
-			margin-left: 4px;
-		}
-	}
-
-	md-grid-list {
-		margin-bottom: 40px;
-	}
-}
