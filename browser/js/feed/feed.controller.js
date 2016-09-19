@@ -2,7 +2,7 @@
 
 app.controller('FeedCtrl', function($scope, $state){
 	$scope.goToWishlist = function(){
-		$state.go('wishlist');
+		$state.go('wishlist', {userId: 123 }); //<-- dummy userId
 	}
 
 	$scope.months = [

@@ -1,13 +1,15 @@
 
-<md-content id="wish" layout="column" layout-align="center center" ng-controller="WishCtrl" flex>
- <img class="wishImage" src="{{wish.source ? wish.source : defaultWishSource }}">
- <h2 class="wishLabel">{{wish.name}}</h2>
- <h4 class="wishLabel">Wish Progress: ${{wish.accumulated}} / ${{wish.price}}</h4>
- <md-progress-linear md-mode="determinate" value="50"></md-progress-linear>
- <br>
- <h4 class="wishLabel">Wish Fairies</h4>
- <div layout="row" class="contributorIcons">
- <img ng-repeat="giver in wish.givers" src="{{giver.source}}" class="contributorIcon">
- </div>
-
+<md-content class="wishView" layout="column" layout-align="center center" flex>
+	<img class="wishImage" src="{{wish.source ? wish.source : defaultWishSource }}">
+	<h2 class="wishLabel">{{wish.name}}</h2>
+	<h4 class="wishLabel">Expires On: {{wish.expiry.slice(0,10)}}</h4>
+	<h4 class="wishLabel">Wish Progress: ${{wish.accumulated}} / ${{wish.expected_price}}</h4>
+	<md-progress-linear md-mode="determinate" value="{{wish.accumulated / wish.expected_price * 100}}"></md-progress-linear>
+	<br>
+	<h4 class="wishLabel">Wish Fairies:</h4>
+	<div layout="row" class="contributorIcons">
+		<p class="noContributors" ng-hide="{{wish.givers.length > 0}}">No contributors!</p>
+		<img ng-repeat="giver in wish.givers" src="{{giver.source}}" class="contributorIcon">
+	</div>
+	<md-button ng-hide="{{userSeesOwnWish}}" ui-sref="contribute({userId: pageUserId, wishId: wishId})" >Contribute</md-button>
 </md-content>
