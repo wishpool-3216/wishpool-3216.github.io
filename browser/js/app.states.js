@@ -26,6 +26,12 @@ app.config(function($stateProvider){
   	controller: 'WishlistCtrl'
   })
 
+  $stateProvider.state('wishadd', {
+    url: '/user/:userId/wishadd',
+    templateUrl: '/html/wishadd/wishadd.template.html',
+    controller: 'WishaddCtrl'
+  })
+
   $stateProvider.state('landing', {
     url: '/landing',
     templateUrl: '/html/landing/landing.template.html',
