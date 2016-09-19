@@ -8,8 +8,8 @@ app.controller('ContributeCtrl', function($scope, $state, $stateParams, $rootSco
 	$scope.wish = LocalStorageService.getWishById($scope.wishId);
 
 	$scope.confirm = function () {
-		//todo: update Wish
-
+		//Update Wish with ContributeService.addcontribution
+		
 		$state.go('wishlist', {userId: $scope.pageUserId});
 	}
 

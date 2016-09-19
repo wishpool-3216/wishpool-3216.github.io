@@ -2,7 +2,6 @@
 
 app.controller('WishlistCtrl', function($scope, $state, $stateParams, $rootScope, LocalStorageService){
 
-
 	// Checks if the client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId || 123 //<-- dummy id;
 	$scope.clientUserId = $rootScope.userId || LocalStorageService.getUserData().id;
@@ -11,10 +10,12 @@ app.controller('WishlistCtrl', function($scope, $state, $stateParams, $rootScope
 	}
 
 
-	//If user is viewing their own wishlist, we can load from localStorage
+	//If user is viewing their own wishlist
 	if($scope.userSeesOwnWishlist){
+		// We can get the wishlist from the server OR localStorage
 		$scope.wishes = LocalStorageService.getWishlist();
 	}else{
+		// We can only get the wishlist from the server
 		$scope.wishes = [];
 	}
 

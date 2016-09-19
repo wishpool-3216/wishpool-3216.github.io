@@ -67,6 +67,8 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService) {
 		$state.go('landing');
 	}
 
+
+  // Load the dummy data, for now!
 	LocalStorageService.loadDummyData();
 
 });

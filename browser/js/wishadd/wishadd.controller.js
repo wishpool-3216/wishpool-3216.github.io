@@ -31,13 +31,14 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 			description: $scope.newWishDescription
 		}
 
-		// If the user is adding a wish for themselves, save this wish in localStorage
+		// If the user is adding a wish for themselves
 		if($scope.userSeesOwnWishlist){
-			LocalStorageService.addWish(newWishObj);
+			// We POST to the server with WishService.addGift
+			// We update localStorage with LocalStorage.addWish
+		}else{
+			// We only POST to the server with WishService.addGift
 		}
 		$state.go('wishlist');
-		
 	}
-
 
 });

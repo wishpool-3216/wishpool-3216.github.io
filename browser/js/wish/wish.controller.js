@@ -9,13 +9,14 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, Lo
 	}
 
 
-	//If user is viewing their own wish, we can load from localStorage
+	//If user is viewing their own wish
 	if($scope.userSeesOwnWish){
+		// We get the wish from the server OR localStorage
 		$scope.wish = LocalStorageService.getWishById($stateParams.wishId);
 	}else{
+		// We can only get the wish from the server
 		$scope.wish = {};
 	}
-
 
 
 	$scope.defaultWishSource = "https://www.us.aspjj.com/sites/aspjj.com.us/files/default_images/No_available_image_3.jpg"
