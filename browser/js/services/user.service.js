@@ -9,23 +9,6 @@ app.factory('UserService', function($http, __env, $stateParams, $rootScope, Loca
 		return response.data;
 	}
 
-
-	// Makes a GET request to server with FB token in the header
-  UserService.sendToken = function(uid, accessToken, expiresIn){
-		console.log(uid, accessToken, expiresIn);
-  	return $http({
-  		method: 'POST',
-  		url: sUrl + '/auth/facebook/callback',
-  		data: {
-  			uid: uid,
-				access_token: accessToken,
-  			expires_in: expiresIn
-  		}
-  	})
-  	.then(getResponseData);
-  }
-
-
   // Gets data for a user
   UserService.getUser = function(userId){
   	$http.get(sUrl + '/api/v1/users/' + userId)

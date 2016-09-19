@@ -21,26 +21,6 @@ app.factory('FacebookService', function($http, $q){
 	}
 */
 
-	// Logs the user into Facebook
-	FacebookService.login = function(){
-		var deferred = $q.defer();
-		FB.login(function(response){
-			if(response.authResponse){
-				console.log("You logged in successfully!");
-				deferred.resolve({
-					accessToken: response.authResponse.accessToken,
-					expiresIn: response.authResponse.expiresIn,
-					userId: response.authResponse.userID
-				});
-			} else {
-				console.log("Could not log you in through Facebook.");
-				deferred.reject();
-			}
-		}, {scope: 'user_birthday,user_friends'})
-		return deferred.promise;
-	}
-
-
 	return FacebookService;
-	
+
 });
