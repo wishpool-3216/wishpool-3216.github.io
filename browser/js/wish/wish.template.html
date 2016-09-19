@@ -1,5 +1,5 @@
 
-<md-content id="wish" layout="column" layout-align="center center" ng-controller="WishCtrl" flex>
+<md-content class="wish container" layout="column" layout-align="center center" ng-controller="WishCtrl" flex>
  <img class="wishImage" src="{{wish.source ? wish.source : defaultWishSource }}">
  <h2 class="wishLabel">{{wish.name}}</h2>
  <h4 class="wishLabel">Wish Progress: ${{wish.accumulated}} / ${{wish.price}}</h4>

@@ -4,71 +4,7 @@
 	margin: auto;
 }
 
-.wishpool-navbar {
-
-	ul {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		width: 100%;
-		max-width: 600px;
-		margin: auto;
-	}
-
-	li {
-		width: 50%;
-		button {
-			width: 100%;
-		}
-		.md-unselected .material-icons {
-			color: rgba(0,0,0,0.54);
-		}
-	}
-}
-
-#toolbar {
-	height: 50px;
-	h3 {
-		font-weight: bold;
-		@include tappable;
-	}
-}
-
-#sidenav {
-	width: 120px;
-	min-width: 120px;
-}
-
-#feedlist {
-	.friendProfilePic {
-		width: 100%;
-		height: 100%;
-	}
-
-	h2 {
-		margin-top: 0px;
-		margin-bottom: 4px;
-	}
-
-	.feedFriend {
-
-	}
-
-	.feedGrid {
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
-	}
-
-	.friendFooter {
-		height: 30px;
-		background-color: rgba(0, 0, 0, 0.5);
-		p {
-			margin-left: 4px;
-		}
-	}
-
-	md-grid-list {
-		margin-bottom: 40px;
-	}
+.container {
+	max-width: $max-container-width;
+	margin: auto;
 }

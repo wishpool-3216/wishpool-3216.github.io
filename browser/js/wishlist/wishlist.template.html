@@ -1,14 +1,16 @@
-<md-list class="wishlist" layout="column">
-	<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish(wish)">
-		<img class="wishIcon" src="{{wish.source ? wish.source : defaultWishSource}}"> 	
-		<div class="md-list-item-text" layout="column">
-			<h3>{{wish.name}}</h3>
-			<h4>${{wish.accumulated}} / ${{wish.price}}</h4>
-			<md-progress-linear md-mode="determinate" value="{{wish.progress}}"></md-progress-linear>
-		</div>
-		<md-divider></md-divider>
-	</md-list-item>
-</md-list>
-<div class="goToWishAdd">
-<md-button ng-click="goToWishadd()">Add A Wish</md-button>
+<div class="container">
+	<md-list class="wishlist" layout="column">
+		<md-list-item class="md-hue-3" ng-repeat="wish in wishes" layout="row" ng-click="goToWish(wish)">
+			<img class="wishIcon" src="{{wish.source ? wish.source : defaultWishSource}}">
+			<div class="md-list-item-text" layout="column">
+				<h3>{{wish.name}}</h3>
+				<h4>${{wish.accumulated}} / ${{wish.price}}</h4>
+				<md-progress-linear md-mode="determinate" value="{{wish.progress}}"></md-progress-linear>
+			</div>
+			<md-divider></md-divider>
+		</md-list-item>
+	</md-list>
+	<div class="goToWishAdd">
+		<md-button ng-click="goToWishadd()">Add A Wish</md-button>
+	</div>
 </div>
