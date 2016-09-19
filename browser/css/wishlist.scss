@@ -1,4 +1,4 @@
-#wishlist {
+.wishlist {
 	h3 {
 		margin-top: 0px;
 		margin-bottom: 0px;
@@ -37,17 +37,7 @@
 
 }
 
-#addwish {
-	margin-left: 10px;
-	margin-right: 10px;
-	md-input-container {
-		margin-top: 3px;
-		margin-bottom: 3px;
-	}
-	.header {
-		text-align: center;	
-	}
-
-  .footer {     text-align: center;   }
-
+.goToWishAdd {
+	text-align: center;
 }
+
