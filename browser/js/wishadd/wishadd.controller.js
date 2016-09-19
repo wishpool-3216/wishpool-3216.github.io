@@ -1,13 +1,13 @@
 'use strict';
-app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams){
+app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window){
 
 	$scope.pageUserId = $stateParams.userId || 123;
 	$scope.clientUserId = $rootScope.userId || 456;
 	if($scope.pageUserId === $scope.clientUserId){
-		$scope.userSeesOwnWishlist = true; 
+		$scope.userSeesOwnWishlist = true;
 	}
 
-	
+
 	$scope.newWishIsPublic = true;
 
 	$scope.addWish = function() {
@@ -34,6 +34,10 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 			$state.go('wishlist');
 		})
 
+	}
+
+	$scope.cancel = function() {
+		$window.history.back();
 	}
 
 });

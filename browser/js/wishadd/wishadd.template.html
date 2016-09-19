@@ -1,8 +1,7 @@
-<form class="addwish md-inline-form" ng-submit="addWish()">
-	
-	<div class="header">
-		<h3>Add A Wish</h3>
-	</div>
+<form class="container addwish md-inline-form" ng-submit="addWish()">
+
+	<h3 class="addwish__title">Add A Wish</h3>
+
   <div layout="column">
     <md-input-container>
       <label>What's the name of {{userSeesOwnWishlist ? "your" : "their"}} wish?</label>
@@ -27,7 +26,7 @@
 
 	  <md-input-container class="md-block">
       <label>Describe the wish.</label>
-      <textarea ng-model="newWishDescription" md-maxlength="50" rows="2" md-select-on-focus></textarea>
+      <textarea ng-model="newWishDescription" maxlength="200" rows="1" md-select-on-focus></textarea>
   	</md-input-container>
 
 		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide={{userSeesOwnWishlist}}>
@@ -36,8 +35,9 @@
  </div>
 
 
- <div class="footer">
- 	<md-button type="submit">Submit</md-button>
+ <div class="footer" layout="row">
+ 	<md-button flex="50" class="md-raised md-primary" type="submit">Submit</md-button>
+	<md-button flex="50" class="md-raised" ng-click="cancel()"> Cancel </md-button>
  </div>
 
 </form>

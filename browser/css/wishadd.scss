@@ -1,25 +1,30 @@
 .addwish {
-	margin-left: 10px;
-	margin-right: 10px;
+	padding: 0 20px;
+	max-width: 300px;
+	margin-bottom: 50px!important;
+
 	md-input-container {
 		margin-top: 3px;
 		margin-bottom: 3px;
 	}
-	.header {
-		text-align: center;	
+	&__title {
+		color: $complement-color;
+		line-height: 1;
+		margin: 20px auto;
+		text-align: center;
 	}
 
 	.newWishPublicity {
 		text-align: center;
+		align-self: flex-start;
 	}
 
 	.md-datepicker-input {
-		width: 300px; 
+		width: 300px;
 	}
 
-  .footer {     
-  	text-align: center;   
+  .footer {
+		@include fixed-button-inside;
+		background: white;
   }
-
-	
-}	
+}
