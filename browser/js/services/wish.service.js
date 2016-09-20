@@ -1,6 +1,7 @@
 'use strict';
 
 app.factory('WishService', function($http){
+
 	var WishService = {};
 
 	// sUrl refers to server URL
@@ -27,7 +28,7 @@ app.factory('WishService', function($http){
 	// Creates a new gift for a user
 	WishService.addGift = function(userId, giftData){
 		/* giftData should contain: {name, publicity, expected_price, expiry, description} */
-		$http.get(sUrl + '/api/v1/user/' + userId + '/gifts', { 
+		$http.get(sUrl + '/api/v1/user/' + userId + '/gifts', {
 			user_id: userId,
 			name: giftData.name,
 			publicity: giftData.publicity,
@@ -39,9 +40,9 @@ app.factory('WishService', function($http){
 	}
 
 
-	// Updates a gift with new data 
+	// Updates a gift with new data
 	WishService.editGift= function(giftId, giftData){
-		$http.patch(sUrl + '/api/v1/gifts/' + giftId, { 
+		$http.patch(sUrl + '/api/v1/gifts/' + giftId, {
 			name: giftData.name,
 			publicity: giftData.publicity,
 			expected_price: giftData.expected_price || null,
@@ -56,9 +57,9 @@ app.factory('WishService', function($http){
 	WishService.deleteGift = function(giftId){
 		$http.delete(sUrl + '/api/v1/gifts/' + giftId)
 		.then(getResponseData);
-	}	
+	}
 
 
 	return WishService;
-	
+
 })

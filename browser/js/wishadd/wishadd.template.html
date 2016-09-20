@@ -19,14 +19,7 @@
 			</md-datepicker>
 		</md-input-container>
 
-		<md-input-container>
-	  	<label>Paste the URL of an image for reference!</label>
-	  	<input ng-model="newWishSource">
-		</md-input-container>
-
-		<input type="file" name="pic" accept="image/*" onchange="angular.element(this).scope().fileNameChanged(this)"/>
-
-	  <md-input-container class="md-block">
+		<md-input-container class="md-block">
       <label>Describe the wish.</label>
       <textarea ng-model="newWishDescription" maxlength="200" rows="1" md-select-on-focus></textarea>
   	</md-input-container>
@@ -34,6 +27,11 @@
 		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide={{userSeesOwnWishlist}}>
 			The receiver {{newWishIsPublic ? "can" : "cannot" }} see this wish.
 		</md-switch>
+
+		<input type="file" accept="image/*" onchange="angular.element(this).scope().fileNameChanged(this)" style="display: none" id="image-input"/>
+
+		<div class="addwish__preview-photo" style="background-image: url({{ imageFileBase64 }})" ng-if="imageFileBase64" ng-click="chooseFile()"> </div>
+		<div class="addwish__add-photo-btn" ng-if="!imageFileBase64" ng-click="chooseFile()" layout="row" layout-align="center center"> <md-icon md-font-set="material-icons">add_a_photo</md-icon> </div>
  </div>
 
 

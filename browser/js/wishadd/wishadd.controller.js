@@ -1,5 +1,5 @@
 'use strict';
-app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload){
+app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader){
 
 	$scope.pageUserId = $stateParams.userId || 123;
 	$scope.clientUserId = $rootScope.userId || 456;
@@ -44,6 +44,14 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 
 	$scope.fileNameChanged = function(el) {
 		$scope.imageFile = el.files[0];
+		ImageReader.readFile($scope.imageFile).then(function(base64) {
+			$scope.imageFileBase64 = base64;
+		});
+	}
+
+	$scope.chooseFile = function() {
+		// do a bit tricky here
+		document.getElementById('image-input').click();
 	}
 
 	$scope.cancel = function() {

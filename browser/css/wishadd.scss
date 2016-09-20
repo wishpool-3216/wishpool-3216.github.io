@@ -1,7 +1,7 @@
 .addwish {
 	padding: 0 20px;
 	max-width: 500px;
-	margin-bottom: 50px!important;
+	margin-bottom: 80px!important;
 	animation: appearFromBottom 0.3s;
 
 	md-input-container {
@@ -22,6 +22,22 @@
 
 	.md-datepicker-input {
 		width: 300px;
+	}
+
+	&__preview-photo, &__add-photo-btn {
+		@include tappable;
+		width: 100px;
+		height: 100px;
+		margin: auto;
+	}
+
+	&__add-photo-btn {
+		border: 1px dotted gray;
+		font-size: 30px;
+	}
+
+	&__preview-photo {
+		@include background-image-cover;
 	}
 
   .footer {
