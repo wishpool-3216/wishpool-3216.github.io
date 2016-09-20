@@ -5,15 +5,15 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 	$scope.wishes = [];
 	$scope.user = {};
 	// Checks if the client is viewing their own wishlist or someone else's
-	var pageUserId = $stateParams.userId || -1; //<-- dummy id;
+	$scope.pageUserId = $stateParams.userId || -1; //<-- dummy id;
 	var clientUserId = $scope.currentUser.id;
-	$scope.userSeesOwnWishlist = pageUserId == clientUserId;
+	$scope.userSeesOwnWishlist = $scope.pageUserId == clientUserId;
 
-	UserService.getUser(pageUserId).then(function(user) {
+	UserService.getUser($scope.pageUserId).then(function(user) {
 		$scope.user = user;
 	});
 
-	WishService.getUserGifts(pageUserId).then(function(gifts) {
+	WishService.getUserGifts($scope.pageUserId).then(function(gifts) {
 		$scope.wishes = gifts;
 	});
 });

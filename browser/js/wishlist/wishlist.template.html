@@ -7,11 +7,11 @@
 			</div>
 		</div>
 		<md-list-item class="wishlist__wish-item md-hue-3" ng-repeat="wish in wishes" ui-sref="wish({userId: pageUserId, wishId: wish.id })">
-			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.source ? wish.source : defaultWishSource}})"> </div>
-			<div>
+			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.image_file_name | defaultPhoto}})"> </div>
+			<div flex>
 				<h3 class="wishlist__wish-name">{{wish.name}}</h3>
-				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.price}} </span> </div>
-				<md-progress-linear class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
+				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated || 0}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.expected_price}} </span> </div>
+				<md-progress-linear ng-hide="true" class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
 			</div>
 			<md-divider></md-divider>
 		</md-list-item>
