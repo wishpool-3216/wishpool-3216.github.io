@@ -18,7 +18,7 @@ app.factory('WishService', function($http, __env){
 
 	// Gets gift data for a particular gift
 	WishService.getGift = function(giftId){
-		$http.get(sUrl + '/api/v1/gifts' + giftId)
+		return $http.get(sUrl + '/api/v1/gifts/' + giftId)
 		.then(getResponseData);
 	}
 
