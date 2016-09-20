@@ -1,25 +1,48 @@
-.wishaddView {
-	margin-left: 10px;
-	margin-right: 10px;
+.addwish {
+	padding: 0 20px;
+	max-width: 500px;
+	margin-bottom: 80px!important;
+	animation: appearFromBottom 0.3s;
+
 	md-input-container {
 		margin-top: 3px;
 		margin-bottom: 3px;
 	}
-	.header {
-		text-align: center;	
+	&__title {
+		color: $complement-color;
+		line-height: 1;
+		margin: 20px auto;
+		text-align: center;
 	}
 
 	.newWishPublicity {
 		text-align: center;
+		align-self: flex-start;
 	}
 
 	.md-datepicker-input {
-		width: 300px; 
+		width: 300px;
 	}
 
-  .footer {     
-  	text-align: center;   
-  }
+	&__preview-photo, &__add-photo-btn {
+		@include tappable;
+		width: 100px;
+		height: 100px;
+		//margin: auto;
+	}
 
-	
-}	
+	&__add-photo-btn {
+		border: 1px dotted gray;
+		font-size: 30px;
+	}
+
+	&__preview-photo {
+		@include background-image-cover;
+	}
+
+  .footer {
+		@include fixed-button-inside;
+		background: white;
+		animation: appearOpacityLate 0.3s;
+  }
+}

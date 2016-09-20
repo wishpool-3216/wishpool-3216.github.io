@@ -2,7 +2,7 @@
 	<md-list-item class="md-hue-3" ng-repeat="month in months" layout="column">
 		<h2 class="feed-list__month-header">{{month.name}}</h2>
 		<md-grid-list layout-fill class="feedGrid" md-cols-xs="2" md-cols-sm="3" md-cols-gt-sm="3" md-row-height="1:1" md-gutter="20px" layout-align="center center">
-			<md-grid-tile class="gray" ng-repeat="friend in month.friends" md-colspan-xs="1" ng-click="goToWishlist()">
+			<md-grid-tile class="gray md-whiteframe-4dp" ng-repeat="friend in month.friends" md-colspan-xs="1" ng-click="goToWishlist()">
 				<img class="friendProfilePic" src="{{friend.source}}">
   			<md-grid-tile-footer class="feed-list__friend-footer">
       		<p>{{friend.firstName}}</p>

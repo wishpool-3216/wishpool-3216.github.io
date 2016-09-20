@@ -82,9 +82,6 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthS
 	$scope.goToLanding = function () {
 		$state.go('landing');
 	}
-
-
   // Load the dummy data, for now!
 	LocalStorageService.loadDummyData();
-
 });

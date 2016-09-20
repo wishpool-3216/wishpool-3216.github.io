@@ -13,3 +13,15 @@
   text-decoration: none;
   color: $black80;
 }
+
+@mixin fixed-button-inside {
+  position: fixed;
+	max-width: $max-container-width;
+	transform: translate(-50%, 0);
+	bottom: 0;
+	left: 50%;
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+  z-index: $z-index-top-level;
+}

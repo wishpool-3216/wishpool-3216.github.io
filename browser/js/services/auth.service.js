@@ -67,6 +67,9 @@ app.factory('AuthService', function ($http, $q, $window, Session, LocalStorageSe
 app.factory('sessionInjector', function(Session, tokenKeys) {
   var sessionInjector = {
     request: function(config) {
+      if (config.url.startsWith('https://api.cloudinary.com')) {
+        return config;
+      }
       if (Session.token) {
         tokenKeys.forEach(function(key) {
           config.headers[key] = Session.token[key];
@@ -75,9 +78,6 @@ app.factory('sessionInjector', function(Session, tokenKeys) {
       return config;
     },
     response: function(response) {
-
-      console.log(response.headers());
-
       var headers = response.headers();
 
       var newToken = tokenKeys.reduce(function(newToken, key) {
@@ -85,7 +85,7 @@ app.factory('sessionInjector', function(Session, tokenKeys) {
         newToken[key] = headers[key];
         return newToken;
       }, {});
-      
+
       if (newToken) Session.setToken(newToken);
       return response;
     }

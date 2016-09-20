@@ -1,13 +1,13 @@
 'use strict';
-app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams){
+app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
 	$scope.clientUserId = $rootScope.userId || LocalStorageService.getUserData().id;
 	if($scope.pageUserId == $scope.clientUserId){
-		$scope.userSeesOwnWishlist = true; 
+		$scope.userSeesOwnWishlist = true;
 	}
-	
+
 
 	// By default, the new wish is a Public wish
 	$scope.newWishIsPublic = true;
@@ -15,6 +15,12 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 
 	// Add the wish
 	$scope.addWish = function() {
+
+		FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
+			console.log(response.data);
+		});
+		return;
+
 		var newWishPublicity = "public";
 		if(!$scope.newWishIsPublic) newWishPublicity = "private";
 
@@ -39,6 +45,22 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 			// We only POST to the server with WishService.addGift
 		}
 		$state.go('wishlist');
+	}
+
+	$scope.fileNameChanged = function(el) {
+		$scope.imageFile = el.files[0];
+		ImageReader.readFile($scope.imageFile).then(function(base64) {
+			$scope.imageFileBase64 = base64;
+		});
+	}
+
+	$scope.chooseFile = function() {
+		// do a bit tricky here
+		document.getElementById('image-input').click();
+	}
+
+	$scope.cancel = function() {
+		$window.history.back();
 	}
 
 });
