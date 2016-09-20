@@ -1,5 +1,5 @@
 'use strict';
-app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window){
+app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload){
 
 	$scope.pageUserId = $stateParams.userId || 123;
 	$scope.clientUserId = $rootScope.userId || 456;
@@ -11,6 +11,12 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 	$scope.newWishIsPublic = true;
 
 	$scope.addWish = function() {
+
+		FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
+			console.log(response.data);
+		});
+		return;
+
 		var newWishPublicity = "public";
 		if(!$scope.newWishIsPublic) newWishPublicity = "private";
 		var newWishObj = {
@@ -34,6 +40,10 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 			$state.go('wishlist');
 		})
 
+	}
+
+	$scope.fileNameChanged = function(el) {
+		$scope.imageFile = el.files[0];
 	}
 
 	$scope.cancel = function() {

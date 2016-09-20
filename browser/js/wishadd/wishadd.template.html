@@ -24,6 +24,8 @@
 	  	<input ng-model="newWishSource">
 		</md-input-container>
 
+		<input type="file" name="pic" accept="image/*" onchange="angular.element(this).scope().fileNameChanged(this)"/>
+
 	  <md-input-container class="md-block">
       <label>Describe the wish.</label>
       <textarea ng-model="newWishDescription" maxlength="200" rows="1" md-select-on-focus></textarea>
