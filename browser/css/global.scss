@@ -9,3 +9,24 @@
 	margin: auto;
 	position: relative;
 }
+
+@keyframes appearFromBottom {
+	0% {
+		transform: translate(0, 150%);
+	}
+}
+
+@keyframes appearOpacity {
+	0% {
+		opacity: 0;
+	}
+}
+
+@keyframes appearOpacityLate {
+	0% {
+		opacity: 0;
+	}
+	99% {
+		opacity: 0;
+	}
+}

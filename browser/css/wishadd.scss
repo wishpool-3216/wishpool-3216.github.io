@@ -1,7 +1,8 @@
 .addwish {
 	padding: 0 20px;
-	max-width: 300px;
+	max-width: 400px;
 	margin-bottom: 50px!important;
+	animation: appearFromBottom 0.3s;
 
 	md-input-container {
 		margin-top: 3px;
@@ -26,5 +27,6 @@
   .footer {
 		@include fixed-button-inside;
 		background: white;
+		animation: appearOpacityLate 0.3s;
   }
 }
