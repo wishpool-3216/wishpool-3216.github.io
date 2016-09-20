@@ -1,11 +1,11 @@
 'use strict';
 
-app.factory('WishService', function($http){
+app.factory('WishService', function($http, __env){
 
 	var WishService = {};
 
 	// sUrl refers to server URL
-	var sUrl = 'http://server.wishpool.info';
+	var sUrl = __env.apiUrl;
 	var getResponseData = function(response){
 		return response.data;
 	}
@@ -13,7 +13,7 @@ app.factory('WishService', function($http){
 
 	// Gets all the gifts that a user is receiving
 	WishService.getUserGifts = function(userId){
-		$http.get(sUrl + '/api/v1/user/' + userId + '/gifts')
+		return $http.get(sUrl + '/api/v1/users/' + userId + '/gifts')
 		.then(getResponseData);
 	}
 

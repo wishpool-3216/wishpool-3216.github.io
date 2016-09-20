@@ -65,6 +65,20 @@
 		width: 150px;
 		height: 20px;
 	}
+
+	&__empty-container {
+		margin-top: 10px;
+		width: 100%;
+		color: gray;
+	}
+
+	&__empty-icon {
+		@include background-image-cover;
+		background-image: url(./assets/gift.png);
+		width: 50px;
+		height: 50px;
+		margin-bottom: 10px;
+	}
 }
 
 .wishlist__add-wish-button {

@@ -11,7 +11,7 @@ app.factory('UserService', function($http, __env, $stateParams, $rootScope, Loca
 
   // Gets data for a user
   UserService.getUser = function(userId){
-  	$http.get(sUrl + '/api/v1/users/' + userId)
+  	return $http.get(sUrl + '/api/v1/users/' + userId)
   	.then(getResponseData);
   }
 
