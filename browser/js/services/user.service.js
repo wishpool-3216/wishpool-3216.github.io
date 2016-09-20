@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('UserService', function($http, __env){
+app.factory('UserService', function($http, __env, $stateParams, $rootScope, LocalStorageService){
 	var UserService = {};
 
 	// sUrl refers to server URL
@@ -28,7 +28,6 @@ app.factory('UserService', function($http, __env){
   	$http.get(sUrl + '/api/v1/users/' + userId + '/friend_birthdays')
   	.then(getResponseData);
   }
-
 
 	return UserService;
 

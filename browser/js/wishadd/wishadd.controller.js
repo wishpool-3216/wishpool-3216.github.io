@@ -1,15 +1,19 @@
 'use strict';
 app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader){
 
-	$scope.pageUserId = $stateParams.userId || 123;
-	$scope.clientUserId = $rootScope.userId || 456;
-	if($scope.pageUserId === $scope.clientUserId){
+	// Checks if client is viewing their own wishlist or someone else's
+	$scope.pageUserId = $stateParams.userId;
+	$scope.clientUserId = $rootScope.userId || LocalStorageService.getUserData().id;
+	if($scope.pageUserId == $scope.clientUserId){
 		$scope.userSeesOwnWishlist = true;
 	}
 
 
+	// By default, the new wish is a Public wish
 	$scope.newWishIsPublic = true;
 
+
+	// Add the wish
 	$scope.addWish = function() {
 
 		FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
@@ -19,27 +23,28 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 
 		var newWishPublicity = "public";
 		if(!$scope.newWishIsPublic) newWishPublicity = "private";
+
+		// Very hackish way of making new wish index for the new wish
+		var localStorageLastWish = LocalStorageService.getWishlist().slice(-1)[0];
 		var newWishObj = {
+			id: localStorageLastWish.id + 1,
 			name: $scope.newWishName,
 			publicity: newWishPublicity,
 			source: $scope.newWishSource,
 			expected_price: $scope.newWishPrice,
+			accumulated: 0,
 			expiry: $scope.newWishExpiry,
 			description: $scope.newWishDescription
 		}
 
-		// If the user is adding a wish for themselves, save wish in Web Storage
+		// If the user is adding a wish for themselves
 		if($scope.userSeesOwnWishlist){
-			LocalStorageService.addWish(newWishObj);
+			// We POST to the server with WishService.addGift
+			// We update localStorage with LocalStorage.addWish
+		}else{
+			// We only POST to the server with WishService.addGift
 		}
-
-		// POST new wish to server
-		WishService.addGift($rootScope.userId, newWishObj)
-		.then(function(){
-			console.log("Wish added. Returning you to the wishlist...");
-			$state.go('wishlist');
-		})
-
+		$state.go('wishlist');
 	}
 
 	$scope.fileNameChanged = function(el) {

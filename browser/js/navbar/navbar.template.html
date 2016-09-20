@@ -1,10 +1,10 @@
 <div class="wishpool-navbar-wrapper" ng-if="currentUser">
 	<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" class="wishpool-navbar md-whiteframe-4dp">
-		<md-nav-item md-nav-click="goto('feed')" name="feed" ng-click="goToFeed()">
+		<md-nav-item ui-sref="feed()" name="feed" ng-click="goToFeed()">
 			<md-icon md-font-set="material-icons">language</md-icon>
 			&nbsp; Feed
 		</md-nav-item>
-		<md-nav-item md-nav-click="goto('wishlist')" name="wishlist" ng-click="goToWishlist()">
+		<md-nav-item ui-sref="wishlist({userId: clientUserId})" name="wishlist" ng-click="goToWishlist()">
 			<md-icon md-font-set="material-icons">favorite</md-icon>
 			&nbsp; My Wishlist
 		</md-nav-item>

@@ -8,14 +8,13 @@ app.config(function($stateProvider){
   });
 
   $stateProvider.state('wish', {
-  	url: '/wish/:wishId',
-    params: {'wishObj': null},
+  	url: '/user/:userId/wish/:wishId',
   	templateUrl: '/html/wish/wish.template.html',
   	controller: 'WishCtrl'
   });
 
   $stateProvider.state('contribute', {
-  	url: '/wish/:wishId/contribute',
+  	url: '/user/:userId/wish/:wishId/contribute',
   	templateUrl: '/html/contribute/contribute.template.html',
   	controller: 'ContributeCtrl'
   })

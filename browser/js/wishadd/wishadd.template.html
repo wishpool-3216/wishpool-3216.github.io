@@ -1,21 +1,21 @@
-<form class="container addwish md-inline-form" ng-submit="addWish()">
+<form class="container addwish md-inline-form" ng-submit="addWish()" name="wishaddForm">
 
 	<h3 class="addwish__title">Add A Wish</h3>
 
   <div layout="column">
     <md-input-container>
       <label>What's the name of {{userSeesOwnWishlist ? "your" : "their"}} wish?</label>
-      <input ng-model="newWishName">
+      <input ng-model="newWishName" required>
     </md-input-container>
 
 	  <md-input-container flex>
 		  <label>What's its price (if any) in SGD?</label>
-		  <input ng-model="newWishPrice">
+		  <input type="number" ng-model="newWishPrice">
 		</md-input-container>
 
 		<md-input-container class="newWishExpiry">
 			<label>When should {{userSeesOwnWishlist ? "you" : "they"}} get it by?</label>
-			<md-datepicker ng-model="newWishExpiry"  md-hide-icons="calendar">
+			<md-datepicker ng-model="newWishExpiry"  md-hide-icons="calendar" required>
 			</md-datepicker>
 		</md-input-container>
 
@@ -24,7 +24,7 @@
       <textarea ng-model="newWishDescription" maxlength="200" rows="1" md-select-on-focus></textarea>
   	</md-input-container>
 
-		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide={{userSeesOwnWishlist}}>
+		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide="{{userSeesOwnWishlist}}">
 			The receiver {{newWishIsPublic ? "can" : "cannot" }} see this wish.
 		</md-switch>
 
@@ -34,9 +34,8 @@
 		<div class="addwish__add-photo-btn" ng-if="!imageFileBase64" ng-click="chooseFile()" layout="row" layout-align="center center"> <md-icon md-font-set="material-icons">add_a_photo</md-icon> </div>
  </div>
 
-
  <div class="footer" layout="row">
- 	<md-button flex="50" class="md-raised md-primary" type="submit">Submit</md-button>
+ 	<md-button flex="50" class="md-raised md-primary" type="submit" ng-disabled="wishAddForm.$invalid">Submit</md-button>
 	<md-button flex="50" class="md-raised" ng-click="cancel()"> Cancel </md-button>
  </div>
 

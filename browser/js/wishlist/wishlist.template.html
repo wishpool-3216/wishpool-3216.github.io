@@ -1,6 +1,6 @@
 <div class="container">
 	<md-list class="wishlist__container" layout="column">
-		<md-list-item class="wishlist__wish-item md-hue-3" ng-repeat="wish in wishes" ng-click="goToWish(wish)">
+		<md-list-item class="wishlist__wish-item md-hue-3" ng-repeat="wish in wishes" ui-sref="wish({userId: pageUserId, wishId: wish.id })">
 			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.source ? wish.source : defaultWishSource}})"> </div>
 			<div>
 				<h3 class="wishlist__wish-name">{{wish.name}}</h3>
@@ -10,5 +10,5 @@
 			<md-divider></md-divider>
 		</md-list-item>
 	</md-list>
-	<md-button class="md-raised md-primary wishlist__add-wish-button" ng-click="goToWishadd()">Add A Wish</md-button>
+	<md-button class="md-raised md-primary wishlist__add-wish-button" ui-sref="wishadd({userId: pageUserId})">Add A Wish</md-button>
 </div>
