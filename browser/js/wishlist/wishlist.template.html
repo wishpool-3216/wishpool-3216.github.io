@@ -10,8 +10,8 @@
 			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.image_file_name | defaultPhoto}})"> </div>
 			<div flex>
 				<h3 class="wishlist__wish-name">{{wish.name}}</h3>
-				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated || 0}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.expected_price}} </span> </div>
-				<md-progress-linear ng-hide="true" class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
+				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.expected_price}} </span> </div>
+				<md-progress-linear class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
 			</div>
 			<md-divider></md-divider>
 		</md-list-item>
