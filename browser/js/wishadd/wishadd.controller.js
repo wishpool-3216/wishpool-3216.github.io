@@ -31,7 +31,7 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 			name: $scope.newWishName,
 			publicity: newWishPublicity,
 			source: $scope.newWishSource,
-			expected_price: $scope.newWishPrice,
+			expected_price: $scope.newWishPrice || 0,
 			accumulated: 0,
 			expiry: $scope.newWishExpiry,
 			description: $scope.newWishDescription
