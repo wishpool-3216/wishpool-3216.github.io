@@ -22,7 +22,7 @@ app.run(['$window', function($window) {
   if ('serviceWorker' in navigator) {
   // Registration of service worker
   navigator.serviceWorker
-    .register('./service-worker.js')
+    .register('/service-worker.js')
     .then(function () {
       console.log('Registered Service Worker.');
     })
