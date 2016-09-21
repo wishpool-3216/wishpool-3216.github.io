@@ -39,10 +39,10 @@
 	&__preview-photo {
 		@include background-image-cover;
 	}
-
-  .footer {
+	
+	.footer {
 		@include fixed-button-inside;
 		background: white;
 		animation: appearOpacityLate 0.3s;
-  }
+	}
 }

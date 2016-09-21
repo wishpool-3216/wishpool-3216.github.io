@@ -70,6 +70,14 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sce
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
   $scope.currentUser = LocalStorageService.getUser();
+  $scope.currentNavItem = 'feed';
+  $scope.highlighFeed = function() {
+    $scope.currentNavItem = 'feed';
+  }
+
+  $scope.highlighMyWish = function() {
+    $scope.currentNavItem = 'wishlist';
+  }
 
   $scope.setCurrentUser = function (user) {
     $scope.currentUser = user;
