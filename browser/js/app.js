@@ -3,7 +3,7 @@
 var app = angular.module('wishpoolApp', ['ui.router','ngMaterial'])
 
 app.constant('__env', {
-  apiUrl: 'https://52.77.241.218'
+  apiUrl: 'https://server.wishpool.info'
 });
 
 app.run(['$window', function($window) {
