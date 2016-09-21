@@ -32,9 +32,9 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 				description: $scope.newWishDescription
 			}
 
-			WishService.addGift(pageUserId, newWishObj).then(function(response) {
+			WishService.addGift($scope.pageUserId, newWishObj).then(function(response) {
 				console.log(response);
-				$state.go('wishlist', {userId: pageUserId});
+				$state.go('wishlist', {userId: $scope.pageUserId});
 			});
 		});
 	}
