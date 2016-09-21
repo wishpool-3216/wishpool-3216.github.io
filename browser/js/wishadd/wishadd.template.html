@@ -33,9 +33,10 @@
 		<div class="addwish__preview-photo" style="background-image: url({{ imageFileBase64 }})" ng-if="imageFileBase64" ng-click="chooseFile()"> </div>
 		<div class="addwish__add-photo-btn" ng-if="!imageFileBase64" ng-click="chooseFile()" layout="row" layout-align="center center"> <md-icon md-font-set="material-icons">add_a_photo</md-icon> </div>
  </div>
-</form>
 
-<div class="footer" layout="row">
- <md-button flex="50" class="md-raised md-primary" type="submit" ng-disabled="wishAddForm.$invalid">Submit</md-button>
- <md-button flex="50" class="md-raised" ng-click="cancel()"> Cancel </md-button>
-</div>
+ <div class="footer" layout="row">
+	<md-button flex="50" class="md-raised md-primary" type="submit" ng-disabled="wishAddForm.$invalid">Submit</md-button>
+	<md-button flex="50" class="md-raised" ng-click="cancel()"> Cancel </md-button>
+ </div>
+
+</form>

@@ -1,5 +1,5 @@
 <md-content class="wish container" layout="column" layout-align="center center" flex>
-	<img class="wishImage" src="{{wish.image_file_name | defaultPhoto}}">
+	<img class="wishImage" src="{{wish.image_file_name | normalPhoto | defaultPhoto}}">
 	<h2 class="wishLabel">{{wish.name}}</h2>
 	<h4 class="wishLabel">Expires On: <span class="wish-label-content"> {{wish.expiry.slice(0,10)}} </span> </h4>
 	<h4 class="wishLabel">Wish Progress: <span class="wish-label-content"> ${{wish.accumulated || 0}} / ${{wish.expected_price}} </span> </h4>

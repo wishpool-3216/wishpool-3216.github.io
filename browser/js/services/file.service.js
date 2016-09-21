@@ -14,9 +14,26 @@ app.service('FileUpload', ['$http', function ($http) {
 
 app.factory('ImageReader', function($q) {
 
+  var MAX_IMAGE_SIZE = 200;
   var ImageReader = {};
-
   var canvas = document.createElement('canvas');
+
+  function resizeImage(srcWidth, srcHeight, maxImageSize) {
+    if (srcWidth * srcHeight > maxImageSize * maxImageSize) {
+      var ratio = Math.sqrt(srcWidth * srcHeight / (maxImageSize * maxImageSize));
+      srcWidth /= ratio;
+      srcHeight /= ratio;
+      console.log(srcWidth, srcHeight);
+    }
+    return {
+      width: srcWidth,
+      height: srcHeight,
+      x: 0,
+      y: 0,
+      srcWidth,
+      srcHeight
+    };
+  }
 
   ImageReader.readFile = function(file) {
     var deferred = $q.defer();
@@ -24,11 +41,12 @@ app.factory('ImageReader', function($q) {
     fileReader.onload = function (e){
       var img = new Image();
       var imageDataUrl = e.target.result;
-      img.onload = function (e){
-        canvas.width = img.width;
-        canvas.height = img.height;
+      img.onload = function (e) {
+        var cropRegion = resizeImage(img.width, img.height, MAX_IMAGE_SIZE);
+        canvas.width = cropRegion.width;
+        canvas.height = cropRegion.height;
         var context = canvas.getContext('2d');
-        context.drawImage(img, 0, 0, img.width, img.height);
+        context.drawImage(img, -cropRegion.x, -cropRegion.y, cropRegion.srcWidth, cropRegion.srcHeight);
 
         deferred.resolve(canvas.toDataURL('image/png'));
       };
