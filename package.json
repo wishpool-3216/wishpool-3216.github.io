@@ -4,7 +4,8 @@
   "description": "Wishpool Frontend",
   "main": "public/index.js",
   "scripts": {
-    "clear": "rm -rf public"
+    "clear": "rm -rf public",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,15 +17,16 @@
     "url": "https://github.com/wishpool-3216/wishpool-3216.github.io/issues"
   },
   "homepage": "https://github.com/wishpool-3216/wishpool-3216.github.io#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  },
   "devDependencies": {
-    "browserify": "^13.1.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
-    "gulp-ruby-sass": "^2.1.0",
-    "gulp-sass": "^2.3.2",
-    "main-bower-files": "^2.13.1",
-    "nodemon": "^1.10.2",
-    "vinyl-source-stream": "^1.1.0"
+    "gulp-sass": "^2.3.2"
   }
 }
