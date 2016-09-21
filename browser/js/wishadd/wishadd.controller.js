@@ -3,7 +3,7 @@ app.controller('WishaddCtrl', function($scope, $rootScope, $state, LocalStorageS
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
-	$scope.clientUserId = $rootScope.userId || LocalStorageService.getUserData().id;
+	$scope.clientUserId = $scope.currentUser.id;
 	if($scope.pageUserId == $scope.clientUserId){
 		$scope.userSeesOwnWishlist = true;
 	}
