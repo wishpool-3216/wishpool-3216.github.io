@@ -17,6 +17,21 @@ app.run(['$window', function($window) {
     });
   };
 
+
+  // Service workers
+  if ('serviceWorker' in navigator) {
+  // Registration of service worker
+  navigator.serviceWorker
+    .register('./service-worker.js')
+    .then(function () {
+      console.log('Registered Service Worker.');
+    })
+    .catch(function () {
+      console.log('Unable to register Service Worker.');
+    });
+  }
+
+
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -85,3 +100,4 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthS
   // Load the dummy data, for now!
 	LocalStorageService.loadDummyData();
 });
+
