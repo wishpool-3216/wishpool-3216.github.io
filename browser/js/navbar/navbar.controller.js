@@ -11,7 +11,4 @@ app.controller('NavbarCtrl', function($scope, $state, LocalStorageService, $root
 	$scope.goToWishlist = function() {
 		$state.go('wishlist')
 	}
-
-	$scope.currentNavItem = 'feed';
-
 });

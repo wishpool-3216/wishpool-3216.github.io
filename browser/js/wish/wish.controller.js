@@ -1,8 +1,7 @@
 'use strict';
 
-app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, LocalStorageService, $mdDialog){
+app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, LocalStorageService, WishService, $mdDialog){
 
-	$scope.wish = $stateParams.wishObj;
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
   $scope.clientUserId = $scope.currentUser.id;
@@ -11,15 +10,10 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, Lo
 	}
 
 
-	//If user is viewing their own wish
-	if($scope.userSeesOwnWish){
-		// We get the wish from the server OR localStorage
-		$scope.wish = LocalStorageService.getWishById($stateParams.wishId);
-	}else{
-		// We can only get the wish from the server
-		$scope.wish = {};
-	}
-
+	$scope.wish = {};
+	WishService.getGift($stateParams.wishId).then(function(wish) {
+		$scope.wish = wish;
+	});
 
 	$scope.contributed = false;
 	$scope.contributeStatus = "";
@@ -36,7 +30,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, Lo
       .cancel("I'll think about it");
 
     $mdDialog.show(confirm).then(function(result) {
-      var regexp = /\d+/; 
+      var regexp = /\d+/;
       var match = result.match(regexp);
       var contributeAmt = parseInt(match[0]);
       if(match && contributeAmt > 0){
@@ -48,10 +42,5 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, Lo
       }
     });
   };
-
-
-	$scope.defaultWishSource = "https://www.us.aspjj.com/sites/aspjj.com.us/files/default_images/No_available_image_3.jpg"
-
-
 
 });

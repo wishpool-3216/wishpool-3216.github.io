@@ -11,7 +11,7 @@ app.factory('UserService', function($http, __env, $stateParams, $rootScope, Loca
 
   // Gets data for a user
   UserService.getUser = function(userId){
-  	$http.get(sUrl + '/api/v1/users/' + userId)
+  	return $http.get(sUrl + '/api/v1/users/' + userId)
   	.then(getResponseData);
   }
 
@@ -25,7 +25,7 @@ app.factory('UserService', function($http, __env, $stateParams, $rootScope, Loca
 
   // Gets user's friends (and birthdays) in an array
   UserService.getUserFriends = function(userId){
-  	$http.get(sUrl + '/api/v1/users/' + userId + '/friend_birthdays')
+  	return $http.get(sUrl + '/api/v1/users/' + userId + '/friend_birthdays')
   	.then(getResponseData);
   }
 
