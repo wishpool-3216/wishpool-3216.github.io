@@ -5,6 +5,8 @@ var shellCacheName = "WishpoolShellCache-1";
 // Files that constitute the app shell
 var filesToCache = [
 	// External dependencies
+  'https://fonts.googleapis.com/css?family=Roboto',
+  'https://fonts.googleapis.com/icon?family=Material+Icons',
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css',
 	'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js',
 	'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js',
@@ -19,6 +21,7 @@ var filesToCache = [
 	'/style.css',
 	'/html/feed/feed.template.html',
 	'/html/wish/wish.template.html',
+  '/html/navbar/navbar.template.html',
 	'/html/contribute/contribute.template.html',
 	'/html/wishlist/wishlist.template.html',
 	'/html/wishadd/wishadd.template.html',
