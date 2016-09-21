@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, $mdDialog){
+app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, $mdDialog, $mdToast){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -13,31 +13,48 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 	});
 
 	$scope.contributed = false;
-	$scope.contributeStatus = "";
   $scope.showContributePrompt = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
       .title('How much would you like to contribute?')
       .textContent("Full dollar contributions are recommended. Contributions in cents (or any use of the period '.' symbol) should be avoided.")
-      .placeholder('ContributeAmt')
-      .ariaLabel('ContributeAmt')
+      .placeholder('Contribute amount')
+      .ariaLabel('Contribute amount')
       .initialValue('0')
       .targetEvent(ev)
-      .ok('Confirm!')
-      .cancel("I'll think about it");
+      .ok('Confirm')
+      .cancel("Cancel");
 
     $mdDialog.show(confirm).then(function(result) {
+			console.log(result);
       var regexp = /\d+/;
       var match = result.match(regexp);
       var contributeAmt = parseInt(match[0]);
       if(match && contributeAmt > 0){
       	$scope.contributeAmt = contributeAmt;
-      	$scope.contributeStatus = "Thank you! Your contribution was noted.";
+      	$scope.contributeStatus =
+				$scope.showToast("Thank you!");
       	$scope.contributed = true;
-      }else{
-      	$scope.contributeStatus = "Oops! Your contribution was not accepted.";
+      } else {
+				$scope.showToast("Oops! Invalid result");
       }
     });
+  };
+
+	$scope.showToast = function(text) {
+		if (!text) return;
+    var pinTo = {
+			top: false,
+			left: false,
+			bottom: true,
+			right: true
+		}
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent(text)
+        .position(pinTo)
+        .hideDelay(1000)
+    );
   };
 
 });

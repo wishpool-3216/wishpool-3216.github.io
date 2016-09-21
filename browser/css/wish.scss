@@ -13,6 +13,13 @@
 	.wishLabel {
 		margin: 5px;
 		margin-top: 10px;
+		color: $complement-color;
+	}
+
+	.wish-label-content {
+		color: $normal-text-color;
+		font-size: 14px;
+		font-weight: normal;
 	}
 
 	.wishImage {
@@ -37,9 +44,13 @@
 	.noContributors {
 		margin-top: 1px;
 	}
-
 }
 
 .contributeButton {
 	@include fixed-button-inside;
+}
+
+md-dialog {
+	max-width: 400px!important;
+	width: 80%;
 }
