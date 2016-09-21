@@ -26,21 +26,21 @@ app.factory('ContributeService', function($http, __env){
 
 	// Adds a contribution to a gift, requires giftId and amt
 	ContributeService.addContribution = function(giftId, amount){
-		$http.post(sUrl + '/api/v1/gifts/' + giftId + '/contributions', {amount: amount})
+		return $http.post(sUrl + '/api/v1/gifts/' + giftId + '/contributions', {amount: amount})
 		.then(getResponseData);
 	}
 
 
 	// Updates a contribution, requires contrId and amt
 	ContributeService.updateContribution = function(contrId, amount){
-		$http.patch(sUrl + '/api/v1/contributions/' + contrId, {amount: amount})
+		return $http.patch(sUrl + '/api/v1/contributions/' + contrId, {amount: amount})
 		.then(getResponseData);
 	}
 
 
 	// Deletes a contribution, requires contrId
 	ContributeService.deleteContribution = function(contrId){
-		$http.delete(sUrl + '/api/v1/contributions/' + contrId)
+		return $http.delete(sUrl + '/api/v1/contributions/' + contrId)
 		.then(getResponseData);
 	}
 

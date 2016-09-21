@@ -1,18 +1,20 @@
-<md-content class="wish" layout="column" layout-align="center center" flex>
-	<img class="wishImage" src="{{wish.image_file_name | defaultPhoto}}">
+<md-content class="wish container" layout="column" layout-align="center center" flex>
+	<img class="wishImage" src="{{wish.image_file_name | normalPhoto | defaultPhoto}}">
 	<h2 class="wishLabel">{{wish.name}}</h2>
-	<h4 class="wishLabel">Expires On: {{wish.expiry.slice(0,10)}}</h4>
-	<h4 class="wishLabel">Wish Progress: ${{wish.accumulated || 0}} / ${{wish.expected_price}}</h4>
-	<md-progress-linear md-mode="determinate" value="{{(wish.accumulated || 0)/ wish.expected_price * 100}}"></md-progress-linear>
+	<h4 class="wishLabel">Expires On: <span class="wish-label-content"> {{wish.expiry.slice(0,10)}} </span> </h4>
+	<h4 class="wishLabel" ng-if="contributeAmt">Your contribution: <span class="wish-label-content"> ${{contributeAmt}} </span> </h4>
+	<h4 class="wishLabel">Wish Progress: <span class="wish-label-content"> ${{wish.sum_contributions || 0}} / ${{wish.expected_price}} </span> </h4>
+	<md-progress-linear md-mode="determinate" value="{{(wish.sum_contributions || 0)/ wish.expected_price * 100}}"></md-progress-linear>
 	<br>
 	<h4 class="wishLabel">Wish Fairies:</h4>
-	<div layout="row" class="contributorIcons">
-		<p class="noContributors" ng-hide="{{wish.contributions.length > 0}}">No contributors!</p>
-		<img ng-repeat="giver in wish.contributions" src="{{giver.source}}" class="contributorIcon">
-	</div>
-	<md-button class="contributeButton md-primary md-raised" ng-hide="contributed" ng-click="showContributePrompt($event)">Contribute</md-button>
-	<br>
-	<div class="contributeStatus">
-		{{contributeStatus}}
+	<div layout="row" class="wish__contributors-container" layout-align="left center" layout-wrap>
+		<p class="noContributors wish-label-content" ng-if="!wish.contributions.length">No contributors!</p>
+		<div ng-repeat="contribution in wish.contributions" class="wish__contribution md-whiteframe-1dp" layout="row" layout-align="center center">
+			<img src="{{contribution.contributor.uid | facebookPhoto}}" class="wish__contributor-photo"/>
+			{{contribution.contributor.name}}
+		</div>
 	</div>
 </md-content>
+
+<md-button class="contributeButton md-primary md-raised" ng-hide="userSeesOwnWish || contributed" ng-click="showContributePrompt($event)">Contribute</md-button>
+<md-button class="edit-contribution-btn md-primary md-raised" ng-if="contributed" ng-click="showEditContributePrompt($event)">Edit Your Contribution </md-button>
