@@ -1,6 +1,7 @@
 <div class="container">
-	<md-list class="wishlist__container" layout="column">
-		<div class="wishlist__cover-photo" style="background-image: url({{user.uid | facebookPhoto}})">
+	<div class="wishlist__container" layout="column">
+		<div class="wishlist__cover-container">
+			<img class="wishlist__cover-photo" src="{{user.uid | facebookPhoto}}"/>
 			<div class="wishlist__user-info">
 				<h2 class="wishlist__user-name"> {{user.name}} </h2>
 				<span class="wishlist__user-birthdate"> {{user.birthday}} </span>
@@ -20,6 +21,6 @@
 			<div class="wishlist__empty-icon"> </div>
 			No wish yet!
 		</div>
-	</md-list>
+	</div>
 	<md-button class="md-raised md-primary wishlist__add-wish-button" ui-sref="wishadd({userId: pageUserId})">Add A Wish</md-button>
 </div>
