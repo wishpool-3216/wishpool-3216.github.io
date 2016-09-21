@@ -1,4 +1,4 @@
-<md-content class="wish" layout="column" layout-align="center center" flex>
+<md-content class="wish container" layout="column" layout-align="center center" flex>
 	<img class="wishImage" src="{{wish.image_file_name | defaultPhoto}}">
 	<h2 class="wishLabel">{{wish.name}}</h2>
 	<h4 class="wishLabel">Expires On: {{wish.expiry.slice(0,10)}}</h4>
@@ -10,9 +10,9 @@
 		<p class="noContributors" ng-hide="{{wish.contributions.length > 0}}">No contributors!</p>
 		<img ng-repeat="giver in wish.contributions" src="{{giver.source}}" class="contributorIcon">
 	</div>
-	<md-button class="contributeButton md-primary md-raised" ng-hide="contributed" ng-click="showContributePrompt($event)">Contribute</md-button>
-	<br>
 	<div class="contributeStatus">
 		{{contributeStatus}}
 	</div>
 </md-content>
+
+<md-button class="contributeButton md-primary md-raised" ng-hide="userSeesOwnWish || contributed" ng-click="showContributePrompt($event)">Contribute</md-button>

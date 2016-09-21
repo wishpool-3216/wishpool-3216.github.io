@@ -1,5 +1,7 @@
 .wish {
 	animation: appearFromBottom 0.3s, appearOpacity 0.3s;
+	margin-bottom: 50px!important;
+
 	.contributorIcon {
 		width: 30px;
 		height: 30px;
@@ -36,7 +38,8 @@
 		margin-top: 1px;
 	}
 
-	.contributeButton {
-		margin-top: 10px;
-	}
+}
+
+.contributeButton {
+	@include fixed-button-inside;
 }

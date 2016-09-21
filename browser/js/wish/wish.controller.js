@@ -1,14 +1,11 @@
 'use strict';
 
-app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, LocalStorageService, WishService, $mdDialog){
+app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, $mdDialog){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
   $scope.clientUserId = $scope.currentUser.id;
-	if($scope.pageUserId == $scope.clientUserId){
-		$scope.userSeesOwnWish = true;
-	}
-
+	$scope.userSeesOwnWish = $scope.pageUserId == $scope.clientUserId;
 
 	$scope.wish = {};
 	WishService.getGift($stateParams.wishId).then(function(wish) {
