@@ -13,7 +13,7 @@ var filesToCache = [
 	'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js',
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js',
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js',
-	
+
   // Internal HTML JS CSS files
 	'/',
 	'/index.html',
@@ -56,38 +56,39 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// Fetching: The SW first checks if the request is an API one or an App Shell one  
+/*
+// Fetching: The SW first checks if the request is an API one or an App Shell one
 self.addEventListener('fetch', function(event) {
   console.log('[ServiceWorker] Fetch', event.request.url);
   var apiUrl = 'https://server.wishpool.info/api/v1/';
   // If API request
   if (event.request.url.indexOf(apiUrl) === 0) {
-    event.respondWith(  
+    event.respondWith(
       caches.match(event.request).then(function(response){
-        if (response) { 
-          console.log('[ServiceWorker] API-Response found in Cache.'); 
+        if (response) {
+          console.log('[ServiceWorker] API-Response found in Cache.');
           return response;
-        }else{  
-          return fetch(event.request)  
-          .then(function(response) {  
-            return caches.open(apiCacheName).then(function(cache) {  
-              cache.put(event.request.url, response.clone());  
-              console.log('[ServiceWorker] Fetched&Cached Data');  
-              return response;  
-            });  
+        }else{
+          return fetch(event.request)
+          .then(function(response) {
+            return caches.open(apiCacheName).then(function(cache) {
+              cache.put(event.request.url, response.clone());
+              console.log('[ServiceWorker] Fetched&Cached Data');
+              return response;
+            });
           })
-        }  
+        }
       })
     );
   // If App Shell request
   } else {
     event.respondWith(
       caches.match(event.request).then(function(response) {
-        if (response) { console.log('[ServiceWorker] Shell-Response found in Cache.'); }  
+        if (response) { console.log('[ServiceWorker] Shell-Response found in Cache.'); }
         return response || fetch(event.request);
       })
     );
   }
 });
 
-
+*/
