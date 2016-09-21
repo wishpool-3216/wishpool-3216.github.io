@@ -7,9 +7,12 @@
 	<md-progress-linear md-mode="determinate" value="{{(wish.sum_contributions || 0)/ wish.expected_price * 100}}"></md-progress-linear>
 	<br>
 	<h4 class="wishLabel">Wish Fairies:</h4>
-	<div layout="row" class="contributorIcons">
+	<div layout="row" class="wish__contributors-container" layout-align="left center" layout-wrap>
 		<p class="noContributors wish-label-content" ng-if="!wish.contributions.length">No contributors!</p>
-		<img ng-repeat="giver in wish.contributions" src="{{giver.contributor.uid | facebookPhoto}}" class="contributorIcon">
+		<div ng-repeat="contribution in wish.contributions" class="wish__contribution md-whiteframe-1dp" layout="row" layout-align="center center">
+			<img src="{{contribution.contributor.uid | facebookPhoto}}" class="wish__contributor-photo"/>
+			{{contribution.contributor.name}}
+		</div>
 	</div>
 </md-content>
 
