@@ -67,8 +67,13 @@ app.factory('WishService', function($http, WishPoolCacheService, __env){
 
 	// Deletes a gift
 	WishService.deleteGift = function(giftId){
-		$http.delete(sUrl + '/api/v1/gifts/' + giftId)
-		.then(getResponseData);
+		return $http.delete(sUrl + '/api/v1/gifts/' + giftId)
+								.then(getResponseData);
+	}
+
+	WishService.updateGiftsList = function(userId, list) {
+		var key = getUserGiftsCacheId(userId);
+		WishPoolCacheService.put(cache, key, list);
 	}
 
 	return WishService;

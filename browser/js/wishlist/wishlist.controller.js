@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishService, UserService, LocalStorageService){
+app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishService, UserService, LocalStorageService, $mdDialog, $mdToast){
 
 	$scope.wishes = [];
 	$scope.user = {};
@@ -17,5 +17,24 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 
 	WishService.getUserGifts($scope.pageUserId).then(function(gifts) {
 		$scope.wishes = gifts;
+		$scope.wishes.forEach(function(wish) {
+			wish.canDelete = wish.creator_id == $scope.clientUserId;
+		});
 	});
+
+	$scope.deleteWish = function(ev, index) {
+		var confirm = $mdDialog.confirm()
+			.title('Remove this Gift')
+			.textContent("This gift was created by you, if you remove it, all contributions will be lost, too. Do you want to continue?")
+			.targetEvent(ev)
+			.ok('Confirm')
+			.cancel("Cancel");
+
+		$mdDialog.show(confirm).then(function() {
+			WishService.deleteGift($scope.wishes[index].id).then(function(response) {
+				$scope.wishes.splice(index, 1);
+				WishService.updateGiftsList($scope.pageUserId, $scope.wishes);
+			});
+		});
+	}
 });
