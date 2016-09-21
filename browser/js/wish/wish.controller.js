@@ -27,7 +27,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, $rootScope, Lo
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
       .title('How much would you like to contribute?')
-      .textContent("Full dollar contributions are recommended -- using cents (or the period '.' symbol) should be avoided.")
+      .textContent("Full dollar contributions are recommended. Contributions in cents (or any use of the period '.' symbol) should be avoided.")
       .placeholder('ContributeAmt')
       .ariaLabel('ContributeAmt')
       .initialValue('0')

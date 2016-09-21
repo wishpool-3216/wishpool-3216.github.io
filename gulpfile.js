@@ -1,9 +1,6 @@
 var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
-var browserify = require('browserify');
 var concat = require('gulp-concat');
-var source = require('vinyl-source-stream'); // <-- converts a Browserify stream into a stream that Gulp actually understands.
 var sass = require('gulp-sass');
 
 gulp.task('connect', function () {
