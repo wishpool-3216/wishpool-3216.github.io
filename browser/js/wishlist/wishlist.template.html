@@ -4,7 +4,7 @@
 			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.source ? wish.source : defaultWishSource}})"> </div>
 			<div>
 				<h3 class="wishlist__wish-name">{{wish.name}}</h3>
-				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.price}} </span> </div>
+				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.expected_price}} </span> </div>
 				<md-progress-linear class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
 			</div>
 			<md-divider></md-divider>
