@@ -58,17 +58,6 @@ app.factory('LocalStorageService', function(){
   }
 
 
-  // Saves dummy data into localStorage
-  LocalStorageService.loadDummyData = function(){
-    if(!LocalStorageService.getWishlist()){
-      LocalStorageService.saveWishlist(dummyWishlist);
-    }
-    if(!LocalStorageService.getUserData()){
-      LocalStorageService.saveUserData(dummyUserData);
-    }
-  }
-
-
   //Dummy data
   var dummyUserData = {
     id: 123,
@@ -134,6 +123,19 @@ app.factory('LocalStorageService', function(){
       ]
     },
   ]
+
+
+  // Saves dummy data into localStorage
+  LocalStorageService.loadDummyData = function(){
+    if(!LocalStorageService.getWishlist()){
+      LocalStorageService.saveWishlist(dummyWishlist);
+    }
+    if(!LocalStorageService.getUserData()){
+      LocalStorageService.saveUserData(dummyUserData);
+    }
+    console.log(localStorage);
+  }
+
 
   LocalStorageService.setUser = function(user) {
     setItem('user', user);

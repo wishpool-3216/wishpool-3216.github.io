@@ -20,14 +20,14 @@ app.factory('ImageReader', function($q) {
 
   ImageReader.readFile = function(file) {
     var deferred = $q.defer();
-    const fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      const img = new Image();
-      const imageDataUrl = e.target.result;
-      img.onload = (e) => {
+    var fileReader = new FileReader();
+    fileReader.onload = function (e){
+      var img = new Image();
+      var imageDataUrl = e.target.result;
+      img.onload = function (e){
         canvas.width = img.width;
         canvas.height = img.height;
-        const context = canvas.getContext('2d');
+        var context = canvas.getContext('2d');
         context.drawImage(img, 0, 0, img.width, img.height);
 
         deferred.resolve(canvas.toDataURL('image/png'));

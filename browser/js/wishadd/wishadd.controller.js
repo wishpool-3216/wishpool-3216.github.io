@@ -1,9 +1,12 @@
 app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader){
 
 	// Checks if client is viewing their own wishlist or someone else's
-	var pageUserId = $stateParams.userId;
-	var clientUserId = $scope.currentUser.id;
-	$scope.userSeesOwnWishlist = pageUserId == clientUserId;
+	$scope.pageUserId = $stateParams.userId;
+	$scope.clientUserId = $scope.currentUser.id;
+	if($scope.pageUserId == $scope.clientUserId){
+		$scope.userSeesOwnWishlist = true;
+	}
+
 
 	// By default, the new wish is a Public wish
 	$scope.newWishIsPublic = true;
