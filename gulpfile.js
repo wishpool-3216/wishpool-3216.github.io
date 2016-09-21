@@ -25,6 +25,11 @@ gulp.task('transferIndexHtml', function() {
 				 .pipe(gulp.dest('./public/'));
 })
 
+gulp.task('transferServiceWorker', function(){
+	return gulp.src('./browser/service-worker.js')
+				 .pipe(gulp.dest('./public'));
+})
+
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
  return gulp.src('./browser/js/**/*.js')
@@ -46,7 +51,9 @@ gulp.task('watch', function() {
 	gulp.watch('./browser/css/**/*.scss', ['transferStyles']);
 	gulp.watch('./browser/js/**/*.html', ['transferHTML']);
 	gulp.watch('./browser/index.html', ['transferIndexHtml']);
+	gulp.watch('./browser/service-worker.js', ['transferServiceWorker']);
 });
 
-gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'transferAssets']);
+gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'transferServiceWorker', 'transferAssets']);
+
 gulp.task('default', ['build', 'watch']);
