@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, $mdDialog, $mdToast){
+app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, ContributeService, $mdDialog, $mdToast){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -8,11 +8,18 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 	$scope.userSeesOwnWish = $scope.pageUserId == $scope.clientUserId;
 
 	$scope.wish = {};
+	$scope.contributed = false;
+
 	WishService.getGift($stateParams.wishId).then(function(wish) {
 		$scope.wish = wish;
+		wish.contributions.forEach(function(contribution) {
+			if (contribution.creator_id == $scope.clientUserId) {
+				$scope.contributed = true;
+				$scope.contributeAmt = contribution.amount;
+			}
+		})
 	});
 
-	$scope.contributed = false;
   $scope.showContributePrompt = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
@@ -31,10 +38,13 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       var match = result.match(regexp);
       var contributeAmt = parseInt(match[0]);
       if(match && contributeAmt > 0){
-      	$scope.contributeAmt = contributeAmt;
-      	$scope.contributeStatus =
-				$scope.showToast("Thank you!");
-      	$scope.contributed = true;
+				$scope.contributeAmt = contributeAmt;
+				ContributeService.addContribution($scope.wish.id, $scope.contributeAmt).then(function(response) {
+					$scope.wish.contributions.push(response);
+					$scope.wish.sum_contributions += response.amount;
+					$scope.showToast("Thank you!");
+	      	$scope.contributed = true;
+				});
       } else {
 				$scope.showToast("Oops! Invalid result");
       }

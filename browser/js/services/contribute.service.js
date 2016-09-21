@@ -26,7 +26,7 @@ app.factory('ContributeService', function($http, __env){
 
 	// Adds a contribution to a gift, requires giftId and amt
 	ContributeService.addContribution = function(giftId, amount){
-		$http.post(sUrl + '/api/v1/gifts/' + giftId + '/contributions', {amount: amount})
+		return $http.post(sUrl + '/api/v1/gifts/' + giftId + '/contributions', {amount: amount})
 		.then(getResponseData);
 	}
 
