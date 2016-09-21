@@ -1,17 +1,8 @@
 'use strict';
 
-app.controller('NavbarCtrl', function($scope, $state, LocalStorageService, $rootScope){
+app.controller('NavbarCtrl', function($scope, $state, LocalStorageService){
 
-	$scope.clientUserId = $rootScope.userId || LocalStorageService.getUserData().id;
-
-	$scope.goToFeed = function () {
-		$state.go('feed');
-	}
-
-	$scope.goToWishlist = function() {
-		$state.go('wishlist')
-	}
-
+	$scope.clientUserId = $scope.currentUser.id;
 	$scope.currentNavItem = 'feed';
 
 });

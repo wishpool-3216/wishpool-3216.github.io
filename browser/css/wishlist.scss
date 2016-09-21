@@ -4,6 +4,35 @@
 		margin-bottom: 50px;
 	}
 
+	&__cover-photo {
+		@include background-image-cover;
+		width: 100%;
+		padding-top: 80%;
+		margin-bottom: 20px;
+		position: relative;
+	}
+
+	&__user-info {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 15px 20px 10px;
+		background: rgba(0, 0, 0, .3);
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	&__user-name, &__user-birthdate {
+		line-height: 1;
+		color: white;
+		margin: 0;
+	}
+
+	&__user-birthdate {
+		font-size: 12px;
+		margin-top: 10px;
+	}
+
 	&__wish-name {
 		color: $complement-color;
 		line-height: 1.2;
@@ -35,6 +64,20 @@
 		margin-top: 5px;
 		width: 150px;
 		height: 20px;
+	}
+
+	&__empty-container {
+		margin-top: 10px;
+		width: 100%;
+		color: gray;
+	}
+
+	&__empty-icon {
+		@include background-image-cover;
+		background-image: url(./assets/gift.png);
+		width: 50px;
+		height: 50px;
+		margin-bottom: 10px;
 	}
 }
 

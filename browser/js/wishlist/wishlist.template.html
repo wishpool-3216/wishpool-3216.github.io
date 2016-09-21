@@ -1,14 +1,25 @@
 <div class="container">
 	<md-list class="wishlist__container" layout="column">
+		<div class="wishlist__cover-photo" style="background-image: url({{user.uid | facebookPhoto}})">
+			<div class="wishlist__user-info">
+				<h2 class="wishlist__user-name"> {{user.name}} </h2>
+				<span class="wishlist__user-birthdate"> {{user.birthday}} </span>
+			</div>
+		</div>
 		<md-list-item class="wishlist__wish-item md-hue-3" ng-repeat="wish in wishes" ui-sref="wish({userId: pageUserId, wishId: wish.id })">
-			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.source ? wish.source : defaultWishSource}})"> </div>
-			<div>
+			<div class="wishlist__wish-icon  md-whiteframe-4dp" style="background-image: url({{wish.image_file_name | defaultPhoto}})"> </div>
+			<div flex>
 				<h3 class="wishlist__wish-name">{{wish.name}}</h3>
 				<div class="wishlist__wish-price"> <span class="wishlist__wish-price--accumulated"> ${{wish.accumulated}} </span> <span class="wishlist__wish-price--accumulated"> <span class="wishlist__wish-price--total"> / ${{wish.expected_price}} </span> </div>
 				<md-progress-linear class="wishlist__wish-progress" md-mode="determinate" value="{{ 100 * wish.accumulated / wish.price}} "></md-progress-linear>
 			</div>
 			<md-divider></md-divider>
 		</md-list-item>
+
+		<div class="wishlist__empty-container" layout="column" layout-align="center center" ng-if="!wishes.length">
+			<div class="wishlist__empty-icon"> </div>
+			No wish yet!
+		</div>
 	</md-list>
 	<md-button class="md-raised md-primary wishlist__add-wish-button" ui-sref="wishadd({userId: pageUserId})">Add A Wish</md-button>
 </div>
