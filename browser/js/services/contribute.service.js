@@ -33,14 +33,14 @@ app.factory('ContributeService', function($http, __env){
 
 	// Updates a contribution, requires contrId and amt
 	ContributeService.updateContribution = function(contrId, amount){
-		$http.patch(sUrl + '/api/v1/contributions/' + contrId, {amount: amount})
+		return $http.patch(sUrl + '/api/v1/contributions/' + contrId, {amount: amount})
 		.then(getResponseData);
 	}
 
 
 	// Deletes a contribution, requires contrId
 	ContributeService.deleteContribution = function(contrId){
-		$http.delete(sUrl + '/api/v1/contributions/' + contrId)
+		return $http.delete(sUrl + '/api/v1/contributions/' + contrId)
 		.then(getResponseData);
 	}
 

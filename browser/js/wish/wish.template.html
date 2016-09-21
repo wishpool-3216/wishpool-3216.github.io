@@ -14,3 +14,4 @@
 </md-content>
 
 <md-button class="contributeButton md-primary md-raised" ng-hide="userSeesOwnWish || contributed" ng-click="showContributePrompt($event)">Contribute</md-button>
+<md-button class="edit-contribution-btn md-primary md-raised" ng-if="contributed" ng-click="showEditContributePrompt($event)">Edit Your Contribution </md-button>
