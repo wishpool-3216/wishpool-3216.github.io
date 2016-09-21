@@ -22,11 +22,12 @@ app.run(['$window', function($window) {
   if ('serviceWorker' in navigator) {
   // Registration of service worker
   navigator.serviceWorker
-    .register('/public/service-worker.js')
+    .register('service-worker.js')
     .then(function () {
       console.log('Registered Service Worker.');
     })
-    .catch(function () {
+    .catch(function (err) {
+      console.log(err);
       console.log('Unable to register Service Worker.');
     });
   }
