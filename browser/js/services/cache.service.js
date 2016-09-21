@@ -14,6 +14,10 @@ app.factory('WishPoolCacheService', function($cacheFactory, $q) {
     return cache.get(key) != null;
   }
 
+  WishPoolCacheService.get = function(cache, key) {
+    return cache.get(key);
+  }
+
   WishPoolCacheService.requestCache = function(cache, key) {
     return $q(function(resolve) {
       resolve(cache.get(key))

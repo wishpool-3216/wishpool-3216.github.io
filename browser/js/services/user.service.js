@@ -13,8 +13,12 @@ app.factory('UserService', function($http, $stateParams, WishPoolCacheService, L
 
   // Gets data for a user
   UserService.getUser = function(userId){
+
+		var key = 'user_' + userId;
+		if (WishPoolCacheService.isInCache(cache, key)) return WishPoolCacheService.requestCache(cache, key);
+
   	return $http.get(sUrl + '/api/v1/users/' + userId)
-  	.then(getResponseData);
+  							.then(getResponseData).then(WishPoolCacheService.cacheData(cache, key));;
   }
 
 
@@ -27,10 +31,12 @@ app.factory('UserService', function($http, $stateParams, WishPoolCacheService, L
 
   // Gets user's friends (and birthdays) in an array
   UserService.getUserFriends = function(userId) {
+
 		var key = 'user_friends';
 		if (WishPoolCacheService.isInCache(cache, key)) return WishPoolCacheService.requestCache(cache, key);
+
   	return $http.get(sUrl + '/api/v1/users/' + userId + '/friend_birthdays')
-  	.then(getResponseData).then(WishPoolCacheService.cacheData(cache, key));
+  							.then(getResponseData).then(WishPoolCacheService.cacheData(cache, key));
   }
 
 	return UserService;

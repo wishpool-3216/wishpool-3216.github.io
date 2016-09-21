@@ -7,7 +7,6 @@ app.controller('FeedCtrl', function($scope, $state, UserService, Session){
 	$scope.highlighFeed();
 
 	UserService.getUserFriends($scope.currentUser.id).then(function(users) {
-		console.log(users);
 		users = users.sort(function(l, r) {
 			return (new Date(l.birthday)).getMonth() - (new Date(r.birthday)).getMonth();;
 		});
