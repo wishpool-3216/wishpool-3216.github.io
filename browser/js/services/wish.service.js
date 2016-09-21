@@ -1,18 +1,25 @@
-app.factory('WishService', function($http, __env){
+app.factory('WishService', function($http, WishPoolCacheService, __env){
 
 	var WishService = {};
 
 	// sUrl refers to server URL
 	var sUrl = __env.apiUrl;
+	var cache = WishPoolCacheService.createCache('wishCache');
+
 	var getResponseData = function(response){
 		return response.data;
 	}
 
+	var getUserGiftsCacheId = function(userId) {
+		return 'user_gifts_' + userId;
+	}
 
 	// Gets all the gifts that a user is receiving
-	WishService.getUserGifts = function(userId){
+	WishService.getUserGifts = function(userId) {
+		var key = getUserGiftsCacheId(userId);
+		if (WishPoolCacheService.isInCache(cache, key)) return WishPoolCacheService.requestCache(cache, key);
 		return $http.get(sUrl + '/api/v1/users/' + userId + '/gifts')
-		.then(getResponseData);
+								.then(getResponseData).then(WishPoolCacheService.cacheData(cache, key));;
 	}
 
 
@@ -21,7 +28,6 @@ app.factory('WishService', function($http, __env){
 		return $http.get(sUrl + '/api/v1/gifts/' + giftId)
 		.then(getResponseData);
 	}
-
 
 	// Creates a new gift for a user
 	WishService.addGift = function(userId, giftData){
@@ -38,6 +44,13 @@ app.factory('WishService', function($http, __env){
 		.then(getResponseData);
 	}
 
+	WishService.cacheNewGift = function(userId, gift) {
+		var key = getUserGiftsCacheId(userId);
+		if (!WishPoolCacheService.isInCache(cache, key)) return;
+		var list = WishPoolCacheService.get(cache, key);
+		list.push(gift);
+		WishPoolCacheService.put(cache, key, list);
+	}
 
 	// Updates a gift with new data
 	WishService.editGift= function(giftId, giftData){
@@ -57,7 +70,6 @@ app.factory('WishService', function($http, __env){
 		$http.delete(sUrl + '/api/v1/gifts/' + giftId)
 		.then(getResponseData);
 	}
-
 
 	return WishService;
 
