@@ -4,6 +4,8 @@ app.controller('FeedCtrl', function($scope, $state, UserService, Session){
 
 	var monthsInYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December'];
 
+	$scope.highlighFeed();
+
 	UserService.getUserFriends($scope.currentUser.id).then(function(users) {
 		console.log(users);
 		users = users.sort(function(l, r) {

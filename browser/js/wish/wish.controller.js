@@ -7,6 +7,8 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
   $scope.clientUserId = $scope.currentUser.id;
 	$scope.userSeesOwnWish = $scope.pageUserId == $scope.clientUserId;
 
+	if ($scope.userSeesOwnWish) $scope.highlighMyWish(); else $scope.highlighFeed();
+
 	$scope.wish = {};
 	$scope.contributed = false;
 
