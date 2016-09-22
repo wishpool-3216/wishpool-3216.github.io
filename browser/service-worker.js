@@ -30,11 +30,11 @@ var filesToCache = [
 
 
 // Installation: Caching the app shell
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
   console.log('[ServiceWorker] Install');
   event.waitUntil(
-    caches.open(shellCacheName).then(function(cache) {
-      console.log('[ServiceWorker] Caching App Shell');
+    caches.open(shellCacheName).then(function (cache) {
+      console.log('[ServiceWorker] Caching App Shell...');
       return cache.addAll(filesToCache);
     })
   );
@@ -42,11 +42,11 @@ self.addEventListener('install', function(event) {
 
 
 // Activation: Clearing old caches
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
   console.log('[ServiceWorker] Activate');
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(cacheNames.map(function(cacheName) {
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(cacheNames.map(function (cacheName) {
         console.log('[ServiceWorker] Removing old cache', cacheName);
         if (cacheName !== shellCacheName && cacheName !== apiCacheName) {
           return caches.delete(cacheName);
@@ -56,39 +56,59 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-/*
-// Fetching: The SW first checks if the request is an API one or an App Shell one
-self.addEventListener('fetch', function(event) {
-  console.log('[ServiceWorker] Fetch', event.request.url);
+
+// Fetching
+self.addEventListener('fetch', function (event) {
   var apiUrl = 'https://server.wishpool.info/api/v1/';
-  // If API request
+  // If an API request was made
   if (event.request.url.indexOf(apiUrl) === 0) {
     event.respondWith(
-      caches.match(event.request).then(function(response){
+      // Fetch the request first
+      fetch(event.request)
+      .then(function (response) {
         if (response) {
-          console.log('[ServiceWorker] API-Response found in Cache.');
+          return caches.open(apiCacheName).then(function (cache) {
+            cache.put(event.request, response.clone());
+            console.log("[SW] Fetched and cached API data for: ", event.request);
+            return response;
+          })
+        } 
+      })
+      .catch(function (err) {
+        console.log("[SW] API data fetch failed. Checking cache for: ", err);
+        return caches.match(event.request).then(function (response) {
+          if (response) { 
+            console.log('[SW] API data found in cache for: ', event.request); 
+            return response;
+          } else {
+            console.log("[SW] API data not found in cache for: ", event.request); 
+          }
+        });
+      })
+    );
+  // If an App Shell request was made
+  } else {
+    event.respondWith(
+      // Check the cache for response. If the response isn't found, fetch it.
+      caches.match(event.request).then(function (response) {
+        if (response) { 
+          console.log('[SW] App Shell data found in cache for: ', event.request); 
           return response;
-        }else{
-          return fetch(event.request)
-          .then(function(response) {
-            return caches.open(apiCacheName).then(function(cache) {
-              cache.put(event.request.url, response.clone());
-              console.log('[ServiceWorker] Fetched&Cached Data');
+        } else {
+          console.log("[SW] App Shell data not found in cache. Fetching: ", event.request);
+          return fetch(event.request).then(function (response) {
+            return caches.open(shellCacheName).then(function (cache) {
+              cache.put(event.request, response.clone());
+              console.log("[SW] Fetched and cached App Shell data for: ", event.request);
               return response;
             });
           })
+          .catch(function(err){
+            console.log("[SW] App Shell data fetched failed for: ", event.request);
+          });
         }
-      })
-    );
-  // If App Shell request
-  } else {
-    event.respondWith(
-      caches.match(event.request).then(function(response) {
-        if (response) { console.log('[ServiceWorker] Shell-Response found in Cache.'); }
-        return response || fetch(event.request);
       })
     );
   }
 });
 
-*/
