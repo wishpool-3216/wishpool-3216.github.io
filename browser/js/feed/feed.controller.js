@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('FeedCtrl', function($scope, $state, UserService, Session){
+app.controller('FeedCtrl', function($scope, $state, UserService, Session, $mdDialog){
 
 	var monthsInYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December'];
 
@@ -28,4 +28,21 @@ app.controller('FeedCtrl', function($scope, $state, UserService, Session){
 	}
 
 	$scope.months = [];
+
+	if ($scope.currentUser && $scope.currentUser.justLoggedIn) {
+		var currentUser = $scope.currentUser;
+		currentUser.justLoggedIn = false;
+		$scope.setCurrentUser(currentUser);
+		if (currentUser.gifts.length) return;
+
+		var confirm = $mdDialog.confirm()
+      .title('Hey your wishlist is empty!')
+      .textContent("Why don't you make a wish for yourself?")
+      .ok('Do it now!')
+      .cancel("Later");
+
+    $mdDialog.show(confirm).then(function() {
+			$state.go('wishadd', {userId: $scope.currentUser.id});
+    });
+	}
 });
