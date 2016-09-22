@@ -2,9 +2,11 @@
 
 var app = angular.module('wishpoolApp', ['ui.router','ngMaterial'])
 
+
 app.constant('__env', {
   apiUrl: 'https://server.wishpool.info'
 });
+
 
 app.run(['$window', function($window) {
   $window.fbAsyncInit = function() {
@@ -17,6 +19,15 @@ app.run(['$window', function($window) {
     });
   };
 
+
+  // Google Analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83429327-2', 'auto');
+  console.log("Google Analytics loaded as: ", ga);
+ 
 
   // Service workers
   if ('serviceWorker' in navigator) {
@@ -42,7 +53,10 @@ app.run(['$window', function($window) {
   }(document, 'script', 'facebook-jssdk'));
 }]);
 
-app.run(function($rootScope, $state, AuthService) {
+
+app.run(function($location, $rootScope, $state, AuthService) {
+  
+  // Check authentication before every state-change
   $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
     var isLoggin = AuthService.isAuthenticated();
     var isLanding = toState.name == 'landing';
@@ -54,7 +68,15 @@ app.run(function($rootScope, $state, AuthService) {
       event.preventDefault();
     }
   });
+
+
+  // Google Analytics Update after every state-change
+  $rootScope.on('stateChangeSuccess', function(){
+    ga('send', 'pageview', { page: $location.path() });
+  });
+
 });
+
 
 app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sceDelegateProvider, __env) {
 
@@ -68,6 +90,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sce
   $httpProvider.defaults.useXDomain = true;
   $httpProvider.interceptors.push('sessionInjector');
 })
+
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
   $scope.currentUser = LocalStorageService.getUser();
@@ -85,6 +108,7 @@ app.controller('ApplicationController', function($scope, AuthService, LocalStora
     LocalStorageService.setUser(user);
   };
 });
+
 
 app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthService) {
 
@@ -106,7 +130,5 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthS
 	$scope.goToLanding = function () {
 		$state.go('landing');
 	}
-  // Load the dummy data, for now!
-	LocalStorageService.loadDummyData();
 });
 
