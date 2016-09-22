@@ -55,6 +55,14 @@
 		</div>
 		<navbar></navbar>
 		<ui-view flex></ui-view>
+
+		<div class="wishpool-modal__container" ng-show="showProgressDialog">
+			<div class="wishpool-modal__dialog md-whiteframe-4dp" layout="column" layout-align="center center">
+				 <md-progress-circular class="md-accent" md-diameter="40"></md-progress-circular>
+				 <br/>
+				 {{loadingMessage}}
+			</div>
+		</div>
 	</div>
 </body>
 

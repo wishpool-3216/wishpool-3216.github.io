@@ -1,4 +1,4 @@
-app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader){
+app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -10,9 +10,14 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 	// By default, the new wish is a Public wish
 	$scope.newWishIsPublic = true;
 
+	$scope.closeProgress = function(text) {
+		$scope.dismissProgress();
+		$scope.showToast(text);
+	}
+
 	// Add the wish
 	$scope.addWish = function() {
-
+		$scope.showProgress();
 		FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
 			var imageData = response.data;
 			var newWishPublicity = "Public";
@@ -32,9 +37,14 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 			}
 
 			WishService.addGift($scope.pageUserId, newWishObj).then(function(newWish) {
+				$scope.closeProgress('New Wish Added');
 				WishService.cacheNewGift($scope.pageUserId, newWish);
 				$state.go('wishlist', {userId: $scope.pageUserId});
 			});
+		}, function(err) {
+			$scope.closeProgress('Err! Please Internet Connection');
+		}).catch(function(err) {
+			$scope.closeProgress('Err! Please Internet Connection');
 		});
 	}
 
@@ -53,5 +63,21 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 	$scope.cancel = function() {
 		$window.history.back();
 	}
+
+	$scope.showToast = function(text) {
+		if (!text) return;
+    var pinTo = {
+			top: false,
+			left: false,
+			bottom: true,
+			right: true
+		}
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent(text)
+        .position(pinTo)
+        .hideDelay(500)
+    );
+  };
 
 });

@@ -94,6 +94,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sce
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
   $scope.currentUser = LocalStorageService.getUser();
+  $scope.showProgressDialog = false;
   $scope.currentNavItem = 'feed';
   $scope.highlighFeed = function() {
     $scope.currentNavItem = 'feed';
@@ -107,6 +108,15 @@ app.controller('ApplicationController', function($scope, AuthService, LocalStora
     $scope.currentUser = user;
     LocalStorageService.setUser(user);
   };
+
+  $scope.dismissProgress = function() {
+    $scope.showProgressDialog = false;
+  }
+
+  $scope.showProgress = function(message) {
+    $scope.showProgressDialog = true;
+    $scope.loadingMessage = message || "Uploading, please wait!";
+  }
 });
 
 
