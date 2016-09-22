@@ -46,7 +46,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       var match = result.match(regexp);
       var contributeAmt = parseInt(match[0]);
       if(match && contributeAmt > 0){
-				if (contributeAmt > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast('Oops! Too much!!');
+				if (contributeAmt > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast("The amount you've set is too high!");
 				$scope.contributeAmt = contributeAmt;
 				ContributeService.addContribution($scope.wish.id, $scope.contributeAmt).then(function(response) {
 					$scope.wish.contributions.push(response);
@@ -56,7 +56,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 					$scope.contributionId = response.id;
 				});
       } else {
-				$scope.showToast("Oops! Invalid amount");
+				$scope.showToast("Invalid amount.");
       }
     });
   };
@@ -64,7 +64,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 	$scope.showEditContributePrompt = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
-      .textContent("Edit your contribution or left the amout 0 to cancel your contribution")
+      .textContent("Edit your contribution, or set the amount to zero if you'd like to cancel your contribution.")
       .placeholder('Contribute amount')
       .ariaLabel('Contribute amount')
       .initialValue($scope.contributeAmt)
@@ -78,7 +78,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       var contributeAmt = parseInt(match[0]);
       if(match) {
 				var deltaAmount = contributeAmt - $scope.contributeAmt;
-				if (deltaAmount > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast('Oops! Too much!!');
+				if (deltaAmount > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast("The amount you've set is too high!");
 				$scope.contributeAmt = contributeAmt;
 				if (contributeAmt > 0) {
 					// edit the amount here
@@ -103,7 +103,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 				}
 
       } else {
-				$scope.showToast("Oops! Invalid result");
+				$scope.showToast("Oops! Invalid result.");
       }
     });
   };

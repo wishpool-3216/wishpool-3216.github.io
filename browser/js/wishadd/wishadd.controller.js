@@ -46,9 +46,9 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 			FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
 				$scope.uploadWish(response.data.url);
 			}, function(err) {
-				$scope.closeProgress('Err! Please Internet Connection');
+				$scope.closeProgress('Error! Please check your internet connection.');
 			}).catch(function(err) {
-				$scope.closeProgress('Err! Please Internet Connection');
+				$scope.closeProgress('Error! Please check your internet connection.');
 			});
 		}
 	}

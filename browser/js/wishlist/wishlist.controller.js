@@ -30,7 +30,7 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 	$scope.deleteWish = function(ev, index) {
 		var confirm = $mdDialog.confirm()
 			.title('Remove this Gift')
-			.textContent("This gift was created by you, if you remove it, all contributions will be lost, too. Do you want to continue?")
+			.textContent("This gift was created by you, if you remove it, all contributions will be lost too. Do you want to continue?")
 			.targetEvent(ev)
 			.ok('Confirm')
 			.cancel("Cancel");
