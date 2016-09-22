@@ -14,6 +14,12 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 
 	WishService.getGift($stateParams.wishId).then(function(wish) {
 		$scope.wish = wish;
+
+		// Checks that image source is not HTTP but HTTPS, and corrects it if necessary 
+		if($scope.wish.image_file_name && $scope.wish.image_file_name.split('://')[0] !== 'https'){
+			$scope.wish.image_file_name = $scope.wish.image_file_name.replace('http', 'https');
+		}
+
 		wish.contributions.forEach(function(contribution) {
 			if (contribution.creator_id == $scope.clientUserId) {
 				$scope.contributed = true;

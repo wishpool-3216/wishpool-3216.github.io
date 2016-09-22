@@ -5,7 +5,7 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 	$scope.wishes = [];
 	$scope.user = {};
 	// Checks if the client is viewing their own wishlist or someone else's
-	$scope.pageUserId = $stateParams.userId || -1; //<-- dummy id;
+	$scope.pageUserId = $stateParams.userId;
 	$scope.clientUserId = $scope.currentUser.id;
 	$scope.userSeesOwnWishlist = $scope.pageUserId == $scope.clientUserId;
 
@@ -19,6 +19,11 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 		$scope.wishes = gifts;
 		$scope.wishes.forEach(function(wish) {
 			wish.canDelete = wish.creator_id == $scope.clientUserId;
+
+			// Checks that image source is not HTTP but HTTPS, and corrects it if necessary 
+			if(wish.image_file_name && wish.image_file_name.split('://')[0] !== 'https'){
+				wish.image_file_name = wish.image_file_name.replace('http', 'https');
+			}
 		});
 	});
 
