@@ -1,0 +1,13 @@
+{
+  "name": "Wishpool",
+  "short_name": "Wishpool",
+  "icons": [{
+    "src": "assets/WishPool-Logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "purple"
+}
