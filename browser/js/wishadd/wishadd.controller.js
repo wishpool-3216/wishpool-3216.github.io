@@ -23,10 +23,7 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 			var newWishPublicity = "Public";
 			if(!$scope.newWishIsPublic) newWishPublicity = "Private";
 
-			// Very hackish way of making new wish index for the new wish
-			//var localStorageLastWish = LocalStorageService.getWishlist().slice(-1)[0];
 			var newWishObj = {
-				//id: localStorageLastWish.id + 1,
 				name: $scope.newWishName,
 				publicity: newWishPublicity,
 				source: imageData.url,
