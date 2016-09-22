@@ -1,4 +1,4 @@
-app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast, ToastService) {
+app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast, ToastService, InternetService) {
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -39,6 +39,10 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 
 	// Add the wish
 	$scope.addWish = function() {
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
 		$scope.showProgress();
 		if (!$scope.imageFile) {
 			$scope.uploadWish(null);

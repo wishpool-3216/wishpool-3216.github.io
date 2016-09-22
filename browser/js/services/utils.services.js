@@ -1,6 +1,7 @@
 app.factory('InternetService', function() {
   var InternetService = {};
   InternetService.isOnline = function() {
+    console.log(navigator);
     return navigator.onLine;
   }
   return InternetService;
@@ -22,6 +23,10 @@ app.factory('ToastService', function() {
         .position(pinTo)
         .hideDelay(500)
     );
+  }
+
+  ToastService.showNoInterNetMessage = function($mdToast) {
+    ToastService.showToast($mdToast, 'No Internet, Please try again later!');
   }
   return ToastService;
 });
