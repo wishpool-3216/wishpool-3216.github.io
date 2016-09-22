@@ -47,6 +47,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 					$scope.wish.sum_contributions += response.amount;
 					$scope.showToast("Thank you!");
 	      	$scope.contributed = true;
+					$scope.contributionId = response.id;
 				});
       } else {
 				$scope.showToast("Oops! Invalid amount");
