@@ -37,7 +37,6 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       .placeholder('Contribute amount')
       .ariaLabel('Contribute amount')
       .initialValue('0')
-      .targetEvent(ev)
       .ok('Confirm')
       .cancel("Cancel");
 
@@ -68,7 +67,6 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       .placeholder('Contribute amount')
       .ariaLabel('Contribute amount')
       .initialValue($scope.contributeAmt)
-      .targetEvent(ev)
       .ok('Confirm')
       .cancel("Cancel");
 
