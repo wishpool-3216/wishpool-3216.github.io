@@ -30,3 +30,26 @@
 		opacity: 0;
 	}
 }
+
+.wishpool-modal {
+	&__container {
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(0, 0, 0, 0.3);
+		z-index: 1000;
+	}
+
+	&__dialog {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		max-width: 300px;
+		min-height: 180px;
+		background: white;
+		border-radius: 5px;
+		color: $normal-text-color;
+	}
+}

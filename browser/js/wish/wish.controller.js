@@ -78,7 +78,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 					ContributeService.updateContribution($scope.contributionId, $scope.contributeAmt).then(function(newContribution) {
 						$scope.wish.contributions = $scope.wish.contributions.map(function(contribution) {
 							if (contribution.contributor.id == $scope.clientUserId) return newContribution;
-							return contributor;
+							return contribution;
 						});
 						$scope.wish.sum_contributions += deltaAmount;
 						$scope.showToast("Edited successfully!");
