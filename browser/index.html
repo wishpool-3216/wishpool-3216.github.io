@@ -34,9 +34,9 @@
 <body>
 	<!-- Top bar -->
 	<div ng-app="wishpoolApp" layout="column" class="wishpool-container" ng-controller="ApplicationController">
-		<div class="toolbar-wrapper" ng-controller="TopbarCtrl as TCtl" ng-if="currentUser">
-			<md-toolbar class="md-whiteframe-4dp toolbar" layout="row">
-				<div class="md-toolbar-tools toolbar-content">
+		<div class="toolbar__wrapper" ng-controller="TopbarCtrl as TCtl" ng-if="currentUser">
+			<md-toolbar class="toolbar md-whiteframe-4dp" layout="row">
+				<div class="md-toolbar-tools toolbar__content">
 					<h3 ng-click="goToLanding()">Wishpool</h3>
 					<span flex></span>
 					<md-menu md-position-mode="target-right target">

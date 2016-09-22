@@ -4,10 +4,16 @@
 	padding-bottom: 100px!important;
 	animation: appearFromBottom 0.5s;
 
+	&__publicity {
+		text-align: center;
+		align-self: flex-start;
+	}
+
 	md-input-container {
 		margin-top: 3px;
 		margin-bottom: 3px;
 	}
+
 	&__title {
 		color: $complement-color;
 		line-height: 1;
@@ -15,13 +21,8 @@
 		text-align: center;
 	}
 
-	.newWishPublicity {
-		text-align: center;
-		align-self: flex-start;
-	}
-
 	.md-datepicker-input {
-		width: 300px;
+		width: 277px;
 	}
 
 	&__preview-photo, &__add-photo-btn {
@@ -40,9 +41,10 @@
 		@include background-image-cover;
 	}
 
-	.footer {
+	&__footer {
 		@include fixed-button-inside;
 		background: white;
 		animation: appearOpacityLate 0.5s;
 	}
+
 }

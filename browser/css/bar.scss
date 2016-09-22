@@ -1,32 +1,36 @@
 .toolbar {
+	
+	&__wrapper {
+		height: $tool-bar-height;
+	}
+
+	&__content {
+		height: $tool-bar-height!important;
+		max-height: $tool-bar-height!important;
+	}
+
+	h3 {
+		font-weight: bold;
+		@include tappable;
+	}
+
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: $z-index-top-level;
 	min-height: 0;
-	h3 {
-		font-weight: bold;
-		@include tappable;
-	}
+
 }
 
-.toolbar-wrapper {
-	height: $tool-bar-height;
-}
 
-.toolbar-content {
-	height: $tool-bar-height!important;
-	max-height: $tool-bar-height!important;
-}
-
-.wishpool-navbar {
-
+.navbar {
   position: fixed;
   left: 0;
   top: $tool-bar-height;
   width: 100%;
   z-index: $z-index-top-level;
   background: white;
+	
 	// the code below is used to fix the bug of the angular material with nav-bar
 	ul {
 		display: flex;
@@ -46,8 +50,10 @@
 			color: rgba(0,0,0,0.54);
 		}
 	}
+
+	&__wrapper {
+	  height: $nav-bar-height;
+	}
+
 }
 
-.wishpool-navbar-wrapper {
-  height: $nav-bar-height;
-}

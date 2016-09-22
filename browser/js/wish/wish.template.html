@@ -1,14 +1,14 @@
 <md-content class="wish container" layout="column" layout-align="center center" flex>
-	<img class="wishImage" src="{{wish.image_file_name | normalPhoto | defaultPhoto}}">
-	<h2 class="wishLabel">{{wish.name}}</h2>
-	<h4 class="wishLabel">Expires on: <span class="wish-label-content"> {{wish.expiry.slice(0,10)}} </span> </h4>
-	<h4 class="wishLabel" ng-if="contributeAmt">Your contribution: <span class="wish-label-content"> ${{contributeAmt}} </span> </h4>
-	<h4 class="wishLabel">Wish Progress: <span class="wish-label-content"> ${{wish.sum_contributions || 0}} / ${{wish.expected_price}} </span> </h4>
+	<img class="wish__image" src="{{wish.image_file_name | normalPhoto | defaultPhoto}}">
+	<h2 class="wish__label">{{wish.name}}</h2>
+	<h4 class="wish__label">Expires on: <span class="wish__label--content"> {{wish.expiry.slice(0,10)}} </span> </h4>
+	<h4 class="wish__label" ng-if="contributeAmt">Your contribution: <span class="wish__label--content"> ${{contributeAmt}} </span> </h4>
+	<h4 class="wish__label">Wish Progress: <span class="wish__label--content"> ${{wish.sum_contributions || 0}} / ${{wish.expected_price}} </span> </h4>
 	<md-progress-linear md-mode="determinate" value="{{(wish.sum_contributions || 0)/ wish.expected_price * 100}}"></md-progress-linear>
 	<br>
-	<h4 class="wishLabel">Wish Fairies:</h4>
+	<h4 class="wish__label">Wish Fairies:</h4>
 	<div layout="row" class="wish__contributors-container" layout-align="left center" layout-wrap>
-		<p class="noContributors wish-label-content" ng-if="!wish.contributions.length">No contributors!</p>
+		<p class="noContributors wish__label--content" ng-if="!wish.contributions.length">No contributors!</p>
 		<div ng-repeat="contribution in wish.contributions" class="wish__contribution md-whiteframe-1dp" layout="row" layout-align="center center">
 			<img src="{{contribution.contributor.uid | facebookPhoto}}" class="wish__contributor-photo"/>
 			{{contribution.contributor.name}}

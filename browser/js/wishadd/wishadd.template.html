@@ -13,7 +13,7 @@
 		  <input type="number" ng-model="newWishPrice">
 		</md-input-container>
 
-		<md-input-container class="newWishExpiry">
+		<md-input-container>
 			<label>When should {{userSeesOwnWishlist ? "you" : "they"}} get it by?</label>
 			<md-datepicker ng-model="newWishExpiry"  md-hide-icons="calendar" required>
 			</md-datepicker>
@@ -24,7 +24,7 @@
       <textarea ng-model="newWishDescription" maxlength="200" rows="1" md-select-on-focus></textarea>
   	</md-input-container>
 
-		<md-switch class="newWishPublicity" ng-model="newWishIsPublic" layout-align="center" ng-hide="{{userSeesOwnWishlist}}">
+		<md-switch class="addwish__publicity" ng-model="newWishIsPublic" layout-align="center" ng-hide="{{userSeesOwnWishlist}}">
 			The receiver {{newWishIsPublic ? "can" : "cannot" }} see this wish.
 		</md-switch>
 
@@ -34,7 +34,7 @@
 		<div class="addwish__add-photo-btn" ng-if="!imageFileBase64" ng-click="chooseFile()" layout="row" layout-align="center center"> <md-icon md-font-set="material-icons">add_a_photo</md-icon> </div>
  </div>
 
- <div class="footer" layout="row">
+ <div class="addwish__footer" layout="row">
 	<md-button flex="50" class="md-raised md-primary" type="submit" ng-disabled="wishAddForm.$invalid">Submit</md-button>
 	<md-button flex="50" class="md-raised" ng-click="cancel()"> Cancel </md-button>
  </div>
