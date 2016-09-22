@@ -27,7 +27,7 @@ app.run(['$window', function($window) {
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-83429327-2', 'auto');
   console.log("Google Analytics loaded as: ", ga);
- 
+
 
   // Service workers
   if ('serviceWorker' in navigator) {
@@ -55,7 +55,7 @@ app.run(['$window', function($window) {
 
 
 app.run(function($location, $rootScope, $state, AuthService) {
-  
+
   // Check authentication before every state-change
   $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
     var isLoggin = AuthService.isAuthenticated();
@@ -94,6 +94,7 @@ app.config(function ($urlRouterProvider, $mdThemingProvider, $httpProvider, $sce
 
 app.controller('ApplicationController', function($scope, AuthService, LocalStorageService) {
   $scope.currentUser = LocalStorageService.getUser();
+  $scope.showProgressDialog = false;
   $scope.currentNavItem = 'feed';
   $scope.highlighFeed = function() {
     $scope.currentNavItem = 'feed';
@@ -107,6 +108,15 @@ app.controller('ApplicationController', function($scope, AuthService, LocalStora
     $scope.currentUser = user;
     LocalStorageService.setUser(user);
   };
+
+  $scope.dismissProgress = function() {
+    $scope.showProgressDialog = false;
+  }
+
+  $scope.showProgress = function(message) {
+    $scope.showProgressDialog = true;
+    $scope.loadingMessage = message || "Uploading, please wait!";
+  }
 });
 
 
@@ -131,4 +141,3 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthS
 		$state.go('landing');
 	}
 });
-
