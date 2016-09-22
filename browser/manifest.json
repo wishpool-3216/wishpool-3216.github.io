@@ -2,8 +2,16 @@
   "name": "Wishpool",
   "short_name": "Wishpool",
   "icons": [{
-    "src": "assets/WishPool-Logo.png",
-      "sizes": "1024x1024",
+    "src": "/assets/.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/icon-152x152.png",
+      "sizes": "152x152",
       "type": "image/png"
     }],
   "start_url": "/index.html",
