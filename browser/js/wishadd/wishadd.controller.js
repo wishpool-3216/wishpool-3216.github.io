@@ -37,10 +37,23 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 		});
 	}
 
+	$scope.validateForm = function() {
+		console.log($scope.newWishName, $scope.newWishPrice, $scope.newWishExpiry);
+		var name = ($scope.newWishName || " ").trim();
+		var price = ($scope.newWishPrice || " ").toString().trim();
+		var date = $scope.newWishExpiry;
+		var regexp = /^\d+$/;
+		return (name && date && price && regexp.test(price));
+	}
+
 	// Add the wish
 	$scope.addWish = function() {
 		if (!InternetService.isOnline()) {
 			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
+		if (!$scope.validateForm()) {
+			ToastService.showToast($mdToast, 'Invalid Wish Data Format!');
 			return;
 		}
 		$scope.showProgress();

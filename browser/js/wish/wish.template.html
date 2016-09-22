@@ -1,9 +1,12 @@
 <md-content class="wish container" layout="column" layout-align="center center" flex>
 	<img class="wish__image" src="{{wish.image_file_name | normalPhoto | defaultPhoto}}">
-	<h2 class="wish__label">{{wish.name}}</h2>
-	<h4 class="wish__label">Expires on: <span class="wish__label--content"> {{wish.expiry.slice(0,10)}} </span> </h4>
-	<h4 class="wish__label" ng-if="contributeAmt">Your contribution: <span class="wish__label--content"> ${{contributeAmt}} </span> </h4>
-	<h4 class="wish__label">Wish Progress: <span class="wish__label--content"> ${{wish.sum_contributions || 0}} / ${{wish.expected_price}} </span> </h4>
+	<div class="wish__info-container" layout="column" layout-align="center center">
+		<h2 class="wish__label">{{wish.name}}</h2>
+		<h4 class="wish__label" ng-if="wish.description"> Description: <span class="wish__label--content"> {{wish.description}} </span> </h4>
+		<h4 class="wish__label">Expires on: <span class="wish__label--content"> {{wish.expiry.slice(0,10)}} </span> </h4>
+		<h4 class="wish__label" ng-if="contributeAmt">Your contribution: <span class="wish__label--content"> ${{contributeAmt}} </span> </h4>
+		<h4 class="wish__label">Wish Progress: <span class="wish__label--content"> ${{wish.sum_contributions || 0}} / ${{wish.expected_price}} </span> </h4>
+	</div>
 	<md-progress-linear md-mode="determinate" value="{{(wish.sum_contributions || 0)/ wish.expected_price * 100}}"></md-progress-linear>
 	<br>
 	<h4 class="wish__label">Wish Fairies:</h4>
