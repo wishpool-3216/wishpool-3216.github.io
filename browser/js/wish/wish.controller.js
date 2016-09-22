@@ -15,7 +15,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 	WishService.getGift($stateParams.wishId).then(function(wish) {
 		$scope.wish = wish;
 
-		// Checks that image source is not HTTP but HTTPS, and corrects it if necessary 
+		// Checks that image source is not HTTP but HTTPS, and corrects it if necessary
 		if($scope.wish.image_file_name && $scope.wish.image_file_name.split('://')[0] !== 'https'){
 			$scope.wish.image_file_name = $scope.wish.image_file_name.replace('http', 'https');
 		}
@@ -42,9 +42,9 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       .cancel("Cancel");
 
     $mdDialog.show(confirm).then(function(result) {
-      var regexp = /\d+/;
-      var match = result.match(regexp);
-      var contributeAmt = parseInt(match[0]);
+			var regexp = /^\d+$/;
+      var match = regexp.test(result);
+      var contributeAmt = parseInt(result);
       if(match && contributeAmt > 0){
 				if (contributeAmt > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast("The amount you've set is too high!");
 				$scope.contributeAmt = contributeAmt;
@@ -73,9 +73,9 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
       .cancel("Cancel");
 
     $mdDialog.show(confirm).then(function(result) {
-      var regexp = /\d+/;
-      var match = result.match(regexp);
-      var contributeAmt = parseInt(match[0]);
+      var regexp = /^\d+$/;
+      var match = regexp.test(result);
+      var contributeAmt = parseInt(result);
       if(match) {
 				var deltaAmount = contributeAmt - $scope.contributeAmt;
 				if (deltaAmount > $scope.wish.expected_price - $scope.wish.sum_contributions) return $scope.showToast("The amount you've set is too high!");
@@ -103,7 +103,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 				}
 
       } else {
-				$scope.showToast("Oops! Invalid result.");
+				$scope.showToast("Invalid amount.");
       }
     });
   };
