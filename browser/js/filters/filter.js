@@ -1,7 +1,7 @@
 app.filter('facebookPhoto', function () {
   return function (fbId) {
     if (!fbId) return null;
-    return "http://res.cloudinary.com/demo/image/facebook/" + fbId + ".jpg";
+    return "https://res.cloudinary.com/demo/image/facebook/" + fbId + ".jpg";
   };
 });
 
