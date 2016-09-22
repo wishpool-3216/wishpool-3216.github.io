@@ -1,4 +1,4 @@
-app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast){
+app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast, ToastService) {
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -13,7 +13,7 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 
 	$scope.closeProgress = function(text) {
 		$scope.dismissProgress();
-		$scope.showToast(text);
+		ToastService.showToast($mdToast, text);
 	}
 
 	$scope.uploadWish = function(imageUrl) {
@@ -68,21 +68,5 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 	$scope.cancel = function() {
 		$window.history.back();
 	}
-
-	$scope.showToast = function(text) {
-		if (!text) return;
-    var pinTo = {
-			top: false,
-			left: false,
-			bottom: true,
-			right: true
-		}
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent(text)
-        .position(pinTo)
-        .hideDelay(500)
-    );
-  };
 
 });
