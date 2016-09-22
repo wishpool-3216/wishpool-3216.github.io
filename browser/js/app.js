@@ -27,7 +27,7 @@ app.run(['$window', function($window) {
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-83429327-2', 'auto');
   console.log("Google Analytics loaded as: ", ga);
- 
+
 
   // Service workers
   if ('serviceWorker' in navigator) {
@@ -55,7 +55,7 @@ app.run(['$window', function($window) {
 
 
 app.run(function($location, $rootScope, $state, AuthService) {
-  
+
   // Check authentication before every state-change
   $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
     var isLoggin = AuthService.isAuthenticated();
@@ -71,7 +71,7 @@ app.run(function($location, $rootScope, $state, AuthService) {
 
 
   // Google Analytics Update after every state-change
-  $rootScope.on('stateChangeSuccess', function(){
+  $rootScope.$on('stateChangeSuccess', function(){
     ga('send', 'pageview', { page: $location.path() });
   });
 
@@ -131,4 +131,3 @@ app.controller('TopbarCtrl', function($scope, $state, LocalStorageService, AuthS
 		$state.go('landing');
 	}
 });
-
