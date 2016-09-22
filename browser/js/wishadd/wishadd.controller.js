@@ -9,40 +9,48 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 
 	// By default, the new wish is a Public wish
 	$scope.newWishIsPublic = true;
+	$scope.imageFile = null;
 
 	$scope.closeProgress = function(text) {
 		$scope.dismissProgress();
 		$scope.showToast(text);
 	}
 
+	$scope.uploadWish = function(imageUrl) {
+		var newWishPublicity = "Public";
+		if(!$scope.newWishIsPublic) newWishPublicity = "Private";
+
+		var newWishObj = {
+			name: $scope.newWishName,
+			publicity: newWishPublicity,
+			source: imageUrl,
+			expected_price: $scope.newWishPrice,
+			accumulated: 0,
+			expiry: $scope.newWishExpiry,
+			description: $scope.newWishDescription
+		}
+
+		WishService.addGift($scope.pageUserId, newWishObj).then(function(newWish) {
+			$scope.closeProgress('New Wish Added');
+			WishService.cacheNewGift($scope.pageUserId, newWish);
+			$state.go('wishlist', {userId: $scope.pageUserId});
+		});
+	}
+
 	// Add the wish
 	$scope.addWish = function() {
 		$scope.showProgress();
-		FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
-			var imageData = response.data;
-			var newWishPublicity = "Public";
-			if(!$scope.newWishIsPublic) newWishPublicity = "Private";
-
-			var newWishObj = {
-				name: $scope.newWishName,
-				publicity: newWishPublicity,
-				source: imageData.url,
-				expected_price: $scope.newWishPrice,
-				accumulated: 0,
-				expiry: $scope.newWishExpiry,
-				description: $scope.newWishDescription
-			}
-
-			WishService.addGift($scope.pageUserId, newWishObj).then(function(newWish) {
-				$scope.closeProgress('New Wish Added');
-				WishService.cacheNewGift($scope.pageUserId, newWish);
-				$state.go('wishlist', {userId: $scope.pageUserId});
+		if (!$scope.imageFile) {
+			$scope.uploadWish(null);
+		} else {
+			FileUpload.uploadFileToUrl($scope.imageFile).then(function(response) {
+				$scope.uploadWish(response.data.url);
+			}, function(err) {
+				$scope.closeProgress('Err! Please Internet Connection');
+			}).catch(function(err) {
+				$scope.closeProgress('Err! Please Internet Connection');
 			});
-		}, function(err) {
-			$scope.closeProgress('Err! Please Internet Connection');
-		}).catch(function(err) {
-			$scope.closeProgress('Err! Please Internet Connection');
-		});
+		}
 	}
 
 	$scope.fileNameChanged = function(el) {
