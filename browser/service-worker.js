@@ -60,6 +60,7 @@ self.addEventListener('activate', function (event) {
 // Fetching
 self.addEventListener('fetch', function (event) {
   var apiUrl = 'https://server.wishpool.info/api/v1/';
+
   // First ensure that the request is a GET
   if(event.request.method != "GET") return;
 
@@ -68,15 +69,20 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(
       // Fetch the request first
       fetch(event.request)
-      .then(function (response) {
-        if (response) {
+      .then(function (response) {        
+        // Only cache a fetched response if it is OK
+        if (response.ok) {
           return caches.open(apiCacheName).then(function (cache) {
             cache.put(event.request, response.clone());
             console.log("[SW] Fetched and cached API data for: ", event.request);
             return response;
           })
-        } 
+        } else {
+          console.log("[SW] Fetched a non-OK response for API data for: ", event.request);
+          return response;
+        }
       })
+      // Request could not be fetched, so check cache.
       .catch(function (err) {
         console.log("[SW] API data fetch failed. Checking cache for: ", err);
         return caches.match(event.request).then(function (response) {
@@ -97,14 +103,21 @@ self.addEventListener('fetch', function (event) {
         if (response) { 
           console.log('[SW] App Shell data found in cache for: ', event.request); 
           return response;
+        // Response could not be found it cache, so fetch it.
         } else {
           console.log("[SW] App Shell data not found in cache. Fetching: ", event.request);
           return fetch(event.request).then(function (response) {
-            return caches.open(shellCacheName).then(function (cache) {
-              cache.put(event.request, response.clone());
-              console.log("[SW] Fetched and cached App Shell data for: ", event.request);
+            // Only cache a fetched response if it is OK
+            if (response.ok) {
+              return caches.open(shellCacheName).then(function (cache) {
+                cache.put(event.request, response.clone());
+                console.log("[SW] Fetched and cached App Shell data for: ", event.request);
+                return response;
+              });
+            } else {
+              console.log("[SW] Fetched a non-OK response for App Shell data for: ", event.request);
               return response;
-            });
+            }
           })
           .catch(function(err){
             console.log("[SW] App Shell data fetched failed for: ", event.request);
