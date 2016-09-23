@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishService, UserService, LocalStorageService, $mdDialog, $mdToast){
+app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishService, UserService, LocalStorageService, $mdDialog, $mdToast, ToastService, InternetService){
 
 	$scope.wishes = [];
 	$scope.user = {};
@@ -20,7 +20,7 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 		$scope.wishes.forEach(function(wish) {
 			wish.canDelete = wish.creator_id == $scope.clientUserId;
 
-			// Checks that image source is not HTTP but HTTPS, and corrects it if necessary 
+			// Checks that image source is not HTTP but HTTPS, and corrects it if necessary
 			if(wish.image_file_name && wish.image_file_name.split('://')[0] !== 'https'){
 				wish.image_file_name = wish.image_file_name.replace('http', 'https');
 			}
@@ -28,6 +28,10 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 	});
 
 	$scope.deleteWish = function(ev, index) {
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
 		var confirm = $mdDialog.confirm()
 			.title('Remove this Gift')
 			.textContent("This gift was created by you, if you remove it, all contributions will be lost too. Do you want to continue?")
@@ -41,5 +45,13 @@ app.controller('WishlistCtrl', function($scope, $state,  $stateParams, WishServi
 				WishService.updateGiftsList($scope.pageUserId, $scope.wishes);
 			});
 		});
+	}
+
+	$scope.goToAddWish = function() {
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
+		$state.go('wishadd', {userId: $scope.pageUserId});
 	}
 });

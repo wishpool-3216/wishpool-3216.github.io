@@ -1,4 +1,4 @@
-app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast){
+app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, WishService, $stateParams, $window, FileUpload, ImageReader, $mdToast, ToastService, InternetService) {
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -13,7 +13,7 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 
 	$scope.closeProgress = function(text) {
 		$scope.dismissProgress();
-		$scope.showToast(text);
+		ToastService.showToast($mdToast, text);
 	}
 
 	$scope.uploadWish = function(imageUrl) {
@@ -37,8 +37,25 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 		});
 	}
 
+	$scope.validateForm = function() {
+		console.log($scope.newWishName, $scope.newWishPrice, $scope.newWishExpiry);
+		var name = ($scope.newWishName || " ").trim();
+		var price = ($scope.newWishPrice || " ").toString().trim();
+		var date = $scope.newWishExpiry;
+		var regexp = /^\d+$/;
+		return (name && date && price && regexp.test(price));
+	}
+
 	// Add the wish
 	$scope.addWish = function() {
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
+		if (!$scope.validateForm()) {
+			ToastService.showToast($mdToast, 'Invalid Wish Data Format!');
+			return;
+		}
 		$scope.showProgress();
 		if (!$scope.imageFile) {
 			$scope.uploadWish(null);
@@ -68,21 +85,5 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 	$scope.cancel = function() {
 		$window.history.back();
 	}
-
-	$scope.showToast = function(text) {
-		if (!text) return;
-    var pinTo = {
-			top: false,
-			left: false,
-			bottom: true,
-			right: true
-		}
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent(text)
-        .position(pinTo)
-        .hideDelay(500)
-    );
-  };
 
 });

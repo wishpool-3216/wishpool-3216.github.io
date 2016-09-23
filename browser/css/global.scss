@@ -1,3 +1,13 @@
+.md-dialog-container{
+	position: fixed;
+	top: 0 !important;
+	height: 100vh;
+	max-height: 100vh;
+}
+.md-dialog-container md-dialog{
+	max-height: 100vh;
+}
+
 .wishpool-container {
 	width: 100vw;
 	height: 100vh;
