@@ -17,6 +17,8 @@
 			{{contribution.contributor.name}}
 		</div>
 	</div>
+
+	<div class="fb-comments" dyn-fb-comment-box page-href="{{curUrl}}" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
 </md-content>
 
 <md-button class="contributeButton md-primary md-raised" ng-hide="userSeesOwnWish || contributed" ng-click="showContributePrompt($event)">Contribute</md-button>
