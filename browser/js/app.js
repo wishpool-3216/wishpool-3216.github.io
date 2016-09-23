@@ -62,7 +62,7 @@ app.run(function($location, $rootScope, $state, AuthService) {
 
 
   // Google Analytics Update after every state-change
-  $rootScope.$on('stateChangeSuccess', function(){
+  $rootScope.$on('$stateChangeSuccess', function(){
     ga('send', 'pageview', { page: $location.path() });
   });
 
