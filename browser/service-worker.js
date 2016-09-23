@@ -70,17 +70,11 @@ self.addEventListener('fetch', function (event) {
       // Fetch the request first
       fetch(event.request)
       .then(function (response) {        
-        // Only cache a fetched response if it is OK
-        if (response.ok) {
-          return caches.open(apiCacheName).then(function (cache) {
-            cache.put(event.request, response.clone());
-            console.log("[SW] Fetched and cached API data for: ", event.request);
-            return response;
-          })
-        } else {
-          console.log("[SW] Fetched a non-OK response for API data for: ", event.request);
+        return caches.open(apiCacheName).then(function (cache) {
+          cache.put(event.request, response.clone());
+          console.log("[SW] Fetched and cached API data for: ", event.request);
           return response;
-        }
+        })
       })
       // Request could not be fetched, so check cache.
       .catch(function (err) {
@@ -107,17 +101,11 @@ self.addEventListener('fetch', function (event) {
         } else {
           console.log("[SW] App Shell data not found in cache. Fetching: ", event.request);
           return fetch(event.request).then(function (response) {
-            // Only cache a fetched response if it is OK
-            if (response.ok) {
-              return caches.open(shellCacheName).then(function (cache) {
-                cache.put(event.request, response.clone());
-                console.log("[SW] Fetched and cached App Shell data for: ", event.request);
-                return response;
-              });
-            } else {
-              console.log("[SW] Fetched a non-OK response for App Shell data for: ", event.request);
+            return caches.open(shellCacheName).then(function (cache) {
+              cache.put(event.request, response.clone());
+              console.log("[SW] Fetched and cached App Shell data for: ", event.request);
               return response;
-            }
+            });
           })
           .catch(function(err){
             console.log("[SW] App Shell data fetched failed for: ", event.request);
