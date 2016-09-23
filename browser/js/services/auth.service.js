@@ -64,7 +64,7 @@ app.factory('AuthService', function ($http, $q, $window, Session, LocalStorageSe
   return authService;
 });
 
-app.factory('sessionInjector', function(Session, tokenKeys) {
+app.factory('sessionInjector', function(Session, tokenKeys, $injector) {
   var sessionInjector = {
     request: function(config) {
       if (config.url.startsWith('https://api.cloudinary.com')) {
@@ -78,6 +78,9 @@ app.factory('sessionInjector', function(Session, tokenKeys) {
       return config;
     },
     response: function(response) {
+
+      if (Session.token) return response;
+
       var headers = response.headers();
 
       var newToken = tokenKeys.reduce(function(newToken, key) {
@@ -88,10 +91,15 @@ app.factory('sessionInjector', function(Session, tokenKeys) {
 
       if (newToken) Session.setToken(newToken);
       return response;
+    },
+
+    responseError: function(response) {
+      if (response.status == 401) {
+        var AuthService = $injector.get('AuthService');
+        AuthService.logout();
+      }
+      return response;
     }
   }
   return sessionInjector;
-})
-
-app.factory('sessionRecoverer', function(Session) {
 })
