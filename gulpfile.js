@@ -35,10 +35,6 @@ gulp.task('transferManifest', function(){
 				 .pipe(gulp.dest('./public'));
 })
 
-gulp.task('transferManifest2', function(){
-	return gulp.src('./browser/manifest.appcache')
-				 .pipe(gulp.dest('./public'));
-})
 
 gulp.task('combineJS', function() {
 	// Grabs all files in browser
@@ -63,9 +59,8 @@ gulp.task('watch', function() {
 	gulp.watch('./browser/index.html', ['transferIndexHtml']);
 	gulp.watch('./browser/service-worker.js', ['transferServiceWorker']);
 	gulp.watch('./browser/manifest.json', ['transferManifest']);
-	gulp.watch('./browser/manifest.appcache', ['transferManifest2']);
 });
 
-gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'transferServiceWorker', 'transferAssets', 'transferManifest', 'transferManifest2']);
+gulp.task('build', ['combineJS', 'connect','transferHTML', 'transferStyles', 'transferIndexHtml', 'transferServiceWorker', 'transferAssets', 'transferManifest']);
 
 gulp.task('default', ['build', 'watch']);
