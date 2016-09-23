@@ -1,6 +1,6 @@
 // Two Caches: One for app shell, one for requests to server
-var apiCacheName = "WishpoolApiCache-2"
-var shellCacheName = "WishpoolShellCache-2";
+var apiCacheName = "WishpoolApiCache-v3"
+var shellCacheName = "WishpoolShellCache-v3";
 
 // Files that constitute the app shell
 var filesToCache = [
@@ -97,7 +97,7 @@ self.addEventListener('fetch', function (event) {
         if (response) { 
           console.log('[SW] App Shell data found in cache for: ', event.request); 
           return response;
-        // Response could not be found it cache, so fetch it.
+        // Response could not be found in the cache, so fetch it.
         } else {
           console.log("[SW] App Shell data not found in cache. Fetching: ", event.request);
           return fetch(event.request).then(function (response) {
