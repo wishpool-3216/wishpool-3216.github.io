@@ -34,28 +34,6 @@ app.run(['$window', function($window) {
     });
   }
 
-
-  // Appcache for Safari -- if appcache is supported
-  if ($window.applicationCache) {
-    function updateSite(event) {
-      $window.applicationCache.swapCache();
-    }
-    $window.applicationCache.addEventListener('updateready',
-      updateSite, false);
-
-    function logEvent(event) {
-        console.log(event.type);
-    }
-    $window.applicationCache.addEventListener('checking',logEvent,false);
-    $window.applicationCache.addEventListener('noupdate',logEvent,false);
-    $window.applicationCache.addEventListener('downloading',logEvent,false);
-    $window.applicationCache.addEventListener('cached',logEvent,false);
-    $window.applicationCache.addEventListener('updateready',logEvent,false);
-    $window.applicationCache.addEventListener('obsolete',logEvent,false);
-    $window.applicationCache.addEventListener('error',logEvent,false);
-  }
-
-
   // Facebook SDK
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];

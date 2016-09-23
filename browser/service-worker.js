@@ -1,6 +1,6 @@
 // Two Caches: One for app shell, one for requests to server
-var apiCacheName = "WishpoolApiCache-1"
-var shellCacheName = "WishpoolShellCache-1";
+var apiCacheName = "WishpoolApiCache-2"
+var shellCacheName = "WishpoolShellCache-2";
 
 // Files that constitute the app shell
 var filesToCache = [
