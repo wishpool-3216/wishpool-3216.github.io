@@ -47,10 +47,11 @@ self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(cacheNames.map(function (cacheName) {
-        console.log('[ServiceWorker] Removing old cache', cacheName);
-        if (cacheName !== shellCacheName && cacheName !== apiCacheName) {
+        if (cacheName != shellCacheName && cacheName != apiCacheName) {
+          console.log('[ServiceWorker] Removing old cache', cacheName);
           return caches.delete(cacheName);
         }
+        console.log("[ServiceWorker] Not removing cache ", cacheName);
       }));
     })
   );
