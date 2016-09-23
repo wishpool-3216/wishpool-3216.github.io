@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, ContributeService, $mdDialog, $mdToast, ToastService){
+app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageService, WishService, ContributeService, $mdDialog, $mdToast, ToastService, InternetService){
 
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.pageUserId = $stateParams.userId;
@@ -30,7 +30,13 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 	});
 
   $scope.showContributePrompt = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
+
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
+
+		// Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
       .title('How much would you like to contribute?')
       .textContent("Full dollar contributions are recommended. Contributions in cents (or any use of the period '.' symbol) should be avoided.")
@@ -61,6 +67,12 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
   };
 
 	$scope.showEditContributePrompt = function(ev) {
+
+		if (!InternetService.isOnline()) {
+			ToastService.showNoInterNetMessage($mdToast);
+			return;
+		}
+
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.prompt()
       .textContent("Edit your contribution, or set the amount to zero if you'd like to cancel your contribution.")
@@ -101,7 +113,7 @@ app.controller('WishCtrl', function($scope, $stateParams, $state, LocalStorageSe
 				}
 
       } else {
-				$scope.showToast("Invalid amount.");
+				ToastService.showToast($mdToast, "Invalid amount.");
       }
     });
   };
