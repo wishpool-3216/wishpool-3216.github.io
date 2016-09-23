@@ -61,7 +61,7 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   var apiUrl = 'https://server.wishpool.info/api/v1/';
   // First ensure that the request is a GET
-  if(event.request.method !== "GET") return;
+  if(event.request.method != "GET") return;
 
   // If an API request was made
   if (event.request.url.indexOf(apiUrl) === 0) {
