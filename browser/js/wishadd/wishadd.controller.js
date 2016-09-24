@@ -41,9 +41,10 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 		console.log($scope.newWishName, $scope.newWishPrice, $scope.newWishExpiry);
 		var name = ($scope.newWishName || " ").trim();
 		var price = ($scope.newWishPrice || " ").toString().trim();
+		var amount = (parseInt(price) > 0);
 		var date = ($scope.newWishExpiry >= new Date());
 		var regexp = /^\d+$/;
-		return (name && date && price && regexp.test(price));
+		return (name && date && price && amount && regexp.test(price));
 	}
 
 	// Add the wish

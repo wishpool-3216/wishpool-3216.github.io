@@ -30,8 +30,8 @@ app.factory('ImageReader', function($q) {
       height: srcHeight,
       x: 0,
       y: 0,
-      srcWidth,
-      srcHeight
+      srcWidth: srcWidth,
+      srcHeight: srcHeight
     };
   }
 
