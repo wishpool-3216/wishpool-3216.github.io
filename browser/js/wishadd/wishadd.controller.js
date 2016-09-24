@@ -41,7 +41,7 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 		console.log($scope.newWishName, $scope.newWishPrice, $scope.newWishExpiry);
 		var name = ($scope.newWishName || " ").trim();
 		var price = ($scope.newWishPrice || " ").toString().trim();
-		var date = $scope.newWishExpiry;
+		var date = ($scope.newWishExpiry >= new Date());
 		var regexp = /^\d+$/;
 		return (name && date && price && regexp.test(price));
 	}
@@ -53,7 +53,7 @@ app.controller('WishaddCtrl', function($scope, $state, LocalStorageService, Wish
 			return;
 		}
 		if (!$scope.validateForm()) {
-			ToastService.showToast($mdToast, 'Invalid Wish Data Format!');
+			ToastService.showToast($mdToast, 'Your Wish inputs are invalid!');
 			return;
 		}
 		$scope.showProgress();
