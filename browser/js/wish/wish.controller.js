@@ -2,6 +2,13 @@
 
 app.controller('WishCtrl', function($scope, $stateParams, $state, $location, LocalStorageService, WishService, ContributeService, $mdDialog, $mdToast, ToastService, InternetService){
 
+	// Check if online
+	if (!InternetService.isOnline()) {
+		ToastService.showNoInterNetMessage($mdToast);
+		return;
+	}
+
+
 	// Checks if client is viewing their own wishlist or someone else's
 	$scope.curUrl = $location.absUrl();
 	$scope.pageUserId = $stateParams.userId;
