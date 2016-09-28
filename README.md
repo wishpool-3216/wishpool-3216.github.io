@@ -1,5 +1,5 @@
-# wishpool-frontend.github.io
-Wishpool: Crowdfund your wishes today!
+## wishpool-frontend.github.io
+# Wishpool: Crowdfund your wishes today!
 
 #### Requirements
 * npm
